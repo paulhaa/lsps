@@ -1,0 +1,10 @@
+# We'll use defaults from the Google style, but with 120 columns per line
+BasedOnStyle: Google
+IndentWidth: 4
+---
+Language: Cpp
+ColumnLimit: 120
+UseCRLF : false
+BinPackArguments: false
+BinPackParameters: false
+AccessModifierOffset: -2
