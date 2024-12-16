@@ -4,6 +4,9 @@ set(SOURCES
         ioHandler/ioHandler.hpp
         ioHandler/stdIoHandler.hpp
 )
+
+add_subdirectory(models)
+
 target_sources(lsps PRIVATE ${SOURCES})
 target_include_directories(lsps PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 

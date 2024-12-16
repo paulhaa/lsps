@@ -1,0 +1,781 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "TextDocumentSyncKind": {
+      "description": "Defines how the host (editor) should sync document changes to the language server.",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "type": "number"
+    },
+    "TextDocumentSyncOptions": {
+      "additionalProperties": false,
+      "properties": {
+        "change": {
+          "$ref": "#/definitions/TextDocumentSyncKind",
+          "description": "Change notifications are sent to the server. See TextDocumentSyncKind.None, TextDocumentSyncKind.Full and TextDocumentSyncKind.Incremental. If omitted it defaults to TextDocumentSyncKind.None."
+        },
+        "openClose": {
+          "description": "Open and close notifications are sent to the server. If omitted open close notifications should not be sent.   Open and close notifications are sent to the server. If omitted open close notification should not be sent.",
+          "type": "boolean"
+        },
+        "willSave": {
+          "description": "If present will save notifications are sent to the server. If omitted the notification should not be sent.",
+          "type": "boolean"
+        },
+        "willSaveWaitUntil": {
+          "description": "If present will save wait until requests are sent to the server. If omitted the request should not be sent.",
+          "type": "boolean"
+        },
+        "save": {
+          "description": "If present save notifications are sent to the server. If omitted the notification should not be sent.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DidOpenTextDocumentParams": {
+      "additionalProperties": false,
+      "properties": {
+        "textDocument": {
+          "$ref": "../basicStructures/basicStructures.json#/definitions/TextDocumentItem",
+          "description": "The document that was opened."
+        }
+      },
+      "required": [
+        "textDocument"
+      ],
+      "type": "object"
+    },
+    "TextDocumentChangeRegistrationOptions": {
+      "additionalProperties": false,
+      "description": "Describe options to be used when registering for text document change events.",
+      "properties": {
+        "documentSelector": {
+          "anyOf": [
+            {
+              "$ref": "../basicStructures/basicStructures.json#/definitions/DocumentSelector"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "A document selector to identify the scope of the registration. If set to null the document selector provided on the client side will be used."
+        },
+        "syncKind": {
+          "$ref": "#/definitions/TextDocumentSyncKind",
+          "description": "How documents are synced to the server. See TextDocumentSyncKind.Full and TextDocumentSyncKind.Incremental."
+        }
+      },
+      "required": [
+        "documentSelector",
+        "syncKind"
+      ],
+      "type": "object"
+    },
+    "DidChangeTextDocumentParams": {
+      "additionalProperties": false,
+      "properties": {
+        "contentChanges": {
+          "description": "The actual content changes. The content changes describe single state changes to the document. So if there are two content changes c1 (at array index 0) and c2 (at array index 1) for a document in state S then c1 moves the document from S to S' and c2 from S' to S''. So c1 is computed on the state S and c2 is computed on the state S'.\n\nTo mirror the content of a document using change events use the following approach:\n- start with the same initial content\n- apply the 'textDocument/didChange' notifications in the order you   receive them.\n- apply the `TextDocumentContentChangeEvent`s in a single notification   in the order you receive them.",
+          "items": {
+            "$ref": "#/definitions/TextDocumentContentChangeEvent"
+          },
+          "type": "array"
+        },
+        "textDocument": {
+          "$ref": "../basicStructures/basicStructures.json#/definitions/VersionedTextDocumentIdentifier",
+          "description": "The document that did change. The version number points to the version after all provided content changes have been applied."
+        }
+      },
+      "required": [
+        "textDocument",
+        "contentChanges"
+      ],
+      "type": "object"
+    },
+    "TextDocumentContentChangeEvent": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "range": {
+              "$ref": "../basicStructures/basicStructures.json#/definitions/Range",
+              "description": "The range of the document that changed."
+            },
+            "rangeLength": {
+              "$ref": "../baseProtocol/baseProtocol.json#/definitions/uinteger",
+              "deprecated": "use range instead.",
+              "description": "The optional length of the range that got replaced."
+            },
+            "text": {
+              "description": "The new text for the provided range.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "range",
+            "text"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "text": {
+              "description": "The new text of the whole document.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "text"
+          ],
+          "type": "object"
+        }
+      ],
+      "description": "An event describing a change to a text document. If only a text is provided it is considered to be the full content of the document."
+    },
+    "WillSaveTextDocumentParams": {
+      "additionalProperties": false,
+      "description": "The parameters send in a will save text document notification.",
+      "properties": {
+        "reason": {
+          "$ref": "#/definitions/TextDocumentSaveReason",
+          "description": "The 'TextDocumentSaveReason'."
+        },
+        "textDocument": {
+          "$ref": "../basicStructures/basicStructures.json#/definitions/TextDocumentIdentifier",
+          "description": "The document that will be saved."
+        }
+      },
+      "required": [
+        "textDocument",
+        "reason"
+      ],
+      "type": "object"
+    },
+    "TextDocumentSaveReason": {
+      "description": "Represents reasons why a text document is saved.",
+      "enum": [
+        1,
+        2,
+        3
+      ],
+      "type": "number"
+    },
+    "SaveOptions": {
+      "additionalProperties": false,
+      "properties": {
+        "includeText": {
+          "description": "The client is supposed to include the content on save.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "TextDocumentSaveRegistrationOptions": {
+      "additionalProperties": false,
+      "properties": {
+        "documentSelector": {
+          "anyOf": [
+            {
+              "$ref": "../basicStructures/basicStructures.json#/definitions/DocumentSelector"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "A document selector to identify the scope of the registration. If set to null the document selector provided on the client side will be used."
+        },
+        "includeText": {
+          "description": "The client is supposed to include the content on save.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "documentSelector"
+      ],
+      "type": "object"
+    },
+    "DidSaveTextDocumentParams": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "description": "Optional the content when saved. Depends on the includeText value when the save notification was requested.",
+          "type": "string"
+        },
+        "textDocument": {
+          "$ref": "../basicStructures/basicStructures.json#/definitions/TextDocumentIdentifier",
+          "description": "The document that was saved."
+        }
+      },
+      "required": [
+        "textDocument"
+      ],
+      "type": "object"
+    },
+    "DidCloseTextDocumentParams": {
+      "additionalProperties": false,
+      "properties": {
+        "textDocument": {
+          "$ref": "../basicStructures/basicStructures.json#/definitions/TextDocumentIdentifier",
+          "description": "The document that was closed."
+        }
+      },
+      "required": [
+        "textDocument"
+      ],
+      "type": "object"
+    },
+    "TextDocumentSyncClientCapabilities": {
+      "additionalProperties": false,
+      "properties": {
+        "didSave": {
+          "description": "The client supports did save notifications.",
+          "type": "boolean"
+        },
+        "dynamicRegistration": {
+          "description": "Whether text document synchronization supports dynamic registration.",
+          "type": "boolean"
+        },
+        "willSave": {
+          "description": "The client supports sending will save notifications.",
+          "type": "boolean"
+        },
+        "willSaveWaitUntil": {
+          "description": "The client supports sending a will save request and waits for a response providing text edits which will be applied to the document before it is saved.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "NotebookDocument": {
+      "additionalProperties": false,
+      "description": "A notebook document.",
+      "properties": {
+        "cells": {
+          "description": "The cells of a notebook.",
+          "items": {
+            "$ref": "#/definitions/NotebookCell"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/LSPObject",
+          "description": "Additional metadata stored with the notebook document."
+        },
+        "notebookType": {
+          "description": "The type of the notebook.",
+          "type": "string"
+        },
+        "uri": {
+          "$ref": "../basicStructures/basicStructures.json#/definitions/URI",
+          "description": "The notebook document's URI."
+        },
+        "version": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/integer",
+          "description": "The version number of this document (it will increase after each change, including undo/redo)."
+        }
+      },
+      "required": [
+        "uri",
+        "notebookType",
+        "version",
+        "cells"
+      ],
+      "type": "object"
+    },
+    "NotebookCell": {
+      "additionalProperties": false,
+      "description": "A notebook cell.\n\nA cell's document URI must be unique across ALL notebook cells and can therefore be used to uniquely identify a notebook cell or the cell's text document.",
+      "properties": {
+        "document": {
+          "$ref": "../basicStructures/basicStructures.json#/definitions/DocumentUri",
+          "description": "The URI of the cell's text document content."
+        },
+        "executionSummary": {
+          "$ref": "#/definitions/ExecutionSummary",
+          "description": "Additional execution summary information if supported by the client."
+        },
+        "kind": {
+          "$ref": "#/definitions/NotebookCellKind",
+          "description": "The cell's kind"
+        },
+        "metadata": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/LSPObject",
+          "description": "Additional metadata stored with the cell."
+        }
+      },
+      "required": [
+        "kind",
+        "document"
+      ],
+      "type": "object"
+    },
+    "NotebookCellKind": {
+      "description": "A notebook cell kind.",
+      "enum": [
+        1,
+        2
+      ],
+      "type": "number"
+    },
+    "ExecutionSummary": {
+      "additionalProperties": false,
+      "properties": {
+        "executionOrder": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/uinteger",
+          "description": "A strict monotonically increasing value indicating the execution order of a cell inside a notebook."
+        },
+        "success": {
+          "description": "Whether the execution was successful or not if known by the client.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "executionOrder"
+      ],
+      "type": "object"
+    },
+    "NotebookCellTextDocumentFilter": {
+      "additionalProperties": false,
+      "description": "A notebook cell text document filter denotes a cell text document by different properties.",
+      "properties": {
+        "language": {
+          "description": "A language id like `python`.\n\nWill be matched against the language id of the notebook cell document. '*' matches every language.",
+          "type": "string"
+        },
+        "notebook": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/NotebookDocumentFilter"
+            }
+          ],
+          "description": "A filter that matches against the notebook containing the notebook cell. If a string value is provided it matches against the notebook type. '*' matches every notebook."
+        }
+      },
+      "required": [
+        "notebook"
+      ],
+      "type": "object"
+    },
+    "NotebookDocumentFilter": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "notebookType": {
+              "description": "The type of the enclosing notebook.",
+              "type": "string"
+            },
+            "pattern": {
+              "description": "A glob pattern.",
+              "type": "string"
+            },
+            "scheme": {
+              "description": "A Uri scheme, like `file` or `untitled`.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "notebookType"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "notebookType": {
+              "description": "The type of the enclosing notebook.",
+              "type": "string"
+            },
+            "pattern": {
+              "description": "A glob pattern.",
+              "type": "string"
+            },
+            "scheme": {
+              "description": "A Uri scheme, like `file` or `untitled`.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "scheme"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "notebookType": {
+              "description": "The type of the enclosing notebook.",
+              "type": "string"
+            },
+            "pattern": {
+              "description": "A glob pattern.",
+              "type": "string"
+            },
+            "scheme": {
+              "description": "A Uri scheme, like `file` or `untitled`.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "pattern"
+          ],
+          "type": "object"
+        }
+      ],
+      "description": "A notebook document filter denotes a notebook document by different properties."
+    },
+    "NotebookDocumentSyncClientCapabilities": {
+      "additionalProperties": false,
+      "description": "Notebook specific client capabilities.",
+      "properties": {
+        "dynamicRegistration": {
+          "description": "Whether implementation supports dynamic registration. If this is set to `true` the client supports the new `(NotebookDocumentSyncRegistrationOptions &amp; NotebookDocumentSyncOptions)` return value for the corresponding server capability as well.",
+          "type": "boolean"
+        },
+        "executionSummarySupport": {
+          "description": "The client supports sending execution summary data per cell.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "NotebookDocumentSyncOptions": {
+      "additionalProperties": false,
+      "description": "Options specific to a notebook plus its cells to be synced to the server.\n\nIf a selector provides a notebook document filter but no cell selector all cells of a matching notebook document will be synced.\n\nIf a selector provides no notebook document filter but only a cell selector all notebook documents that contain at least one matching cell will be synced.",
+      "properties": {
+        "notebookSelector": {
+          "$ref": "#/definitions/NotebookSelector"
+        },
+        "save": {
+          "description": "Whether save notification should be forwarded to the server. Will only be honored if mode === `notebook`.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "notebookSelector"
+      ],
+      "type": "object"
+    },
+    "NotebookSelector": {
+      "description": "The notebooks to be synced",
+      "items": {
+        "anyOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "cells": {
+                "description": "The cells of the matching notebook to be synced.",
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "language": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "language"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "notebook": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/definitions/NotebookDocumentFilter"
+                  }
+                ],
+                "description": "The notebook to be synced. If a string value is provided it matches against the notebook type. '*' matches every notebook."
+              }
+            },
+            "required": [
+              "notebook"
+            ],
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "cells": {
+                "description": "The cells of the matching notebook to be synced.",
+                "items": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "language": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "language"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "notebook": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/definitions/NotebookDocumentFilter"
+                  }
+                ],
+                "description": "The notebook to be synced. If a string value is provided it matches against the notebook type. '*' matches every notebook."
+              }
+            },
+            "required": [
+              "cells"
+            ],
+            "type": "object"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "NotebookDocumentSyncRegistrationOptions": {
+      "additionalProperties": false,
+      "description": "Registration options specific to a notebook.",
+      "properties": {
+        "id": {
+          "description": "The id used to register the request. The id can be used to deregister the request again. See also Registration#id.",
+          "type": "string"
+        },
+        "notebookSelector": {
+          "$ref": "#/definitions/NotebookSelector"
+        },
+        "save": {
+          "description": "Whether save notification should be forwarded to the server. Will only be honored if mode === `notebook`.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "notebookSelector"
+      ],
+      "type": "object"
+    },
+    "DidOpenNotebookDocumentParams": {
+      "additionalProperties": false,
+      "description": "The params sent in an open notebook document notification.",
+      "properties": {
+        "cellTextDocuments": {
+          "description": "The text documents that represent the content of a notebook cell.",
+          "items": {
+            "$ref": "../basicStructures/basicStructures.json#/definitions/TextDocumentItem"
+          },
+          "type": "array"
+        },
+        "notebookDocument": {
+          "$ref": "#/definitions/NotebookDocument",
+          "description": "The notebook document that got opened."
+        }
+      },
+      "required": [
+        "notebookDocument",
+        "cellTextDocuments"
+      ],
+      "type": "object"
+    },
+    "DidChangeNotebookDocumentParams": {
+      "additionalProperties": false,
+      "description": "The params sent in a change notebook document notification.",
+      "properties": {
+        "change": {
+          "$ref": "#/definitions/NotebookDocumentChangeEvent",
+          "description": "The actual changes to the notebook document.\n\nThe change describes single state change to the notebook document. So it moves a notebook document, its cells and its cell text document contents from state S to S'.\n\nTo mirror the content of a notebook using change events use the following approach:\n- start with the same initial content\n- apply the 'notebookDocument/didChange' notifications in the order   you receive them."
+        },
+        "notebookDocument": {
+          "$ref": "#/definitions/VersionedNotebookDocumentIdentifier",
+          "description": "The notebook document that did change. The version number points to the version after all provided changes have been applied."
+        }
+      },
+      "required": [
+        "notebookDocument",
+        "change"
+      ],
+      "type": "object"
+    },
+    "VersionedNotebookDocumentIdentifier": {
+      "additionalProperties": false,
+      "description": "A versioned notebook document identifier.",
+      "properties": {
+        "uri": {
+          "$ref": "../basicStructures/basicStructures.json#/definitions/URI",
+          "description": "The notebook document's URI."
+        },
+        "version": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/integer",
+          "description": "The version number of this notebook document."
+        }
+      },
+      "required": [
+        "version",
+        "uri"
+      ],
+      "type": "object"
+    },
+    "NotebookDocumentChangeEvent": {
+      "additionalProperties": false,
+      "description": "A change event for a notebook document.",
+      "properties": {
+        "cells": {
+          "additionalProperties": false,
+          "description": "Changes to cells",
+          "properties": {
+            "data": {
+              "description": "Changes to notebook cells properties like its kind, execution summary or metadata.",
+              "items": {
+                "$ref": "#/definitions/NotebookCell"
+              },
+              "type": "array"
+            },
+            "structure": {
+              "additionalProperties": false,
+              "description": "Changes to the cell structure to add or remove cells.",
+              "properties": {
+                "array": {
+                  "$ref": "#/definitions/NotebookCellArrayChange",
+                  "description": "The change to the cell array."
+                },
+                "didClose": {
+                  "description": "Additional closed cell text documents.",
+                  "items": {
+                    "$ref": "../basicStructures/basicStructures.json#/definitions/TextDocumentIdentifier"
+                  },
+                  "type": "array"
+                },
+                "didOpen": {
+                  "description": "Additional opened cell text documents.",
+                  "items": {
+                    "$ref": "../basicStructures/basicStructures.json#/definitions/TextDocumentItem"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "array"
+              ],
+              "type": "object"
+            },
+            "textContent": {
+              "description": "Changes to the text content of notebook cells.",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "changes": {
+                    "items": {
+                      "$ref": "#/definitions/TextDocumentContentChangeEvent"
+                    },
+                    "type": "array"
+                  },
+                  "document": {
+                    "$ref": "../basicStructures/basicStructures.json#/definitions/VersionedTextDocumentIdentifier"
+                  }
+                },
+                "required": [
+                  "document",
+                  "changes"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "metadata": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/LSPObject",
+          "description": "The changed meta data if any."
+        }
+      },
+      "type": "object"
+    },
+    "NotebookCellArrayChange": {
+      "additionalProperties": false,
+      "description": "A change describing how to move a `NotebookCell` array from state S to S'.",
+      "properties": {
+        "cells": {
+          "description": "The new cells, if any",
+          "items": {
+            "$ref": "#/definitions/NotebookCell"
+          },
+          "type": "array"
+        },
+        "deleteCount": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/uinteger",
+          "description": "The deleted cells"
+        },
+        "start": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/uinteger",
+          "description": "The start offset of the cell that changed."
+        }
+      },
+      "required": [
+        "start",
+        "deleteCount"
+      ],
+      "type": "object"
+    },
+    "DidSaveNotebookDocumentParams": {
+      "additionalProperties": false,
+      "description": "The params sent in a save notebook document notification.",
+      "properties": {
+        "notebookDocument": {
+          "$ref": "#/definitions/NotebookDocumentIdentifier",
+          "description": "The notebook document that got saved."
+        }
+      },
+      "required": [
+        "notebookDocument"
+      ],
+      "type": "object"
+    },
+    "DidCloseNotebookDocumentParams": {
+      "additionalProperties": false,
+      "description": "The params sent in a close notebook document notification.",
+      "properties": {
+        "cellTextDocuments": {
+          "description": "The text documents that represent the content of a notebook cell that got closed.",
+          "items": {
+            "$ref": "../basicStructures/basicStructures.json#/definitions/TextDocumentIdentifier"
+          },
+          "type": "array"
+        },
+        "notebookDocument": {
+          "$ref": "#/definitions/NotebookDocumentIdentifier",
+          "description": "The notebook document that got closed."
+        }
+      },
+      "required": [
+        "notebookDocument",
+        "cellTextDocuments"
+      ],
+      "type": "object"
+    },
+    "NotebookDocumentIdentifier": {
+      "additionalProperties": false,
+      "description": "A literal to identify a notebook document in the client.",
+      "properties": {
+        "uri": {
+          "$ref": "../basicStructures/basicStructures.json#/definitions/URI",
+          "description": "The notebook document's URI."
+        }
+      },
+      "required": [
+        "uri"
+      ],
+      "type": "object"
+    }
+  }
+}

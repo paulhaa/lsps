@@ -36,3 +36,6 @@ build
 
 # IDE
 .idea
+
+# Generated sources
+src/server/models/generated

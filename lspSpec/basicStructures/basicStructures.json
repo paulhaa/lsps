@@ -1,0 +1,886 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "DocumentUri": {
+      "description": "foo://example.com:8042/over/there?name=ferret#nose \\_/   \\______________/\\_________/ \\_________/ \\__/  |           |            |            |        | scheme     authority       path        query   fragment  |   _____________________|__ / \\ /                        \\ urn:example:animal:ferret:nose\n\nfile:///c:/project/readme.md file:///C%3A/project/readme.md",
+      "type": "string"
+    },
+    "URI": {
+      "type": "string"
+    },
+    "RegularExpressionsClientCapabilities": {
+      "additionalProperties": false,
+      "description": "Client capabilities specific to regular expressions.",
+      "properties": {
+        "engine": {
+          "description": "The engine's name.",
+          "type": "string"
+        },
+        "version": {
+          "description": "The engine's version.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "engine"
+      ],
+      "type": "object"
+    },
+    "Position": {
+      "additionalProperties": false,
+      "properties": {
+        "character": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/uinteger",
+          "description": "Character offset on a line in a document (zero-based). The meaning of this offset is determined by the negotiated `PositionEncodingKind`.\n\nIf the character value is greater than the line length it defaults back to the line length."
+        },
+        "line": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/uinteger",
+          "description": "Line position in a document (zero-based)."
+        }
+      },
+      "required": [
+        "line",
+        "character"
+      ],
+      "type": "object"
+    },
+    "PositionEncodingKind": {
+      "description": "A type indicating how positions are encoded, specifically what column offsets mean.   A set of predefined position encoding kinds.",
+      "type": "string"
+    },
+    "Range": {
+      "additionalProperties": false,
+      "properties": {
+        "end": {
+          "$ref": "#/definitions/Position",
+          "description": "The range's end position."
+        },
+        "start": {
+          "$ref": "#/definitions/Position",
+          "description": "The range's start position."
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "type": "object"
+    },
+    "TextDocumentItem": {
+      "additionalProperties": false,
+      "properties": {
+        "languageId": {
+          "description": "The text document's language identifier.",
+          "type": "string"
+        },
+        "text": {
+          "description": "The content of the opened text document.",
+          "type": "string"
+        },
+        "uri": {
+          "$ref": "#/definitions/DocumentUri",
+          "description": "The text document's URI."
+        },
+        "version": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/integer",
+          "description": "The version number of this document (it will increase after each change, including undo/redo)."
+        }
+      },
+      "required": [
+        "uri",
+        "languageId",
+        "version",
+        "text"
+      ],
+      "type": "object"
+    },
+    "TextDocumentIdentifier": {
+      "additionalProperties": false,
+      "properties": {
+        "uri": {
+          "$ref": "#/definitions/DocumentUri",
+          "description": "The text document's URI."
+        }
+      },
+      "required": [
+        "uri"
+      ],
+      "type": "object"
+    },
+    "VersionedTextDocumentIdentifier": {
+      "additionalProperties": false,
+      "properties": {
+        "uri": {
+          "$ref": "#/definitions/DocumentUri",
+          "description": "The text document's URI."
+        },
+        "version": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/integer",
+          "description": "The version number of this document.\n\nThe version number of a document will increase after each change, including undo/redo. The number doesn't need to be consecutive."
+        }
+      },
+      "required": [
+        "uri",
+        "version"
+      ],
+      "type": "object"
+    },
+    "OptionalVersionedTextDocumentIdentifier": {
+      "additionalProperties": false,
+      "properties": {
+        "uri": {
+          "$ref": "#/definitions/DocumentUri",
+          "description": "The text document's URI."
+        },
+        "version": {
+          "anyOf": [
+            {
+              "$ref": "../baseProtocol/baseProtocol.json#/definitions/integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The version number of this document. If an optional versioned text document identifier is sent from the server to the client and the file is not open in the editor (the server has not received an open notification before) the server can send `null` to indicate that the version is known and the content on disk is the master (as specified with document content ownership).\n\nThe version number of a document will increase after each change, including undo/redo. The number doesn't need to be consecutive."
+        }
+      },
+      "required": [
+        "uri",
+        "version"
+      ],
+      "type": "object"
+    },
+    "TextDocumentPositionParams": {
+      "additionalProperties": false,
+      "properties": {
+        "position": {
+          "$ref": "#/definitions/Position",
+          "description": "The position inside the text document."
+        },
+        "textDocument": {
+          "$ref": "#/definitions/TextDocumentIdentifier",
+          "description": "The text document."
+        }
+      },
+      "required": [
+        "textDocument",
+        "position"
+      ],
+      "type": "object"
+    },
+    "DocumentFilter": {
+      "additionalProperties": false,
+      "properties": {
+        "language": {
+          "description": "A language id, like `typescript`.",
+          "type": "string"
+        },
+        "pattern": {
+          "description": "A glob pattern, like `*.{ts,js}`.\n\nGlob patterns can have the following syntax:\n- `*` to match one or more characters in a path segment\n- `?` to match on one character in a path segment\n- `**` to match any number of path segments, including none\n- `{}` to group sub patterns into an OR expression. (e.g. `**​/*.{ts,js}`   matches all TypeScript and JavaScript files)\n- `[]` to declare a range of characters to match in a path segment   (e.g., `example.[0-9]` to match on `example.0`, `example.1`, …)\n- `[!...]` to negate a range of characters to match in a path segment   (e.g., `example.[!0-9]` to match on `example.a`, `example.b`, but   not `example.0`)",
+          "type": "string"
+        },
+        "scheme": {
+          "description": "A Uri scheme, like `file` or `untitled`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DocumentSelector": {
+      "items": {
+        "$ref": "#/definitions/DocumentFilter"
+      },
+      "type": "array"
+    },
+    "TextEdit": {
+      "additionalProperties": false,
+      "properties": {
+        "newText": {
+          "description": "The string to be inserted. For delete operations use an empty string.",
+          "type": "string"
+        },
+        "range": {
+          "$ref": "#/definitions/Range",
+          "description": "The range of the text document to be manipulated. To insert text into a document create a range where start === end."
+        }
+      },
+      "required": [
+        "range",
+        "newText"
+      ],
+      "type": "object"
+    },
+    "ChangeAnnotation": {
+      "additionalProperties": false,
+      "description": "Additional information that describes document changes.",
+      "properties": {
+        "description": {
+          "description": "A human-readable string which is rendered less prominent in the user interface.",
+          "type": "string"
+        },
+        "label": {
+          "description": "A human-readable string describing the actual change. The string is rendered prominent in the user interface.",
+          "type": "string"
+        },
+        "needsConfirmation": {
+          "description": "A flag which indicates that user confirmation is needed before applying the change.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "label"
+      ],
+      "type": "object"
+    },
+    "ChangeAnnotationIdentifier": {
+      "description": "An identifier referring to a change annotation managed by a workspace edit.",
+      "type": "string"
+    },
+    "AnnotatedTextEdit": {
+      "additionalProperties": false,
+      "description": "A special text edit with an additional change annotation.",
+      "properties": {
+        "annotationId": {
+          "$ref": "#/definitions/ChangeAnnotationIdentifier",
+          "description": "The actual annotation identifier."
+        },
+        "newText": {
+          "description": "The string to be inserted. For delete operations use an empty string.",
+          "type": "string"
+        },
+        "range": {
+          "$ref": "#/definitions/Range",
+          "description": "The range of the text document to be manipulated. To insert text into a document create a range where start === end."
+        }
+      },
+      "required": [
+        "annotationId",
+        "newText",
+        "range"
+      ],
+      "type": "object"
+    },
+    "TextDocumentEdit": {
+      "additionalProperties": false,
+      "properties": {
+        "edits": {
+          "description": "The edits to be applied.",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/TextEdit"
+              },
+              {
+                "$ref": "#/definitions/AnnotatedTextEdit"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "textDocument": {
+          "$ref": "#/definitions/OptionalVersionedTextDocumentIdentifier",
+          "description": "The text document to change."
+        }
+      },
+      "required": [
+        "textDocument",
+        "edits"
+      ],
+      "type": "object"
+    },
+    "Location": {
+      "additionalProperties": false,
+      "properties": {
+        "range": {
+          "$ref": "#/definitions/Range"
+        },
+        "uri": {
+          "$ref": "#/definitions/DocumentUri"
+        }
+      },
+      "required": [
+        "uri",
+        "range"
+      ],
+      "type": "object"
+    },
+    "LocationLink": {
+      "additionalProperties": false,
+      "properties": {
+        "originSelectionRange": {
+          "$ref": "#/definitions/Range",
+          "description": "Span of the origin of this link.\n\nUsed as the underlined span for mouse interaction. Defaults to the word range at the mouse position."
+        },
+        "targetRange": {
+          "$ref": "#/definitions/Range",
+          "description": "The full target range of this link. If the target for example is a symbol then target range is the range enclosing this symbol not including leading/trailing whitespace but everything else like comments. This information is typically used to highlight the range in the editor."
+        },
+        "targetSelectionRange": {
+          "$ref": "#/definitions/Range",
+          "description": "The range that should be selected and revealed when this link is being followed, e.g the name of a function. Must be contained by the `targetRange`. See also `DocumentSymbol#range`"
+        },
+        "targetUri": {
+          "$ref": "#/definitions/DocumentUri",
+          "description": "The target resource identifier of this link."
+        }
+      },
+      "required": [
+        "targetUri",
+        "targetRange",
+        "targetSelectionRange"
+      ],
+      "type": "object"
+    },
+    "Diagnostic": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "anyOf": [
+            {
+              "$ref": "../baseProtocol/baseProtocol.json#/definitions/integer"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "description": "The diagnostic's code, which might appear in the user interface."
+        },
+        "codeDescription": {
+          "$ref": "#/definitions/CodeDescription",
+          "description": "An optional property to describe the error code."
+        },
+        "data": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/LSPAny",
+          "description": "A data entry field that is preserved between a `textDocument/publishDiagnostics` notification and `textDocument/codeAction` request."
+        },
+        "message": {
+          "description": "The diagnostic's message.",
+          "type": "string"
+        },
+        "range": {
+          "$ref": "#/definitions/Range",
+          "description": "The range at which the message applies."
+        },
+        "relatedInformation": {
+          "description": "An array of related diagnostic information, e.g. when symbol-names within a scope collide all definitions can be marked via this property.",
+          "items": {
+            "$ref": "#/definitions/DiagnosticRelatedInformation"
+          },
+          "type": "array"
+        },
+        "severity": {
+          "$ref": "#/definitions/DiagnosticSeverity",
+          "description": "The diagnostic's severity. To avoid interpretation mismatches when a server is used with different clients it is highly recommended that servers always provide a severity value. If omitted, it’s recommended for the client to interpret it as an Error severity."
+        },
+        "source": {
+          "description": "A human-readable string describing the source of this diagnostic, e.g. 'typescript' or 'super lint'.",
+          "type": "string"
+        },
+        "tags": {
+          "description": "Additional metadata about the diagnostic.",
+          "items": {
+            "$ref": "#/definitions/DiagnosticTag"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "range",
+        "message"
+      ],
+      "type": "object"
+    },
+    "DiagnosticSeverity": {
+      "enum": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "type": "number"
+    },
+    "DiagnosticTag": {
+      "description": "The diagnostic tags.",
+      "enum": [
+        1,
+        2
+      ],
+      "type": "number"
+    },
+    "DiagnosticRelatedInformation": {
+      "additionalProperties": false,
+      "description": "Represents a related message and source code location for a diagnostic. This should be used to point to code locations that cause or are related to a diagnostics, e.g when duplicating a symbol in a scope.",
+      "properties": {
+        "location": {
+          "$ref": "#/definitions/Location",
+          "description": "The location of this related diagnostic information."
+        },
+        "message": {
+          "description": "The message of this related diagnostic information.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "location",
+        "message"
+      ],
+      "type": "object"
+    },
+    "CodeDescription": {
+      "additionalProperties": false,
+      "description": "Structure to capture a description for an error code.",
+      "properties": {
+        "href": {
+          "$ref": "#/definitions/URI",
+          "description": "An URI to open with more information about the diagnostic error."
+        }
+      },
+      "required": [
+        "href"
+      ],
+      "type": "object"
+    },
+    "Command": {
+      "additionalProperties": false,
+      "properties": {
+        "arguments": {
+          "description": "Arguments that the command handler should be invoked with.",
+          "items": {
+            "$ref": "../baseProtocol/baseProtocol.json#/definitions/LSPAny"
+          },
+          "type": "array"
+        },
+        "command": {
+          "description": "The identifier of the actual command handler.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the command, like `save`.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "command"
+      ],
+      "type": "object"
+    },
+    "MarkupKind": {
+      "description": "Describes the content type that a client supports in various result literals like `Hover`, `ParameterInfo` or `CompletionItem`.\n\nPlease note that `MarkupKinds` must not start with a `$`. This kinds are reserved for internal usage.",
+      "enum": [
+        "plaintext",
+        "markdown"
+      ],
+      "type": "string"
+    },
+    "MarkupContent": {
+      "additionalProperties": false,
+      "description": "A `MarkupContent` literal represents a string value which content is interpreted base on its kind flag. Currently the protocol supports `plaintext` and `markdown` as markup kinds.\n\nIf the kind is `markdown` then the value can contain fenced code blocks like in GitHub issues.\n\nHere is an example how such a string can be constructed using JavaScript / TypeScript: ```typescript let markdown: MarkdownContent = { \tkind: MarkupKind.Markdown, \tvalue: [ \t\t'# Header', \t\t'Some text', \t\t'```typescript', \t\t'someCode();', \t\t'```' \t].join('\\n') }; ```\n\n*Please Note* that clients might sanitize the return markdown. A client could decide to remove HTML from the markdown to avoid script execution.",
+      "properties": {
+        "kind": {
+          "$ref": "#/definitions/MarkupKind",
+          "description": "The type of the Markup"
+        },
+        "value": {
+          "description": "The content itself",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "value"
+      ],
+      "type": "object"
+    },
+    "MarkdownClientCapabilities": {
+      "additionalProperties": false,
+      "description": "Client capabilities specific to the used markdown parser.",
+      "properties": {
+        "allowedTags": {
+          "description": "A list of HTML tags that the client allows / supports in Markdown.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "parser": {
+          "description": "The name of the parser.",
+          "type": "string"
+        },
+        "version": {
+          "description": "The version of the parser.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "parser"
+      ],
+      "type": "object"
+    },
+    "CreateFileOptions": {
+      "additionalProperties": false,
+      "description": "Options to create a file.",
+      "properties": {
+        "ignoreIfExists": {
+          "description": "Ignore if exists.",
+          "type": "boolean"
+        },
+        "overwrite": {
+          "description": "Overwrite existing file. Overwrite wins over `ignoreIfExists`",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "CreateFile": {
+      "additionalProperties": false,
+      "description": "Create file operation",
+      "properties": {
+        "annotationId": {
+          "$ref": "#/definitions/ChangeAnnotationIdentifier",
+          "description": "An optional annotation identifier describing the operation."
+        },
+        "kind": {
+          "enum": [
+            "create"
+          ],
+          "description": "A create",
+          "type": "string"
+        },
+        "options": {
+          "$ref": "#/definitions/CreateFileOptions",
+          "description": "Additional options"
+        },
+        "uri": {
+          "$ref": "#/definitions/DocumentUri",
+          "description": "The resource to create."
+        }
+      },
+      "required": [
+        "kind",
+        "uri"
+      ],
+      "type": "object"
+    },
+    "RenameFileOptions": {
+      "additionalProperties": false,
+      "description": "Rename file options",
+      "properties": {
+        "ignoreIfExists": {
+          "description": "Ignores if target exists.",
+          "type": "boolean"
+        },
+        "overwrite": {
+          "description": "Overwrite target if existing. Overwrite wins over `ignoreIfExists`",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "RenameFile": {
+      "additionalProperties": false,
+      "description": "Rename file operation",
+      "properties": {
+        "annotationId": {
+          "$ref": "#/definitions/ChangeAnnotationIdentifier",
+          "description": "An optional annotation identifier describing the operation."
+        },
+        "kind": {
+          "enum": [
+            "rename"
+          ],
+          "description": "A rename",
+          "type": "string"
+        },
+        "newUri": {
+          "$ref": "#/definitions/DocumentUri",
+          "description": "The new location."
+        },
+        "oldUri": {
+          "$ref": "#/definitions/DocumentUri",
+          "description": "The old (existing) location."
+        },
+        "options": {
+          "$ref": "#/definitions/RenameFileOptions",
+          "description": "Rename options."
+        }
+      },
+      "required": [
+        "kind",
+        "oldUri",
+        "newUri"
+      ],
+      "type": "object"
+    },
+    "DeleteFileOptions": {
+      "additionalProperties": false,
+      "description": "Delete file options",
+      "properties": {
+        "ignoreIfNotExists": {
+          "description": "Ignore the operation if the file doesn't exist.",
+          "type": "boolean"
+        },
+        "recursive": {
+          "description": "Delete the content recursively if a folder is denoted.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DeleteFile": {
+      "additionalProperties": false,
+      "description": "Delete file operation",
+      "properties": {
+        "annotationId": {
+          "$ref": "#/definitions/ChangeAnnotationIdentifier",
+          "description": "An optional annotation identifier describing the operation."
+        },
+        "kind": {
+          "enum": [
+            "delete"
+          ],
+          "description": "A delete",
+          "type": "string"
+        },
+        "options": {
+          "$ref": "#/definitions/DeleteFileOptions",
+          "description": "Delete options."
+        },
+        "uri": {
+          "$ref": "#/definitions/DocumentUri",
+          "description": "The file to delete."
+        }
+      },
+      "required": [
+        "kind",
+        "uri"
+      ],
+      "type": "object"
+    },
+    "WorkspaceEdit": {
+      "additionalProperties": false,
+      "properties": {
+        "changeAnnotations": {
+          "additionalProperties": {
+            "$ref": "#/definitions/ChangeAnnotation"
+          },
+          "description": "A map of change annotations that can be referenced in `AnnotatedTextEdit`s or create, rename and delete file / folder operations.\n\nWhether clients honor this property depends on the client capability `workspace.changeAnnotationSupport`.",
+          "type": "object"
+        },
+        "changes": {
+          "additionalProperties": {
+            "items": {
+              "$ref": "#/definitions/TextEdit"
+            },
+            "type": "array"
+          },
+          "description": "Holds changes to existing resources.",
+          "type": "object"
+        },
+        "documentChanges": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/definitions/TextDocumentEdit"
+              },
+              "type": "array"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/definitions/TextDocumentEdit"
+                  },
+                  {
+                    "$ref": "#/definitions/CreateFile"
+                  },
+                  {
+                    "$ref": "#/definitions/RenameFile"
+                  },
+                  {
+                    "$ref": "#/definitions/DeleteFile"
+                  }
+                ]
+              },
+              "type": "array"
+            }
+          ],
+          "description": "Depending on the client capability `workspace.workspaceEdit.resourceOperations` document changes are either an array of `TextDocumentEdit`s to express changes to n different text documents where each text document edit addresses a specific version of a text document. Or it can contain above `TextDocumentEdit`s mixed with create, rename and delete file / folder operations.\n\nWhether a client supports versioned document edits is expressed via `workspace.workspaceEdit.documentChanges` client capability.\n\nIf a client neither supports `documentChanges` nor `workspace.workspaceEdit.resourceOperations` then only plain `TextEdit`s using the `changes` property are supported."
+        }
+      },
+      "type": "object"
+    },
+    "WorkspaceEditClientCapabilities": {
+      "additionalProperties": false,
+      "properties": {
+        "changeAnnotationSupport": {
+          "additionalProperties": false,
+          "description": "Whether the client in general supports change annotations on text edits, create file, rename file and delete file changes.",
+          "properties": {
+            "groupsOnLabel": {
+              "description": "Whether the client groups edits with equal labels into tree nodes, for instance all edits labelled with \"Changes in Strings\" would be a tree node.",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "documentChanges": {
+          "description": "The client supports versioned document changes in `WorkspaceEdit`s",
+          "type": "boolean"
+        },
+        "failureHandling": {
+          "$ref": "#/definitions/FailureHandlingKind",
+          "description": "The failure handling strategy of a client if applying the workspace edit fails."
+        },
+        "normalizesLineEndings": {
+          "description": "Whether the client normalizes line endings to the client specific setting. If set to `true` the client will normalize line ending characters in a workspace edit to the client specific new line character(s).",
+          "type": "boolean"
+        },
+        "resourceOperations": {
+          "description": "The resource operations the client supports. Clients should at least support 'create', 'rename' and 'delete' files and folders.",
+          "items": {
+            "$ref": "#/definitions/ResourceOperationKind"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceOperationKind": {
+      "description": "The kind of resource operations supported by the client.",
+      "enum": [
+        "create",
+        "rename",
+        "delete"
+      ],
+      "type": "string"
+    },
+    "FailureHandlingKind": {
+      "enum": [
+        "abort",
+        "transactional",
+        "undo",
+        "textOnlyTransactional"
+      ],
+      "type": "string"
+    },
+    "WorkDoneProgressBegin": {
+      "additionalProperties": false,
+      "properties": {
+        "cancellable": {
+          "description": "Controls if a cancel button should show to allow the user to cancel the long running operation. Clients that don't support cancellation are allowed to ignore the setting.",
+          "type": "boolean"
+        },
+        "kind": {
+          "enum": [
+            "begin"
+          ],
+          "type": "string"
+        },
+        "message": {
+          "description": "Optional, more detailed associated progress message. Contains complementary information to the `title`.\n\nExamples: \"3/25 files\", \"project/src/module2\", \"node_modules/some_dep\". If unset, the previous progress message (if any) is still valid.",
+          "type": "string"
+        },
+        "percentage": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/uinteger",
+          "description": "Optional progress percentage to display (value 100 is considered 100%). If not provided infinite progress is assumed and clients are allowed to ignore the `percentage` value in subsequent report notifications.\n\nThe value should be steadily rising. Clients are free to ignore values that are not following this rule. The value range is [0, 100]."
+        },
+        "title": {
+          "description": "Mandatory title of the progress operation. Used to briefly inform about the kind of operation being performed.\n\nExamples: \"Indexing\" or \"Linking dependencies\".",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "title"
+      ],
+      "type": "object"
+    },
+    "WorkDoneProgressReport": {
+      "additionalProperties": false,
+      "properties": {
+        "cancellable": {
+          "description": "Controls enablement state of a cancel button. This property is only valid if a cancel button got requested in the `WorkDoneProgressBegin` payload.\n\nClients that don't support cancellation or don't support control the button's enablement state are allowed to ignore the setting.",
+          "type": "boolean"
+        },
+        "kind": {
+          "enum": [
+            "report"
+          ],
+          "type": "string"
+        },
+        "message": {
+          "description": "Optional, more detailed associated progress message. Contains complementary information to the `title`.\n\nExamples: \"3/25 files\", \"project/src/module2\", \"node_modules/some_dep\". If unset, the previous progress message (if any) is still valid.",
+          "type": "string"
+        },
+        "percentage": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/uinteger",
+          "description": "Optional progress percentage to display (value 100 is considered 100%). If not provided infinite progress is assumed and clients are allowed to ignore the `percentage` value in subsequent report notifications.\n\nThe value should be steadily rising. Clients are free to ignore values that are not following this rule. The value range is [0, 100]."
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "type": "object"
+    },
+    "WorkDoneProgressEnd": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "end"
+          ],
+          "type": "string"
+        },
+        "message": {
+          "description": "Optional, a final message indicating to for example indicate the outcome of the operation.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "type": "object"
+    },
+    "WorkDoneProgressParams": {
+      "additionalProperties": false,
+      "description": "{ \t\"textDocument\": { \t\t\"uri\": \"file:///folder/file.ts\" \t}, \t\"position\": { \t\t\"line\": 9, \t\t\"character\": 5 \t}, \t\"context\": { \t\t\"includeDeclaration\": true \t}, \t// The token used to report work done progress. \t\"workDoneToken\": \"1d546990-40a3-4b77-b134-46622995f6ae\" }",
+      "properties": {
+        "workDoneToken": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/ProgressToken",
+          "description": "An optional token that a server can use to report work done progress."
+        }
+      },
+      "type": "object"
+    },
+    "WorkDoneProgressOptions": {
+      "additionalProperties": false,
+      "description": "{ \t\"token\": \"1d546990-40a3-4b77-b134-46622995f6ae\", \t\"value\": { \t\t\"kind\": \"begin\", \t\t\"title\": \"Finding references for A#foo\", \t\t\"cancellable\": false, \t\t\"message\": \"Processing file X.ts\", \t\t\"percentage\": 0 \t} }\n\n{ \t\"referencesProvider\": { \t\t\"workDoneProgress\": true \t} }",
+      "properties": {
+        "workDoneProgress": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "PartialResultParams": {
+      "additionalProperties": false,
+      "description": "/**  * Window specific client capabilities.  * window?: { \t/** \t * Whether client supports server initiated progress using the \t * `window/workDoneProgress/create` request. \t * \tworkDoneProgress?: boolean; };\n\n{ \"textDocument\": { \t\"uri\": \"file:///folder/file.ts\" }, \"position\": { \t\"line\": 9, \t\"character\": 5 }, \"context\": { \t\"includeDeclaration\": true }, // The token used to report work done progress. \"workDoneToken\": \"1d546990-40a3-4b77-b134-46622995f6ae\", // The token used to report partial result progress. \"partialResultToken\": \"5f6f349e-4f81-4a3b-afff-ee04bff96804\" }",
+      "properties": {
+        "partialResultToken": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/ProgressToken",
+          "description": "An optional token that a server can use to report partial results (e.g. streaming) to the client."
+        }
+      },
+      "type": "object"
+    },
+    "TraceValue": {
+      "enum": [
+        "off",
+        "messages",
+        "verbose"
+      ],
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,712 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "WorkspaceSymbolClientCapabilities": {
+      "additionalProperties": false,
+      "properties": {
+        "dynamicRegistration": {
+          "description": "Symbol request supports dynamic registration.",
+          "type": "boolean"
+        },
+        "resolveSupport": {
+          "additionalProperties": false,
+          "description": "The client support partial workspace symbols. The client will send the request `workspaceSymbol/resolve` to the server to resolve additional properties.",
+          "properties": {
+            "properties": {
+              "description": "The properties that a client can resolve lazily. Usually `location.range`",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "properties"
+          ],
+          "type": "object"
+        },
+        "symbolKind": {
+          "additionalProperties": false,
+          "description": "Specific capabilities for the `SymbolKind` in the `workspace/symbol` request.",
+          "properties": {
+            "valueSet": {
+              "description": "The symbol kind values the client supports. When this property exists the client also guarantees that it will handle values outside its set gracefully and falls back to a default value when unknown.\n\nIf this property is not present the client only supports the symbol kinds from `File` to `Array` as defined in the initial version of the protocol.",
+              "items": {
+                "$ref": "../languageFeatures/languageFeatures.json#/definitions/SymbolKind"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "tagSupport": {
+          "additionalProperties": false,
+          "description": "The client supports tags on `SymbolInformation` and `WorkspaceSymbol`. Clients supporting tags have to handle unknown tags gracefully.",
+          "properties": {
+            "valueSet": {
+              "description": "The tags supported by the client.",
+              "items": {
+                "$ref": "../languageFeatures/languageFeatures.json#/definitions/SymbolTag"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "valueSet"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "WorkspaceSymbolOptions": {
+      "additionalProperties": false,
+      "properties": {
+        "resolveProvider": {
+          "description": "The server provides support to resolve additional information for a workspace symbol.",
+          "type": "boolean"
+        },
+        "workDoneProgress": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "WorkspaceSymbolRegistrationOptions": {
+      "additionalProperties": false,
+      "properties": {
+        "resolveProvider": {
+          "description": "The server provides support to resolve additional information for a workspace symbol.",
+          "type": "boolean"
+        },
+        "workDoneProgress": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "WorkspaceSymbolParams": {
+      "additionalProperties": false,
+      "description": "The parameters of a Workspace Symbol Request.",
+      "properties": {
+        "partialResultToken": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/ProgressToken",
+          "description": "An optional token that a server can use to report partial results (e.g. streaming) to the client."
+        },
+        "query": {
+          "description": "A query string to filter symbols by. Clients may send an empty string here to request all symbols.",
+          "type": "string"
+        },
+        "workDoneToken": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/ProgressToken",
+          "description": "An optional token that a server can use to report work done progress."
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "type": "object"
+    },
+    "WorkspaceSymbol": {
+      "additionalProperties": false,
+      "description": "A special workspace symbol that supports locations without a range",
+      "properties": {
+        "containerName": {
+          "description": "The name of the symbol containing this symbol. This information is for user interface purposes (e.g. to render a qualifier in the user interface if necessary). It can't be used to re-infer a hierarchy for the document symbols.",
+          "type": "string"
+        },
+        "data": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/LSPAny",
+          "description": "A data entry field that is preserved on a workspace symbol between a workspace symbol request and a workspace symbol resolve request."
+        },
+        "kind": {
+          "$ref": "../languageFeatures/languageFeatures.json#/definitions/SymbolKind",
+          "description": "The kind of this symbol."
+        },
+        "location": {
+          "anyOf": [
+            {
+              "$ref": "../basicStructures/basicStructures.json#/definitions/Location"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "uri": {
+                  "$ref": "../basicStructures/basicStructures.json#/definitions/DocumentUri"
+                }
+              },
+              "required": [
+                "uri"
+              ],
+              "type": "object"
+            }
+          ],
+          "description": "The location of this symbol. Whether a server is allowed to return a location without a range depends on the client capability `workspace.symbol.resolveSupport`.\n\nSee also `SymbolInformation.location`."
+        },
+        "name": {
+          "description": "The name of this symbol.",
+          "type": "string"
+        },
+        "tags": {
+          "description": "Tags for this completion item.",
+          "items": {
+            "$ref": "../languageFeatures/languageFeatures.json#/definitions/SymbolTag"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "kind",
+        "location"
+      ],
+      "type": "object"
+    },
+    "ConfigurationParams": {
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "#/definitions/ConfigurationItem"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "items"
+      ],
+      "type": "object"
+    },
+    "ConfigurationItem": {
+      "additionalProperties": false,
+      "properties": {
+        "scopeUri": {
+          "$ref": "../basicStructures/basicStructures.json#/definitions/URI",
+          "description": "The scope to get the configuration section for."
+        },
+        "section": {
+          "description": "The configuration section asked for.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DidChangeConfigurationClientCapabilities": {
+      "additionalProperties": false,
+      "properties": {
+        "dynamicRegistration": {
+          "description": "Did change configuration notification supports dynamic registration.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DidChangeConfigurationParams": {
+      "additionalProperties": false,
+      "properties": {
+        "settings": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/LSPAny",
+          "description": "The actual changed settings"
+        }
+      },
+      "required": [
+        "settings"
+      ],
+      "type": "object"
+    },
+    "WorkspaceFoldersServerCapabilities": {
+      "additionalProperties": false,
+      "properties": {
+        "changeNotifications": {
+          "description": "Whether the server wants to receive workspace folder change notifications.\n\nIf a string is provided, the string is treated as an ID under which the notification is registered on the client side. The ID can be used to unregister for these events using the `client/unregisterCapability` request.",
+          "type": [
+            "string",
+            "boolean"
+          ]
+        },
+        "supported": {
+          "description": "The server has support for workspace folders",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "WorkspaceFolder": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "description": "The name of the workspace folder. Used to refer to this workspace folder in the user interface.",
+          "type": "string"
+        },
+        "uri": {
+          "$ref": "../basicStructures/basicStructures.json#/definitions/URI",
+          "description": "The associated URI for this workspace folder."
+        }
+      },
+      "required": [
+        "uri",
+        "name"
+      ],
+      "type": "object"
+    },
+    "DidChangeWorkspaceFoldersParams": {
+      "additionalProperties": false,
+      "properties": {
+        "event": {
+          "$ref": "#/definitions/WorkspaceFoldersChangeEvent",
+          "description": "The actual workspace folder change event."
+        }
+      },
+      "required": [
+        "event"
+      ],
+      "type": "object"
+    },
+    "WorkspaceFoldersChangeEvent": {
+      "additionalProperties": false,
+      "description": "The workspace folder change event.",
+      "properties": {
+        "added": {
+          "description": "The array of added workspace folders",
+          "items": {
+            "$ref": "#/definitions/WorkspaceFolder"
+          },
+          "type": "array"
+        },
+        "removed": {
+          "description": "The array of the removed workspace folders",
+          "items": {
+            "$ref": "#/definitions/WorkspaceFolder"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "added",
+        "removed"
+      ],
+      "type": "object"
+    },
+    "FileOperationRegistrationOptions": {
+      "additionalProperties": false,
+      "description": "The options to register for file operations.",
+      "properties": {
+        "filters": {
+          "description": "The actual filters.",
+          "items": {
+            "$ref": "#/definitions/FileOperationFilter"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "filters"
+      ],
+      "type": "object"
+    },
+    "FileOperationPatternKind": {
+      "description": "A pattern kind describing if a glob pattern matches a file a folder or both.",
+      "enum": [
+        "file",
+        "folder"
+      ],
+      "type": "string"
+    },
+    "FileOperationPatternOptions": {
+      "additionalProperties": false,
+      "description": "Matching options for the file operation pattern.",
+      "properties": {
+        "ignoreCase": {
+          "description": "The pattern should be matched ignoring casing.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "FileOperationPattern": {
+      "additionalProperties": false,
+      "description": "A pattern to describe in which file operation requests or notifications the server is interested in.",
+      "properties": {
+        "glob": {
+          "description": "The glob pattern to match. Glob patterns can have the following syntax:\n- `*` to match one or more characters in a path segment\n- `?` to match on one character in a path segment\n- `**` to match any number of path segments, including none\n- `{}` to group sub patterns into an OR expression. (e.g. `**​/*.{ts,js}`   matches all TypeScript and JavaScript files)\n- `[]` to declare a range of characters to match in a path segment   (e.g., `example.[0-9]` to match on `example.0`, `example.1`, …)\n- `[!...]` to negate a range of characters to match in a path segment   (e.g., `example.[!0-9]` to match on `example.a`, `example.b`, but   not `example.0`)",
+          "type": "string"
+        },
+        "matches": {
+          "$ref": "#/definitions/FileOperationPatternKind",
+          "description": "Whether to match files or folders with this pattern.\n\nMatches both if undefined."
+        },
+        "options": {
+          "$ref": "#/definitions/FileOperationPatternOptions",
+          "description": "Additional options used during matching."
+        }
+      },
+      "required": [
+        "glob"
+      ],
+      "type": "object"
+    },
+    "FileOperationFilter": {
+      "additionalProperties": false,
+      "description": "A filter to describe in which file operation requests or notifications the server is interested in.",
+      "properties": {
+        "pattern": {
+          "$ref": "#/definitions/FileOperationPattern",
+          "description": "The actual file operation pattern."
+        },
+        "scheme": {
+          "description": "A Uri like `file` or `untitled`.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "pattern"
+      ],
+      "type": "object"
+    },
+    "CreateFilesParams": {
+      "additionalProperties": false,
+      "description": "The parameters sent in notifications/requests for user-initiated creation of files.",
+      "properties": {
+        "files": {
+          "description": "An array of all files/folders created in this operation.",
+          "items": {
+            "$ref": "#/definitions/FileCreate"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "files"
+      ],
+      "type": "object"
+    },
+    "FileCreate": {
+      "additionalProperties": false,
+      "description": "Represents information on a file/folder create.",
+      "properties": {
+        "uri": {
+          "description": "A file:// URI for the location of the file/folder being created.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "uri"
+      ],
+      "type": "object"
+    },
+    "RenameFilesParams": {
+      "additionalProperties": false,
+      "description": "The parameters sent in notifications/requests for user-initiated renames of files.",
+      "properties": {
+        "files": {
+          "description": "An array of all files/folders renamed in this operation. When a folder is renamed, only the folder will be included, and not its children.",
+          "items": {
+            "$ref": "#/definitions/FileRename"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "files"
+      ],
+      "type": "object"
+    },
+    "FileRename": {
+      "additionalProperties": false,
+      "description": "Represents information on a file/folder rename.",
+      "properties": {
+        "newUri": {
+          "description": "A file:// URI for the new location of the file/folder being renamed.",
+          "type": "string"
+        },
+        "oldUri": {
+          "description": "A file:// URI for the original location of the file/folder being renamed.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "oldUri",
+        "newUri"
+      ],
+      "type": "object"
+    },
+    "DeleteFilesParams": {
+      "additionalProperties": false,
+      "description": "The parameters sent in notifications/requests for user-initiated deletes of files.",
+      "properties": {
+        "files": {
+          "description": "An array of all files/folders deleted in this operation.",
+          "items": {
+            "$ref": "#/definitions/FileDelete"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "files"
+      ],
+      "type": "object"
+    },
+    "FileDelete": {
+      "additionalProperties": false,
+      "description": "Represents information on a file/folder delete.",
+      "properties": {
+        "uri": {
+          "description": "A file:// URI for the location of the file/folder being deleted.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "uri"
+      ],
+      "type": "object"
+    },
+    "DidChangeWatchedFilesClientCapabilities": {
+      "additionalProperties": false,
+      "properties": {
+        "dynamicRegistration": {
+          "description": "Did change watched files notification supports dynamic registration. Please note that the current protocol doesn't support static configuration for file changes from the server side.",
+          "type": "boolean"
+        },
+        "relativePatternSupport": {
+          "description": "Whether the client has support for relative patterns or not.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DidChangeWatchedFilesRegistrationOptions": {
+      "additionalProperties": false,
+      "description": "Describe options to be used when registering for file system change events.",
+      "properties": {
+        "watchers": {
+          "description": "The watchers to register.",
+          "items": {
+            "$ref": "#/definitions/FileSystemWatcher"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "watchers"
+      ],
+      "type": "object"
+    },
+    "Pattern": {
+      "description": "The glob pattern to watch relative to the base path. Glob patterns can have the following syntax:\n- `*` to match one or more characters in a path segment\n- `?` to match on one character in a path segment\n- `**` to match any number of path segments, including none\n- `{}` to group conditions (e.g. `**​/*.{ts,js}` matches all TypeScript   and JavaScript files)\n- `[]` to declare a range of characters to match in a path segment   (e.g., `example.[0-9]` to match on `example.0`, `example.1`, …)\n- `[!...]` to negate a range of characters to match in a path segment   (e.g., `example.[!0-9]` to match on `example.a`, `example.b`,   but not `example.0`)",
+      "type": "string"
+    },
+    "RelativePattern": {
+      "additionalProperties": false,
+      "description": "A relative pattern is a helper to construct glob patterns that are matched relatively to a base URI. The common value for a `baseUri` is a workspace folder root, but it can be another absolute URI as well.",
+      "properties": {
+        "baseUri": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/WorkspaceFolder"
+            },
+            {
+              "$ref": "../basicStructures/basicStructures.json#/definitions/URI"
+            }
+          ],
+          "description": "A workspace folder or a base URI to which this pattern will be matched against relatively."
+        },
+        "pattern": {
+          "$ref": "#/definitions/Pattern",
+          "description": "The actual glob pattern;"
+        }
+      },
+      "required": [
+        "baseUri",
+        "pattern"
+      ],
+      "type": "object"
+    },
+    "GlobPattern": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/Pattern"
+        },
+        {
+          "$ref": "#/definitions/RelativePattern"
+        }
+      ],
+      "description": "The glob pattern. Either a string pattern or a relative pattern."
+    },
+    "FileSystemWatcher": {
+      "additionalProperties": false,
+      "properties": {
+        "globPattern": {
+          "$ref": "#/definitions/GlobPattern",
+          "description": "The glob pattern to watch. See  {@link  GlobPattern glob pattern }  for more detail."
+        },
+        "kind": {
+          "$ref": "#/definitions/WatchKind",
+          "description": "The kind of events of interest. If omitted it defaults to WatchKind.Create | WatchKind.Change | WatchKind.Delete which is 7."
+        }
+      },
+      "required": [
+        "globPattern"
+      ],
+      "type": "object"
+    },
+    "WatchKind": {
+      "$ref": "../baseProtocol/baseProtocol.json#/definitions/uinteger"
+    },
+    "DidChangeWatchedFilesParams": {
+      "additionalProperties": false,
+      "properties": {
+        "changes": {
+          "description": "The actual file events.",
+          "items": {
+            "$ref": "#/definitions/FileEvent"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "changes"
+      ],
+      "type": "object"
+    },
+    "FileEvent": {
+      "additionalProperties": false,
+      "description": "An event describing a file change.",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/FileChangeType",
+          "description": "The change type."
+        },
+        "uri": {
+          "$ref": "../basicStructures/basicStructures.json#/definitions/DocumentUri",
+          "description": "The file's URI."
+        }
+      },
+      "required": [
+        "uri",
+        "type"
+      ],
+      "type": "object"
+    },
+    "FileChangeType": {
+      "description": "The file event type.",
+      "enum": [
+        1,
+        2,
+        3
+      ],
+      "type": "number"
+    },
+    "ExecuteCommandClientCapabilities": {
+      "additionalProperties": false,
+      "properties": {
+        "dynamicRegistration": {
+          "description": "Execute command supports dynamic registration.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ExecuteCommandOptions": {
+      "additionalProperties": false,
+      "properties": {
+        "commands": {
+          "description": "The commands to be executed on the server",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "workDoneProgress": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "commands"
+      ],
+      "type": "object"
+    },
+    "ExecuteCommandRegistrationOptions": {
+      "additionalProperties": false,
+      "description": "Execute command registration options.",
+      "properties": {
+        "commands": {
+          "description": "The commands to be executed on the server",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "workDoneProgress": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "commands"
+      ],
+      "type": "object"
+    },
+    "ExecuteCommandParams": {
+      "additionalProperties": false,
+      "properties": {
+        "arguments": {
+          "description": "Arguments that the command should be invoked with.",
+          "items": {
+            "$ref": "../baseProtocol/baseProtocol.json#/definitions/LSPAny"
+          },
+          "type": "array"
+        },
+        "command": {
+          "description": "The identifier of the actual command handler.",
+          "type": "string"
+        },
+        "workDoneToken": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/ProgressToken",
+          "description": "An optional token that a server can use to report work done progress."
+        }
+      },
+      "required": [
+        "command"
+      ],
+      "type": "object"
+    },
+    "ApplyWorkspaceEditParams": {
+      "additionalProperties": false,
+      "properties": {
+        "edit": {
+          "$ref": "../basicStructures/basicStructures.json#/definitions/WorkspaceEdit",
+          "description": "The edits to apply."
+        },
+        "label": {
+          "description": "An optional label of the workspace edit. This label is presented in the user interface for example on an undo stack to undo the workspace edit.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "edit"
+      ],
+      "type": "object"
+    },
+    "ApplyWorkspaceEditResult": {
+      "additionalProperties": false,
+      "properties": {
+        "applied": {
+          "description": "Indicates whether the edit was applied or not.",
+          "type": "boolean"
+        },
+        "failedChange": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/uinteger",
+          "description": "Depending on the client's failure handling strategy `failedChange` might contain the index of the change that failed. This property is only available if the client signals a `failureHandling` strategy in its client capabilities."
+        },
+        "failureReason": {
+          "description": "An optional textual description for why the edit was not applied. This may be used by the server for diagnostic logging or to provide a suitable error for a request that triggered the edit.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "applied"
+      ],
+      "type": "object"
+    }
+  }
+}

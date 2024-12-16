@@ -1,0 +1,243 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "integer": {
+      "description": "Defines an integer number in the range of -2^31 to 2^31 - 1.",
+      "type": "number"
+    },
+    "uinteger": {
+      "description": "Defines an unsigned integer number in the range of 0 to 2^31 - 1.",
+      "type": "number"
+    },
+    "decimal": {
+      "description": "Defines a decimal number. Since decimal numbers are very rare in the language server specification we denote the exact range with every decimal using the mathematics interval notation (e.g. [0, 1] denotes all decimals d with 0 &lt;= d &lt;= 1.",
+      "type": "number"
+    },
+    "LSPAny": {
+      "$comment": "TODO: LSPObject and LSPArray do not work, maybe because they are used recursively.",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "#/definitions/integer"
+        },
+        {
+          "$ref": "#/definitions/uinteger"
+        },
+        {
+          "$ref": "#/definitions/decimal"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "The LSP any type"
+    },
+    "LSPObject": {
+      "additionalProperties": {
+        "$ref": "#/definitions/LSPAny"
+      },
+      "description": "LSP object definition.",
+      "type": "object"
+    },
+    "LSPArray": {
+      "description": "LSP arrays.",
+      "items": {
+        "$ref": "#/definitions/LSPAny"
+      },
+      "type": "array"
+    },
+    "Message": {
+      "additionalProperties": false,
+      "properties": {
+        "jsonrpc": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "jsonrpc"
+      ],
+      "type": "object"
+    },
+    "RequestMessage": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/integer"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "description": "The request id."
+        },
+        "jsonrpc": {
+          "type": "string"
+        },
+        "method": {
+          "description": "The method to be invoked.",
+          "type": "string"
+        },
+        "params": {
+          "anyOf": [
+            {
+              "items": {},
+              "type": "array"
+            },
+            {
+              "type": "object"
+            }
+          ],
+          "description": "The method's params."
+        }
+      },
+      "required": [
+        "id",
+        "jsonrpc",
+        "method"
+      ],
+      "type": "object"
+    },
+    "ResponseMessage": {
+      "additionalProperties": false,
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/ResponseError",
+          "description": "The error object in case a request fails."
+        },
+        "id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/integer"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "The request id."
+        },
+        "jsonrpc": {
+          "type": "string"
+        },
+        "result": {
+          "$ref": "#/definitions/LSPAny",
+          "description": "The result of a request. This member is REQUIRED on success. This member MUST NOT exist if there was an error invoking the method."
+        }
+      },
+      "required": [
+        "id",
+        "jsonrpc"
+      ],
+      "type": "object"
+    },
+    "ResponseError": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "$ref": "#/definitions/integer",
+          "description": "A number indicating the error type that occurred."
+        },
+        "data": {
+          "$ref": "#/definitions/LSPAny",
+          "description": "A primitive or structured value that contains additional information about the error. Can be omitted."
+        },
+        "message": {
+          "description": "A string providing a short description of the error.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "type": "object"
+    },
+    "ErrorCodes": {
+      "enum": [
+        -32700,
+        -32600,
+        -32601,
+        -32602,
+        -32603,
+        -32099,
+        -32002,
+        -32001,
+        -32000,
+        -32899,
+        -32803,
+        -32802,
+        -32801,
+        -32800
+      ],
+      "type": "number"
+    },
+    "NotificationMessage": {
+      "additionalProperties": false,
+      "properties": {
+        "jsonrpc": {
+          "type": "string"
+        },
+        "method": {
+          "description": "The method to be invoked.",
+          "type": "string"
+        },
+        "params": {
+          "anyOf": [
+            {
+              "items": {},
+              "type": "array"
+            },
+            {
+              "type": "object"
+            }
+          ],
+          "description": "The notification's params."
+        }
+      },
+      "required": [
+        "jsonrpc",
+        "method"
+      ],
+      "type": "object"
+    },
+    "CancelParams": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/integer"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "description": "The request id to cancel."
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
+    "ProgressToken": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/integer"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "ShowMessageParams": {
+      "additionalProperties": false,
+      "properties": {
+        "message": {
+          "description": "The actual message.",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/MessageType",
+          "description": "The message type. See  {@link  MessageType } ."
+        }
+      },
+      "required": [
+        "type",
+        "message"
+      ],
+      "type": "object"
+    },
+    "MessageType": {
+      "enum": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "type": "number"
+    },
+    "ShowMessageRequestClientCapabilities": {
+      "additionalProperties": false,
+      "description": "Show message request client capabilities",
+      "properties": {
+        "messageActionItem": {
+          "additionalProperties": false,
+          "description": "Capabilities specific to the `MessageActionItem` type.",
+          "properties": {
+            "additionalPropertiesSupport": {
+              "description": "Whether the client supports additional attributes which are preserved and sent back to the server in the request's response.",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ShowMessageRequestParams": {
+      "additionalProperties": false,
+      "properties": {
+        "actions": {
+          "description": "The message action items to present.",
+          "items": {
+            "$ref": "#/definitions/MessageActionItem"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "The actual message",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/MessageType",
+          "description": "The message type. See  {@link  MessageType }"
+        }
+      },
+      "required": [
+        "type",
+        "message"
+      ],
+      "type": "object"
+    },
+    "MessageActionItem": {
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "description": "A short title like 'Retry', 'Open Log' etc.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title"
+      ],
+      "type": "object"
+    },
+    "ShowDocumentClientCapabilities": {
+      "additionalProperties": false,
+      "description": "Client capabilities for the show document request.",
+      "properties": {
+        "support": {
+          "description": "The client has support for the show document request.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "support"
+      ],
+      "type": "object"
+    },
+    "ShowDocumentParams": {
+      "additionalProperties": false,
+      "description": "Params to show a resource.",
+      "properties": {
+        "external": {
+          "description": "Indicates to show the resource in an external program. To show, for example, `https://code.visualstudio.com/` in the default WEB browser set `external` to `true`.",
+          "type": "boolean"
+        },
+        "selection": {
+          "$ref": "../basicStructures/basicStructures.json#/definitions/Range",
+          "description": "An optional selection range if the document is a text document. Clients might ignore the property if an external program is started or the file is not a text file."
+        },
+        "takeFocus": {
+          "description": "An optional property to indicate whether the editor showing the document should take focus or not. Clients might ignore this property if an external program is started.",
+          "type": "boolean"
+        },
+        "uri": {
+          "$ref": "../basicStructures/basicStructures.json#/definitions/URI",
+          "description": "The uri to show."
+        }
+      },
+      "required": [
+        "uri"
+      ],
+      "type": "object"
+    },
+    "ShowDocumentResult": {
+      "additionalProperties": false,
+      "description": "The result of an show document request.",
+      "properties": {
+        "success": {
+          "description": "A boolean indicating if the show was successful.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "success"
+      ],
+      "type": "object"
+    },
+    "LogMessageParams": {
+      "additionalProperties": false,
+      "properties": {
+        "message": {
+          "description": "The actual message",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/MessageType",
+          "description": "The message type. See  {@link  MessageType }"
+        }
+      },
+      "required": [
+        "type",
+        "message"
+      ],
+      "type": "object"
+    },
+    "WorkDoneProgressCreateParams": {
+      "additionalProperties": false,
+      "properties": {
+        "token": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/ProgressToken",
+          "description": "The token to be used to report progress."
+        }
+      },
+      "required": [
+        "token"
+      ],
+      "type": "object"
+    },
+    "WorkDoneProgressCancelParams": {
+      "additionalProperties": false,
+      "properties": {
+        "token": {
+          "$ref": "../baseProtocol/baseProtocol.json#/definitions/ProgressToken",
+          "description": "The token to be used to report progress."
+        }
+      },
+      "required": [
+        "token"
+      ],
+      "type": "object"
+    }
+  }
+}

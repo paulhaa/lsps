@@ -1,0 +1,1094 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schemadefinitions.json#",
+  "properties": {
+    "AnnotatedTextEdit": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/AnnotatedTextEdit"
+    },
+    "ApplyWorkspaceEditParams": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/ApplyWorkspaceEditParams"
+    },
+    "ApplyWorkspaceEditResult": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/ApplyWorkspaceEditResult"
+    },
+    "CallHierarchyClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CallHierarchyClientCapabilities"
+    },
+    "CallHierarchyIncomingCall": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CallHierarchyIncomingCall"
+    },
+    "CallHierarchyIncomingCallsParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CallHierarchyIncomingCallsParams"
+    },
+    "CallHierarchyItem": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CallHierarchyItem"
+    },
+    "CallHierarchyOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CallHierarchyOptions"
+    },
+    "CallHierarchyOutgoingCall": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CallHierarchyOutgoingCall"
+    },
+    "CallHierarchyOutgoingCallsParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CallHierarchyOutgoingCallsParams"
+    },
+    "CallHierarchyPrepareParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CallHierarchyPrepareParams"
+    },
+    "CallHierarchyRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CallHierarchyRegistrationOptions"
+    },
+    "CancelParams": {
+      "$ref": "baseProtocol/baseProtocol.json#/definitions/CancelParams"
+    },
+    "ChangeAnnotation": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/ChangeAnnotation"
+    },
+    "ChangeAnnotationIdentifier": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/ChangeAnnotationIdentifier"
+    },
+    "ClientCapabilities": {
+      "$ref": "serverLifecycle/serverLifecycle.json#/definitions/ClientCapabilities"
+    },
+    "CodeAction": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CodeAction"
+    },
+    "CodeActionClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CodeActionClientCapabilities"
+    },
+    "CodeActionContext": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CodeActionContext"
+    },
+    "CodeActionKind": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CodeActionKind"
+    },
+    "CodeActionOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CodeActionOptions"
+    },
+    "CodeActionParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CodeActionParams"
+    },
+    "CodeActionRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CodeActionRegistrationOptions"
+    },
+    "CodeActionTriggerKind": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CodeActionTriggerKind"
+    },
+    "CodeDescription": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/CodeDescription"
+    },
+    "CodeLens": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CodeLens"
+    },
+    "CodeLensClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CodeLensClientCapabilities"
+    },
+    "CodeLensOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CodeLensOptions"
+    },
+    "CodeLensParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CodeLensParams"
+    },
+    "CodeLensRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CodeLensRegistrationOptions"
+    },
+    "CodeLensWorkspaceClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CodeLensWorkspaceClientCapabilities"
+    },
+    "Color": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/Color"
+    },
+    "ColorInformation": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/ColorInformation"
+    },
+    "ColorPresentation": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/ColorPresentation"
+    },
+    "ColorPresentationParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/ColorPresentationParams"
+    },
+    "Command": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/Command"
+    },
+    "CompletionClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CompletionClientCapabilities"
+    },
+    "CompletionContext": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CompletionContext"
+    },
+    "CompletionItem": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CompletionItem"
+    },
+    "CompletionItemKind": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CompletionItemKind"
+    },
+    "CompletionItemLabelDetails": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CompletionItemLabelDetails"
+    },
+    "CompletionItemTag": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CompletionItemTag"
+    },
+    "CompletionList": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CompletionList"
+    },
+    "CompletionOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CompletionOptions"
+    },
+    "CompletionParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CompletionParams"
+    },
+    "CompletionRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CompletionRegistrationOptions"
+    },
+    "CompletionTriggerKind": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/CompletionTriggerKind"
+    },
+    "ConfigurationItem": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/ConfigurationItem"
+    },
+    "ConfigurationParams": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/ConfigurationParams"
+    },
+    "CreateFile": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/CreateFile"
+    },
+    "CreateFileOptions": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/CreateFileOptions"
+    },
+    "CreateFilesParams": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/CreateFilesParams"
+    },
+    "DeclarationClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DeclarationClientCapabilities"
+    },
+    "DeclarationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DeclarationOptions"
+    },
+    "DeclarationParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DeclarationParams"
+    },
+    "DeclarationRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DeclarationRegistrationOptions"
+    },
+    "DefinitionClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DefinitionClientCapabilities"
+    },
+    "DefinitionOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DefinitionOptions"
+    },
+    "DefinitionParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DefinitionParams"
+    },
+    "DefinitionRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DefinitionRegistrationOptions"
+    },
+    "DeleteFile": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/DeleteFile"
+    },
+    "DeleteFileOptions": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/DeleteFileOptions"
+    },
+    "DeleteFilesParams": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/DeleteFilesParams"
+    },
+    "Diagnostic": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/Diagnostic"
+    },
+    "DiagnosticClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DiagnosticClientCapabilities"
+    },
+    "DiagnosticOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DiagnosticOptions"
+    },
+    "DiagnosticRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DiagnosticRegistrationOptions"
+    },
+    "DiagnosticRelatedInformation": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/DiagnosticRelatedInformation"
+    },
+    "DiagnosticServerCancellationData": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DiagnosticServerCancellationData"
+    },
+    "DiagnosticSeverity": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/DiagnosticSeverity"
+    },
+    "DiagnosticTag": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/DiagnosticTag"
+    },
+    "DiagnosticWorkspaceClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DiagnosticWorkspaceClientCapabilities"
+    },
+    "DidChangeConfigurationClientCapabilities": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/DidChangeConfigurationClientCapabilities"
+    },
+    "DidChangeConfigurationParams": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/DidChangeConfigurationParams"
+    },
+    "DidChangeNotebookDocumentParams": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/DidChangeNotebookDocumentParams"
+    },
+    "DidChangeTextDocumentParams": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/DidChangeTextDocumentParams"
+    },
+    "DidChangeWatchedFilesClientCapabilities": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/DidChangeWatchedFilesClientCapabilities"
+    },
+    "DidChangeWatchedFilesParams": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/DidChangeWatchedFilesParams"
+    },
+    "DidChangeWatchedFilesRegistrationOptions": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/DidChangeWatchedFilesRegistrationOptions"
+    },
+    "DidChangeWorkspaceFoldersParams": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/DidChangeWorkspaceFoldersParams"
+    },
+    "DidCloseNotebookDocumentParams": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/DidCloseNotebookDocumentParams"
+    },
+    "DidCloseTextDocumentParams": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/DidCloseTextDocumentParams"
+    },
+    "DidOpenNotebookDocumentParams": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/DidOpenNotebookDocumentParams"
+    },
+    "DidOpenTextDocumentParams": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/DidOpenTextDocumentParams"
+    },
+    "DidSaveNotebookDocumentParams": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/DidSaveNotebookDocumentParams"
+    },
+    "DidSaveTextDocumentParams": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/DidSaveTextDocumentParams"
+    },
+    "DocumentColorClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentColorClientCapabilities"
+    },
+    "DocumentColorOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentColorOptions"
+    },
+    "DocumentColorParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentColorParams"
+    },
+    "DocumentColorRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentColorRegistrationOptions"
+    },
+    "DocumentDiagnosticParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentDiagnosticParams"
+    },
+    "DocumentDiagnosticReport": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentDiagnosticReport"
+    },
+    "DocumentDiagnosticReportKind": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentDiagnosticReportKind"
+    },
+    "DocumentDiagnosticReportPartialResult": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentDiagnosticReportPartialResult"
+    },
+    "DocumentFilter": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/DocumentFilter"
+    },
+    "DocumentFormattingClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentFormattingClientCapabilities"
+    },
+    "DocumentFormattingOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentFormattingOptions"
+    },
+    "DocumentFormattingParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentFormattingParams"
+    },
+    "DocumentFormattingRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentFormattingRegistrationOptions"
+    },
+    "DocumentHighlight": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentHighlight"
+    },
+    "DocumentHighlightClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentHighlightClientCapabilities"
+    },
+    "DocumentHighlightKind": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentHighlightKind"
+    },
+    "DocumentHighlightOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentHighlightOptions"
+    },
+    "DocumentHighlightParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentHighlightParams"
+    },
+    "DocumentHighlightRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentHighlightRegistrationOptions"
+    },
+    "DocumentLink": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentLink"
+    },
+    "DocumentLinkClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentLinkClientCapabilities"
+    },
+    "DocumentLinkOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentLinkOptions"
+    },
+    "DocumentLinkParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentLinkParams"
+    },
+    "DocumentLinkRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentLinkRegistrationOptions"
+    },
+    "DocumentOnTypeFormattingClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentOnTypeFormattingClientCapabilities"
+    },
+    "DocumentOnTypeFormattingOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentOnTypeFormattingOptions"
+    },
+    "DocumentOnTypeFormattingParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentOnTypeFormattingParams"
+    },
+    "DocumentOnTypeFormattingRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentOnTypeFormattingRegistrationOptions"
+    },
+    "DocumentRangeFormattingClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentRangeFormattingClientCapabilities"
+    },
+    "DocumentRangeFormattingOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentRangeFormattingOptions"
+    },
+    "DocumentRangeFormattingParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentRangeFormattingParams"
+    },
+    "DocumentRangeFormattingRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentRangeFormattingRegistrationOptions"
+    },
+    "DocumentSelector": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/DocumentSelector"
+    },
+    "DocumentSymbol": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentSymbol"
+    },
+    "DocumentSymbolClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentSymbolClientCapabilities"
+    },
+    "DocumentSymbolOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentSymbolOptions"
+    },
+    "DocumentSymbolParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentSymbolParams"
+    },
+    "DocumentSymbolRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/DocumentSymbolRegistrationOptions"
+    },
+    "DocumentUri": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/DocumentUri"
+    },
+    "ErrorCodes": {
+      "$ref": "baseProtocol/baseProtocol.json#/definitions/ErrorCodes"
+    },
+    "ExecuteCommandClientCapabilities": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/ExecuteCommandClientCapabilities"
+    },
+    "ExecuteCommandOptions": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/ExecuteCommandOptions"
+    },
+    "ExecuteCommandParams": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/ExecuteCommandParams"
+    },
+    "ExecuteCommandRegistrationOptions": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/ExecuteCommandRegistrationOptions"
+    },
+    "ExecutionSummary": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/ExecutionSummary"
+    },
+    "FailureHandlingKind": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/FailureHandlingKind"
+    },
+    "FileChangeType": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/FileChangeType"
+    },
+    "FileCreate": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/FileCreate"
+    },
+    "FileDelete": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/FileDelete"
+    },
+    "FileEvent": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/FileEvent"
+    },
+    "FileOperationFilter": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/FileOperationFilter"
+    },
+    "FileOperationPattern": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/FileOperationPattern"
+    },
+    "FileOperationPatternKind": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/FileOperationPatternKind"
+    },
+    "FileOperationPatternOptions": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/FileOperationPatternOptions"
+    },
+    "FileOperationRegistrationOptions": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/FileOperationRegistrationOptions"
+    },
+    "FileRename": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/FileRename"
+    },
+    "FileSystemWatcher": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/FileSystemWatcher"
+    },
+    "FoldingRange": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/FoldingRange"
+    },
+    "FoldingRangeClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/FoldingRangeClientCapabilities"
+    },
+    "FoldingRangeKind": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/FoldingRangeKind"
+    },
+    "FoldingRangeOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/FoldingRangeOptions"
+    },
+    "FoldingRangeParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/FoldingRangeParams"
+    },
+    "FoldingRangeRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/FoldingRangeRegistrationOptions"
+    },
+    "FormattingOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/FormattingOptions"
+    },
+    "FullDocumentDiagnosticReport": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/FullDocumentDiagnosticReport"
+    },
+    "GlobPattern": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/GlobPattern"
+    },
+    "Hover": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/Hover"
+    },
+    "HoverClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/HoverClientCapabilities"
+    },
+    "HoverOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/HoverOptions"
+    },
+    "HoverParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/HoverParams"
+    },
+    "HoverRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/HoverRegistrationOptions"
+    },
+    "ImplementationClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/ImplementationClientCapabilities"
+    },
+    "ImplementationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/ImplementationOptions"
+    },
+    "ImplementationParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/ImplementationParams"
+    },
+    "ImplementationRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/ImplementationRegistrationOptions"
+    },
+    "InitializeError": {
+      "$ref": "serverLifecycle/serverLifecycle.json#/definitions/InitializeError"
+    },
+    "InitializeErrorCodes": {
+      "$ref": "serverLifecycle/serverLifecycle.json#/definitions/InitializeErrorCodes"
+    },
+    "InitializeParams": {
+      "$ref": "serverLifecycle/serverLifecycle.json#/definitions/InitializeParams"
+    },
+    "InitializeResult": {
+      "$ref": "serverLifecycle/serverLifecycle.json#/definitions/InitializeResult"
+    },
+    "InitializedParams": {
+      "$ref": "serverLifecycle/serverLifecycle.json#/definitions/InitializedParams"
+    },
+    "InlayHint": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InlayHint"
+    },
+    "InlayHintClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InlayHintClientCapabilities"
+    },
+    "InlayHintKind": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InlayHintKind"
+    },
+    "InlayHintLabelPart": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InlayHintLabelPart"
+    },
+    "InlayHintOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InlayHintOptions"
+    },
+    "InlayHintParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InlayHintParams"
+    },
+    "InlayHintRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InlayHintRegistrationOptions"
+    },
+    "InlayHintWorkspaceClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InlayHintWorkspaceClientCapabilities"
+    },
+    "InlineValue": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InlineValue"
+    },
+    "InlineValueClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InlineValueClientCapabilities"
+    },
+    "InlineValueContext": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InlineValueContext"
+    },
+    "InlineValueEvaluatableExpression": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InlineValueEvaluatableExpression"
+    },
+    "InlineValueOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InlineValueOptions"
+    },
+    "InlineValueParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InlineValueParams"
+    },
+    "InlineValueRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InlineValueRegistrationOptions"
+    },
+    "InlineValueText": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InlineValueText"
+    },
+    "InlineValueVariableLookup": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InlineValueVariableLookup"
+    },
+    "InlineValueWorkspaceClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InlineValueWorkspaceClientCapabilities"
+    },
+    "InsertReplaceEdit": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InsertReplaceEdit"
+    },
+    "InsertTextFormat": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InsertTextFormat"
+    },
+    "InsertTextMode": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/InsertTextMode"
+    },
+    "LSPAny": {
+      "$ref": "baseProtocol/baseProtocol.json#/definitions/LSPAny"
+    },
+    "LSPArray": {
+      "$ref": "baseProtocol/baseProtocol.json#/definitions/LSPArray"
+    },
+    "LSPObject": {
+      "$ref": "baseProtocol/baseProtocol.json#/definitions/LSPObject"
+    },
+    "LinkedEditingRangeClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/LinkedEditingRangeClientCapabilities"
+    },
+    "LinkedEditingRangeOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/LinkedEditingRangeOptions"
+    },
+    "LinkedEditingRangeParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/LinkedEditingRangeParams"
+    },
+    "LinkedEditingRangeRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/LinkedEditingRangeRegistrationOptions"
+    },
+    "LinkedEditingRanges": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/LinkedEditingRanges"
+    },
+    "Location": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/Location"
+    },
+    "LocationLink": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/LocationLink"
+    },
+    "LogMessageParams": {
+      "$ref": "windowFeatures/windowFeatures.json#/definitions/LogMessageParams"
+    },
+    "LogTraceParams": {
+      "$ref": "serverLifecycle/serverLifecycle.json#/definitions/LogTraceParams"
+    },
+    "MarkdownClientCapabilities": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/MarkdownClientCapabilities"
+    },
+    "MarkedString": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/MarkedString"
+    },
+    "MarkupContent": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/MarkupContent"
+    },
+    "MarkupKind": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/MarkupKind"
+    },
+    "Message": {
+      "$ref": "baseProtocol/baseProtocol.json#/definitions/Message"
+    },
+    "MessageActionItem": {
+      "$ref": "windowFeatures/windowFeatures.json#/definitions/MessageActionItem"
+    },
+    "MessageType": {
+      "$ref": "windowFeatures/windowFeatures.json#/definitions/MessageType"
+    },
+    "Moniker": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/Moniker"
+    },
+    "MonikerClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/MonikerClientCapabilities"
+    },
+    "MonikerKind": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/MonikerKind"
+    },
+    "MonikerOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/MonikerOptions"
+    },
+    "MonikerParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/MonikerParams"
+    },
+    "MonikerRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/MonikerRegistrationOptions"
+    },
+    "NotebookCell": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/NotebookCell"
+    },
+    "NotebookCellArrayChange": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/NotebookCellArrayChange"
+    },
+    "NotebookCellKind": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/NotebookCellKind"
+    },
+    "NotebookCellTextDocumentFilter": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/NotebookCellTextDocumentFilter"
+    },
+    "NotebookDocument": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/NotebookDocument"
+    },
+    "NotebookDocumentChangeEvent": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/NotebookDocumentChangeEvent"
+    },
+    "NotebookDocumentClientCapabilities": {
+      "$ref": "serverLifecycle/serverLifecycle.json#/definitions/NotebookDocumentClientCapabilities"
+    },
+    "NotebookDocumentFilter": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/NotebookDocumentFilter"
+    },
+    "NotebookDocumentIdentifier": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/NotebookDocumentIdentifier"
+    },
+    "NotebookDocumentSyncClientCapabilities": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/NotebookDocumentSyncClientCapabilities"
+    },
+    "NotebookDocumentSyncOptions": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/NotebookDocumentSyncOptions"
+    },
+    "NotebookDocumentSyncRegistrationOptions": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/NotebookDocumentSyncRegistrationOptions"
+    },
+    "NotificationMessage": {
+      "$ref": "baseProtocol/baseProtocol.json#/definitions/NotificationMessage"
+    },
+    "OptionalVersionedTextDocumentIdentifier": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/OptionalVersionedTextDocumentIdentifier"
+    },
+    "ParameterInformation": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/ParameterInformation"
+    },
+    "PartialResultParams": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/PartialResultParams"
+    },
+    "Pattern": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/Pattern"
+    },
+    "Position": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/Position"
+    },
+    "PositionEncodingKind": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/PositionEncodingKind"
+    },
+    "PrepareRenameParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/PrepareRenameParams"
+    },
+    "PrepareSupportDefaultBehavior": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/PrepareSupportDefaultBehavior"
+    },
+    "PreviousResultId": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/PreviousResultId"
+    },
+    "ProgressToken": {
+      "$ref": "baseProtocol/baseProtocol.json#/definitions/ProgressToken"
+    },
+    "PublishDiagnosticsClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/PublishDiagnosticsClientCapabilities"
+    },
+    "PublishDiagnosticsParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/PublishDiagnosticsParams"
+    },
+    "Range": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/Range"
+    },
+    "ReferenceClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/ReferenceClientCapabilities"
+    },
+    "ReferenceContext": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/ReferenceContext"
+    },
+    "ReferenceOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/ReferenceOptions"
+    },
+    "ReferenceParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/ReferenceParams"
+    },
+    "ReferenceRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/ReferenceRegistrationOptions"
+    },
+    "Registration": {
+      "$ref": "serverLifecycle/serverLifecycle.json#/definitions/Registration"
+    },
+    "RegistrationParams": {
+      "$ref": "serverLifecycle/serverLifecycle.json#/definitions/RegistrationParams"
+    },
+    "RegularExpressionsClientCapabilities": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/RegularExpressionsClientCapabilities"
+    },
+    "RelatedFullDocumentDiagnosticReport": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/RelatedFullDocumentDiagnosticReport"
+    },
+    "RelatedUnchangedDocumentDiagnosticReport": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/RelatedUnchangedDocumentDiagnosticReport"
+    },
+    "RelativePattern": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/RelativePattern"
+    },
+    "RenameClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/RenameClientCapabilities"
+    },
+    "RenameFile": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/RenameFile"
+    },
+    "RenameFileOptions": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/RenameFileOptions"
+    },
+    "RenameFilesParams": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/RenameFilesParams"
+    },
+    "RenameOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/RenameOptions"
+    },
+    "RenameParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/RenameParams"
+    },
+    "RenameRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/RenameRegistrationOptions"
+    },
+    "RequestMessage": {
+      "$ref": "baseProtocol/baseProtocol.json#/definitions/RequestMessage"
+    },
+    "ResourceOperationKind": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/ResourceOperationKind"
+    },
+    "ResponseError": {
+      "$ref": "baseProtocol/baseProtocol.json#/definitions/ResponseError"
+    },
+    "ResponseMessage": {
+      "$ref": "baseProtocol/baseProtocol.json#/definitions/ResponseMessage"
+    },
+    "SaveOptions": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/SaveOptions"
+    },
+    "SelectionRange": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SelectionRange"
+    },
+    "SelectionRangeClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SelectionRangeClientCapabilities"
+    },
+    "SelectionRangeOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SelectionRangeOptions"
+    },
+    "SelectionRangeParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SelectionRangeParams"
+    },
+    "SelectionRangeRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SelectionRangeRegistrationOptions"
+    },
+    "SemanticTokenModifiers": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SemanticTokenModifiers"
+    },
+    "SemanticTokenTypes": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SemanticTokenTypes"
+    },
+    "SemanticTokens": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SemanticTokens"
+    },
+    "SemanticTokensClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SemanticTokensClientCapabilities"
+    },
+    "SemanticTokensDelta": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SemanticTokensDelta"
+    },
+    "SemanticTokensDeltaParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SemanticTokensDeltaParams"
+    },
+    "SemanticTokensDeltaPartialResult": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SemanticTokensDeltaPartialResult"
+    },
+    "SemanticTokensEdit": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SemanticTokensEdit"
+    },
+    "SemanticTokensLegend": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SemanticTokensLegend"
+    },
+    "SemanticTokensOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SemanticTokensOptions"
+    },
+    "SemanticTokensParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SemanticTokensParams"
+    },
+    "SemanticTokensPartialResult": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SemanticTokensPartialResult"
+    },
+    "SemanticTokensRangeParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SemanticTokensRangeParams"
+    },
+    "SemanticTokensRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SemanticTokensRegistrationOptions"
+    },
+    "SemanticTokensWorkspaceClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SemanticTokensWorkspaceClientCapabilities"
+    },
+    "ServerCapabilities": {
+      "$ref": "serverLifecycle/serverLifecycle.json#/definitions/ServerCapabilities"
+    },
+    "SetTraceParams": {
+      "$ref": "serverLifecycle/serverLifecycle.json#/definitions/SetTraceParams"
+    },
+    "ShowDocumentClientCapabilities": {
+      "$ref": "windowFeatures/windowFeatures.json#/definitions/ShowDocumentClientCapabilities"
+    },
+    "ShowDocumentParams": {
+      "$ref": "windowFeatures/windowFeatures.json#/definitions/ShowDocumentParams"
+    },
+    "ShowDocumentResult": {
+      "$ref": "windowFeatures/windowFeatures.json#/definitions/ShowDocumentResult"
+    },
+    "ShowMessageParams": {
+      "$ref": "windowFeatures/windowFeatures.json#/definitions/ShowMessageParams"
+    },
+    "ShowMessageRequestClientCapabilities": {
+      "$ref": "windowFeatures/windowFeatures.json#/definitions/ShowMessageRequestClientCapabilities"
+    },
+    "ShowMessageRequestParams": {
+      "$ref": "windowFeatures/windowFeatures.json#/definitions/ShowMessageRequestParams"
+    },
+    "SignatureHelp": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SignatureHelp"
+    },
+    "SignatureHelpClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SignatureHelpClientCapabilities"
+    },
+    "SignatureHelpContext": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SignatureHelpContext"
+    },
+    "SignatureHelpOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SignatureHelpOptions"
+    },
+    "SignatureHelpParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SignatureHelpParams"
+    },
+    "SignatureHelpRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SignatureHelpRegistrationOptions"
+    },
+    "SignatureHelpTriggerKind": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SignatureHelpTriggerKind"
+    },
+    "SignatureInformation": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SignatureInformation"
+    },
+    "StaticRegistrationOptions": {
+      "$ref": "serverLifecycle/serverLifecycle.json#/definitions/StaticRegistrationOptions"
+    },
+    "SymbolInformation": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SymbolInformation"
+    },
+    "SymbolKind": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SymbolKind"
+    },
+    "SymbolTag": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/SymbolTag"
+    },
+    "TextDocumentChangeRegistrationOptions": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/TextDocumentChangeRegistrationOptions"
+    },
+    "TextDocumentClientCapabilities": {
+      "$ref": "serverLifecycle/serverLifecycle.json#/definitions/TextDocumentClientCapabilities"
+    },
+    "TextDocumentContentChangeEvent": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/TextDocumentContentChangeEvent"
+    },
+    "TextDocumentEdit": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/TextDocumentEdit"
+    },
+    "TextDocumentIdentifier": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/TextDocumentIdentifier"
+    },
+    "TextDocumentItem": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/TextDocumentItem"
+    },
+    "TextDocumentPositionParams": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/TextDocumentPositionParams"
+    },
+    "TextDocumentRegistrationOptions": {
+      "$ref": "serverLifecycle/serverLifecycle.json#/definitions/TextDocumentRegistrationOptions"
+    },
+    "TextDocumentSaveReason": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/TextDocumentSaveReason"
+    },
+    "TextDocumentSaveRegistrationOptions": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/TextDocumentSaveRegistrationOptions"
+    },
+    "TextDocumentSyncClientCapabilities": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/TextDocumentSyncClientCapabilities"
+    },
+    "TextDocumentSyncKind": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/TextDocumentSyncKind"
+    },
+    "TextDocumentSyncOptions": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/TextDocumentSyncOptions"
+    },
+    "TextEdit": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/TextEdit"
+    },
+    "TokenFormat": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/TokenFormat"
+    },
+    "TraceValue": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/TraceValue"
+    },
+    "TypeDefinitionClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/TypeDefinitionClientCapabilities"
+    },
+    "TypeDefinitionOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/TypeDefinitionOptions"
+    },
+    "TypeDefinitionParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/TypeDefinitionParams"
+    },
+    "TypeDefinitionRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/TypeDefinitionRegistrationOptions"
+    },
+    "TypeHierarchyClientCapabilities": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/TypeHierarchyClientCapabilities"
+    },
+    "TypeHierarchyItem": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/TypeHierarchyItem"
+    },
+    "TypeHierarchyOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/TypeHierarchyOptions"
+    },
+    "TypeHierarchyPrepareParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/TypeHierarchyPrepareParams"
+    },
+    "TypeHierarchyRegistrationOptions": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/TypeHierarchyRegistrationOptions"
+    },
+    "TypeHierarchySubtypesParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/TypeHierarchySubtypesParams"
+    },
+    "TypeHierarchySupertypesParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/TypeHierarchySupertypesParams"
+    },
+    "URI": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/URI"
+    },
+    "UnchangedDocumentDiagnosticReport": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/UnchangedDocumentDiagnosticReport"
+    },
+    "UniquenessLevel": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/UniquenessLevel"
+    },
+    "Unregistration": {
+      "$ref": "serverLifecycle/serverLifecycle.json#/definitions/Unregistration"
+    },
+    "UnregistrationParams": {
+      "$ref": "serverLifecycle/serverLifecycle.json#/definitions/UnregistrationParams"
+    },
+    "VersionedNotebookDocumentIdentifier": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/VersionedNotebookDocumentIdentifier"
+    },
+    "VersionedTextDocumentIdentifier": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/VersionedTextDocumentIdentifier"
+    },
+    "WatchKind": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/WatchKind"
+    },
+    "WillSaveTextDocumentParams": {
+      "$ref": "documentSynchronization/documentSynchronization.json#/definitions/WillSaveTextDocumentParams"
+    },
+    "WorkDoneProgressBegin": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/WorkDoneProgressBegin"
+    },
+    "WorkDoneProgressCancelParams": {
+      "$ref": "windowFeatures/windowFeatures.json#/definitions/WorkDoneProgressCancelParams"
+    },
+    "WorkDoneProgressCreateParams": {
+      "$ref": "windowFeatures/windowFeatures.json#/definitions/WorkDoneProgressCreateParams"
+    },
+    "WorkDoneProgressEnd": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/WorkDoneProgressEnd"
+    },
+    "WorkDoneProgressOptions": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/WorkDoneProgressOptions"
+    },
+    "WorkDoneProgressParams": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/WorkDoneProgressParams"
+    },
+    "WorkDoneProgressReport": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/WorkDoneProgressReport"
+    },
+    "WorkspaceDiagnosticParams": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/WorkspaceDiagnosticParams"
+    },
+    "WorkspaceDiagnosticReport": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/WorkspaceDiagnosticReport"
+    },
+    "WorkspaceDiagnosticReportPartialResult": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/WorkspaceDiagnosticReportPartialResult"
+    },
+    "WorkspaceDocumentDiagnosticReport": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/WorkspaceDocumentDiagnosticReport"
+    },
+    "WorkspaceEdit": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/WorkspaceEdit"
+    },
+    "WorkspaceEditClientCapabilities": {
+      "$ref": "basicStructures/basicStructures.json#/definitions/WorkspaceEditClientCapabilities"
+    },
+    "WorkspaceFolder": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/WorkspaceFolder"
+    },
+    "WorkspaceFoldersChangeEvent": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/WorkspaceFoldersChangeEvent"
+    },
+    "WorkspaceFoldersServerCapabilities": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/WorkspaceFoldersServerCapabilities"
+    },
+    "WorkspaceFullDocumentDiagnosticReport": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/WorkspaceFullDocumentDiagnosticReport"
+    },
+    "WorkspaceSymbol": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/WorkspaceSymbol"
+    },
+    "WorkspaceSymbolClientCapabilities": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/WorkspaceSymbolClientCapabilities"
+    },
+    "WorkspaceSymbolOptions": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/WorkspaceSymbolOptions"
+    },
+    "WorkspaceSymbolParams": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/WorkspaceSymbolParams"
+    },
+    "WorkspaceSymbolRegistrationOptions": {
+      "$ref": "workspaceFeatures/workspaceFeatures.json#/definitions/WorkspaceSymbolRegistrationOptions"
+    },
+    "WorkspaceUnchangedDocumentDiagnosticReport": {
+      "$ref": "languageFeatures/languageFeatures.json#/definitions/WorkspaceUnchangedDocumentDiagnosticReport"
+    },
+    "decimal": {
+      "$ref": "baseProtocol/baseProtocol.json#/definitions/decimal"
+    },
+    "integer": {
+      "$ref": "baseProtocol/baseProtocol.json#/definitions/integer"
+    },
+    "uinteger": {
+      "$ref": "baseProtocol/baseProtocol.json#/definitions/uinteger"
+    }
+  }
+}
