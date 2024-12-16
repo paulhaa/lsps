@@ -3,13 +3,19 @@
 
 #include <iostream>
 
+#include "../server.hpp"
+
 class LspsTest : public CppUnit::TestFixture {
   public:
     LspsTest() : CppUnit::TestFixture() {}
 
-    void testStart() { CPPUNIT_ASSERT(true); }
+    void testHandleRequest();
+
+  private:
+    std::string join(const std::vector<std::string>& str, const char* delimiter);
+    std::string queryServer(const std::vector<std::string>& requests);
 
     CPPUNIT_TEST_SUITE(LspsTest);
-    CPPUNIT_TEST(testStart);
+    CPPUNIT_TEST(testHandleRequest);
     CPPUNIT_TEST_SUITE_END();
 };

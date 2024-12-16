@@ -1,6 +1,6 @@
 #include <cppunit/ui/text/TestRunner.h>
 
-#include "server/test/test_server.hpp"
+#include "../server/unittest/test_server.hpp"
 
 int main() {
     CppUnit::TextUi::TestRunner runner;
