@@ -1,15 +1,16 @@
 #include "server.hpp"
 
-#include <iostream>
-
 namespace lsps {
 void Server::start() {
-    std::string input;
-    while (ioHandler_->readInput(input)) {
-        if (input == "stop") {
-            break;
-        }
-        ioHandler_->writeOutput(input);
+    requestHandler->initialize();
+
+    bool _continue = true;
+    while (_continue) {
+        _continue = requestHandler->handleRequest();
     }
 }
+
+void Server::addHandler(const std::string& method, const MethodHandler& handler) {
+    requestHandler->addHandler(method, handler);
+};
 }  // namespace lsps

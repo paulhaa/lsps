@@ -3,19 +3,24 @@
 
 #include <iostream>
 
-#include "../server.hpp"
+#include "nlohmann/json.hpp"
+#include "requestHandler/router.hpp"
 
-class LspsTest : public CppUnit::TestFixture {
+class ServerTest : public CppUnit::TestFixture {
   public:
-    LspsTest() : CppUnit::TestFixture() {}
+    ServerTest() : CppUnit::TestFixture() {}
 
-    void testHandleRequest();
+    void testStartServer();
 
   private:
-    std::string join(const std::vector<std::string>& str, const char* delimiter);
-    std::string queryServer(const std::vector<std::string>& requests);
+    static lsps::LspAny handleTest(const std::optional<lsps::Params>& request) { return "testRequest"; }
 
-    CPPUNIT_TEST_SUITE(LspsTest);
-    CPPUNIT_TEST(testHandleRequest);
+    std::string join(const std::vector<std::string>& str, const char* delimiter);
+    std::string createRequest(int64_t id, const std::string& method);
+    std::string createResponse(int64_t id, const std::string& result);
+    std::string queryServer(const std::string& request, const std::map<std::string, lsps::MethodHandler>& handlers);
+
+    CPPUNIT_TEST_SUITE(ServerTest);
+    CPPUNIT_TEST(testStartServer);
     CPPUNIT_TEST_SUITE_END();
 };
