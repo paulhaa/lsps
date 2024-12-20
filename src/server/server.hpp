@@ -1,22 +1,41 @@
 #include <iostream>
 #include <thread>
 
+#include "generated/ServerCapabilities.hpp"
+#include "generated/ServerInfo.hpp"
 #include "ioHandler/ioHandler.hpp"
 #include "ioHandler/stdIoHandler.hpp"
-#include "requestHandler/requestHandler.hpp"
+#include "methodProvider.hpp"
+#include "router.hpp"
 
 namespace lsps {
+constexpr auto JSON_RPC_VERSION = "2.0";
+
 class Server {
   public:
-    Server() { requestHandler = std::make_unique<RequestHandler>(std::make_unique<StdIoHandler>()); }
-    explicit Server(std::unique_ptr<IoHandler> ioHandler) {
-        requestHandler = std::make_unique<RequestHandler>(std::move(ioHandler));
+    explicit Server(const ServerInfo& serverInfo) : serverInfo(serverInfo) {
+        ioHandler = std::make_unique<StdIoHandler>();
     }
+    Server(const ServerInfo& serverInfo, std::unique_ptr<IoHandler> ioHandler)
+        : serverInfo(serverInfo), ioHandler(std::move(ioHandler)) {}
 
     void start();
-    void addHandler(const std::string& method, const MethodHandler& handler);
+    void addHandler(std::unique_ptr<MethodProvider> handler);
 
   private:
-    std::unique_ptr<RequestHandler> requestHandler;
+    std::unique_ptr<IoHandler> ioHandler;
+    Router router;
+
+    ServerInfo serverInfo;
+    ServerCapabilities capabilities;
+
+    void initialize();
+
+    bool handleRequest();
+
+    RequestMessage parseRequest();
+    int readHeader();
+    json readPayload(int contentLength);
+    void dispatchResponse(const std::variant<int64_t, std::string>& id, const LspAny& result);
 };
 }  // namespace lsps

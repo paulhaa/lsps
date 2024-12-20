@@ -1,15 +1,16 @@
 set(SOURCES
         server.hpp
-        requestHandler/router.hpp
-        requestHandler/requestHandler.hpp
+        router.hpp
         ioHandler/ioHandler.hpp
         ioHandler/stdIoHandler.hpp
+        methodProviders/method.hpp
+        methodProviders/initializeProvider.hpp
+        methodProviders/shutdownProvider.hpp
+
 
         server.cpp
-        requestHandler/router.cpp
-        requestHandler/requestHandler.cpp
-        requestHandler/methodHandlers/initializeHandler.hpp
-        requestHandler/methodHandlers/shutdownHandler.hpp
+        router.cpp
+        methodProviders/method.cpp
 )
 
 add_subdirectory(models)
@@ -20,12 +21,12 @@ target_include_directories(lsps PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 # Test sources.
 set(TEST_SOURCES
         unittest/test_server.hpp
-        unittest/test_requestHandler.hpp
         unittest/test_router.hpp
+        methodProviders/unittest/test_initializeProvider.hpp
 
         unittest/test_server.cpp
-        unittest/test_requestHandler.cpp
         unittest/test_router.cpp
+        methodProviders/unittest/test_initializeProvider.cpp
 )
 target_sources(lsps_test PRIVATE ${SOURCES} ${TEST_SOURCES})
 target_include_directories(lsps_test PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

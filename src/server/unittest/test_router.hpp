@@ -4,6 +4,8 @@
 #include <models/generated/LspAny.hpp>
 #include <models/generated/Params.hpp>
 
+#include "methodProvider.hpp"
+
 class RouterTest : public CppUnit::TestFixture {
   public:
     RouterTest() : CppUnit::TestFixture() {}
@@ -12,7 +14,11 @@ class RouterTest : public CppUnit::TestFixture {
     void testInvoke();
 
   private:
-    static lsps::LspAny handleTest(const std::optional<lsps::Params>& request) { return "testRequest"; };
+    class TestHandler : public lsps::MethodProvider {
+      public:
+        TestHandler() : MethodProvider(lsps::HOVER) {}
+        lsps::LspAny handle(const std::optional<lsps::Params>& params) override { return "testRequest"; }
+    };
 
     CPPUNIT_TEST_SUITE(RouterTest);
     CPPUNIT_TEST(testAddHandler);
