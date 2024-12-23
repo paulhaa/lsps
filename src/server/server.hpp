@@ -39,6 +39,10 @@ class Server {
     void handleRequest(RequestMessage* request);
     void handleNotification(NotificationMessage* notification);
 
+    bool handleInitialize();
+    void handleRequests();
+    void handleShutdown();
+
     std::variant<RequestMessage, NotificationMessage> parseRequest();
     int readHeader();
     json readPayload(int contentLength);

@@ -86,43 +86,66 @@ std::string ServerTest::queryServer(const std::string& request) {
 }
 
 void ServerTest::testStart() {
-    auto req1 = createRequest(1, "textDocument/hover");
-    auto req2 = createRequest(2, "textDocument/hover");
-    auto shutdownRequest = createRequest(3, "shutdown");
+    auto initializeRequest = createRequest(1, "initialize");
+    auto req1 = createRequest(2, "textDocument/hover");
+    auto req2 = createRequest(3, "textDocument/hover");
+    auto shutdownRequest = createRequest(4, "shutdown");
     auto exitNotification = createNotification("exit");
-    auto request = join({req1, req2, shutdownRequest, exitNotification});
+    auto request = join({initializeRequest, req1, req2, shutdownRequest, exitNotification});
 
     auto result =
         R"({"contents":"testResult","range":{"end":{"character":0,"line":0},"start":{"character":0,"line":0}}})";
-    auto resp1 = createResponse(1, result);
-    auto resp2 = createResponse(2, result);
-    auto shutdownResponse = createResponse(3, "null");
+    auto resp1 = createResponse(2, result);
+    auto resp2 = createResponse(3, result);
+    auto shutdownResponse = createResponse(4, "null");
     auto expectedResponse = join({resp1, resp2, shutdownResponse});
 
     auto response = queryServer(request);
+    // Remove initialize response.
+    auto resp = response.substr(1193);
 
-    auto message = "expected '" + std::string(expectedResponse) + "', got '" + response + "'";
-    CPPUNIT_ASSERT_MESSAGE(message, response == expectedResponse);
+    auto message = "expected '" + std::string(expectedResponse) + "', got '" + resp + "'";
+    CPPUNIT_ASSERT_MESSAGE(message, resp == expectedResponse);
+}
+
+void ServerTest::testInitialize() {
+    auto initializeRequest = createRequest(1, "initialize");
+    auto shutdownRequest = createRequest(2, "shutdown");
+    auto exitNotification = createNotification("exit");
+    auto initialize = join({initializeRequest, shutdownRequest, exitNotification});
+    CPPUNIT_ASSERT_NO_THROW_MESSAGE("initialize provider should not throw", queryServer(initialize));
+
+    CPPUNIT_ASSERT_NO_THROW_MESSAGE("exit should not throw", queryServer(exitNotification));
+
+    auto req = createRequest(1, "textDocument/hover");
+    auto request = join({req, exitNotification});
+    auto response = queryServer(request);
+    auto notInitializedResponse = createResponse(1, std::nullopt, lsps::ErrorFactory::serverNotInitialized());
+    auto message = "expected '" + std::string(notInitializedResponse) + "', got '" + response + "'";
+    CPPUNIT_ASSERT_MESSAGE(message, response == notInitializedResponse);
 }
 
 void ServerTest::testShutdown() {
-    auto req1 = createRequest(1, "textDocument/hover");
+    auto initializeRequest = createRequest(1, "initialize");
+    auto req1 = createRequest(2, "textDocument/hover");
     auto shutdownRequest = createRequest(3, "shutdown");
-    auto req2 = createRequest(2, "textDocument/hover");
+    auto req2 = createRequest(4, "textDocument/hover");
     auto exitNotification = createNotification("exit");
-    auto request = join({req1, shutdownRequest, req2, exitNotification});
+    auto request = join({initializeRequest, req1, shutdownRequest, req2, exitNotification});
 
     auto result =
         R"({"contents":"testResult","range":{"end":{"character":0,"line":0},"start":{"character":0,"line":0}}})";
-    auto resp1 = createResponse(1, result);
+    auto resp1 = createResponse(2, result);
     auto shutdownResponse = createResponse(3, "null");
-    auto errorResponse = createResponse(2, std::nullopt, lsps::ErrorFactory::createInvalidRequest());
+    auto errorResponse = createResponse(4, std::nullopt, lsps::ErrorFactory::invalidRequest());
     auto expectedResponse = join({resp1, shutdownResponse, errorResponse});
 
     auto response = queryServer(request);
+    // Remove initialize response.
+    auto resp = response.substr(1193);
 
-    auto message = "expected '" + std::string(expectedResponse) + "', got '" + response + "'";
-    CPPUNIT_ASSERT_MESSAGE(message, response == expectedResponse);
+    auto message = "expected '" + std::string(expectedResponse) + "', got '" + resp + "'";
+    CPPUNIT_ASSERT_MESSAGE(message, resp == expectedResponse);
 }
 
 void ServerTest::testAddProvider() {
@@ -140,17 +163,6 @@ void ServerTest::testAddProvider() {
     message = "should not have call hierarchy capability";
     auto callHierarchyCapability = R"("callHierarchyProvider\":null)";
     CPPUNIT_ASSERT_MESSAGE(message, response.find(callHierarchyCapability) != std::string::npos);
-}
-
-void ServerTest::testInitialize() {
-    auto initializeRequest = createRequest(1, "initialize");
-    auto shutdownRequest = createRequest(2, "shutdown");
-    auto exitNotification = createNotification("exit");
-    auto initialize = join({initializeRequest, shutdownRequest, exitNotification});
-    CPPUNIT_ASSERT_NO_THROW_MESSAGE("initialize provider should not throw", queryServer(initialize));
-
-    auto shutdown = join({shutdownRequest, exitNotification});
-    CPPUNIT_ASSERT_NO_THROW_MESSAGE("shutdown provider should not throw", queryServer(shutdown));
 }
 
 void ServerTest::testHandleRequest() {

@@ -9,37 +9,11 @@ namespace lsps {
 void Server::start() {
     initialize();
 
-    // Handle requests and notifications.
-    while (true) {
-        auto request = parseRequest();
-        if (auto req = std::get_if<RequestMessage>(&request)) {
-            handleRequest(req);
-            if (MethodEnum::fromString(req->get_method()) == Method::SHUTDOWN) {
-                break;
-            }
-        } else if (auto notification = std::get_if<NotificationMessage>(&request)) {
-            handleNotification(notification);
-        }
+    auto success = handleInitialize();
+    if (success) {
+        handleRequests();
+        handleShutdown();
     }
-
-    // Wait for exit notification.
-    while (true) {
-        auto request = parseRequest();
-        if (auto notification = std::get_if<NotificationMessage>(&request)) {
-            if (MethodEnum::fromString(notification->get_method()) == Method::EXIT) {
-                break;
-            }
-            handleNotification(notification);
-        } else if (const auto req = std::get_if<RequestMessage>(&request)) {
-            dispatchResponse(req->get_id(), ErrorFactory::createInvalidRequest());
-        }
-    }
-}
-
-void Server::initialize() {
-    router.addProvider<InitializeParams, InitializeResult>(
-        std::make_shared<InitializeProvider>(serverInfo, capabilities));
-    router.addProvider<EmptyParams, EmptyResult>(std::make_shared<ShutdownProvider>());
 }
 
 void Server::addCapability(const Method& method) {
@@ -52,6 +26,57 @@ void Server::addCapability(const Method& method) {
         case Method::EXIT:
             break;
     }
+}
+
+bool Server::handleInitialize() {
+    while (true) {
+        auto request = parseRequest();
+        if (auto notification = std::get_if<NotificationMessage>(&request)) {
+            if (MethodEnum::fromString(notification->get_method()) == Method::EXIT) {
+                return false;
+            }
+        } else if (const auto req = std::get_if<RequestMessage>(&request)) {
+            if (MethodEnum::fromString(req->get_method()) == Method::INITIALIZE) {
+                handleRequest(req);
+                return true;
+            }
+            dispatchResponse(req->get_id(), ErrorFactory::serverNotInitialized());
+        }
+    }
+}
+
+void Server::handleRequests() {
+    while (true) {
+        auto request = parseRequest();
+        if (auto req = std::get_if<RequestMessage>(&request)) {
+            handleRequest(req);
+            if (MethodEnum::fromString(req->get_method()) == Method::SHUTDOWN) {
+                break;
+            }
+        } else if (auto notification = std::get_if<NotificationMessage>(&request)) {
+            handleNotification(notification);
+        }
+    }
+}
+
+void Server::handleShutdown() {
+    while (true) {
+        auto request = parseRequest();
+        if (auto notification = std::get_if<NotificationMessage>(&request)) {
+            if (MethodEnum::fromString(notification->get_method()) == Method::EXIT) {
+                break;
+            }
+            handleNotification(notification);
+        } else if (const auto req = std::get_if<RequestMessage>(&request)) {
+            dispatchResponse(req->get_id(), ErrorFactory::invalidRequest());
+        }
+    }
+}
+
+void Server::initialize() {
+    router.addProvider<InitializeParams, InitializeResult>(
+        std::make_shared<InitializeProvider>(serverInfo, capabilities));
+    router.addProvider<EmptyParams, EmptyResult>(std::make_shared<ShutdownProvider>());
 }
 
 void Server::handleRequest(RequestMessage* request) {
