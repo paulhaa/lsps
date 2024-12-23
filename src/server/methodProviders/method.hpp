@@ -9,7 +9,7 @@ enum Method { INITIALIZE, HOVER, SHUTDOWN, EXIT };
 
 class MethodEnum {
   public:
-    static Method getMethodFromString(const std::string& methodString) {
+    static Method fromString(const std::string& methodString) {
         auto it = stringToMethod.find(methodString);
         if (it != stringToMethod.end()) {
             return it->second;

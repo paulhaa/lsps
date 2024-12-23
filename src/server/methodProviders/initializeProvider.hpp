@@ -7,20 +7,17 @@
 #include "methodProvider.hpp"
 
 namespace lsps {
-class InitializeProvider : public MethodProvider {
+class InitializeProvider : public MethodProvider<InitializeParams, InitializeResult> {
   public:
     InitializeProvider(const ServerInfo& serverInfo, const ServerCapabilities& capabilities)
         : serverInfo(serverInfo), capabilities(capabilities), MethodProvider(Method::INITIALIZE) {}
 
-    LspAny handle(const std::optional<Params>& params) override {
+    std::variant<InitializeResult, ResponseError> handle(const std::optional<InitializeParams>& params) override {
         InitializeResult result;
         result.set_server_info(serverInfo);
         result.set_capabilities(capabilities);
 
-        json json;
-        to_json(json, result);
-
-        return json.dump();
+        return result;
     }
 
   private:

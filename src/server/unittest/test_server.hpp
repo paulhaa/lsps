@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+#include "generated/Hover.hpp"
+#include "generated/HoverParams.hpp"
 #include "nlohmann/json.hpp"
 #include "router.hpp"
 
@@ -10,15 +12,32 @@ class ServerTest : public CppUnit::TestFixture {
   public:
     ServerTest() : CppUnit::TestFixture() {}
 
-    void testStartServer();
+    void testStart();
+    void testAddProvider();
     void testInitialize();
     void testHandleRequest();
 
   private:
-    class TestHandler : public lsps::MethodProvider {
+    class TestProvider : public lsps::MethodProvider<lsps::HoverParams, lsps::Hover> {
       public:
-        TestHandler() : MethodProvider(lsps::HOVER) {}
-        lsps::LspAny handle(const std::optional<lsps::Params>& params) override { return "testRequest"; }
+        TestProvider() : MethodProvider(lsps::HOVER) {}
+        std::variant<lsps::Hover, lsps::ResponseError> handle(const std::optional<lsps::HoverParams>& params) override {
+            lsps::Hover hover;
+            hover.set_contents("testResult");
+
+            lsps::PurpleRange range;
+            lsps::Position start;
+            start.set_line(0);
+            start.set_character(0);
+            range.set_start(start);
+            lsps::Position end;
+            end.set_line(0);
+            end.set_character(0);
+            range.set_end(end);
+            hover.set_range(range);
+
+            return hover;
+        }
     };
 
     std::string join(const std::vector<std::string>& str, const char* delimiter = "");
@@ -29,8 +48,9 @@ class ServerTest : public CppUnit::TestFixture {
     std::string queryServer(const std::string& request);
 
     CPPUNIT_TEST_SUITE(ServerTest);
-    CPPUNIT_TEST(testStartServer);
+    CPPUNIT_TEST(testStart);
     CPPUNIT_TEST(testInitialize);
+    CPPUNIT_TEST(testAddProvider);
     CPPUNIT_TEST(testHandleRequest);
     CPPUNIT_TEST_SUITE_END();
 };

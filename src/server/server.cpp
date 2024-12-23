@@ -2,29 +2,37 @@
 
 #include "methodProviders/initializeProvider.hpp"
 #include "methodProviders/shutdownProvider.hpp"
+#include "models/generated/Generators.hpp"
 
 namespace lsps {
 void Server::start() {
     initialize();
 
-    bool _continue = true;
-    while (_continue) {
-        _continue = handleRequest();
+    while (handleRequest()) {
     }
 }
 
-void Server::addHandler(std::unique_ptr<MethodProvider> handler) {
-    router.addHandler(std::move(handler));
-};
-
 void Server::initialize() {
-    router.addHandler(std::make_unique<InitializeProvider>(serverInfo, capabilities));
-    router.addHandler(std::make_unique<ShutdownProvider>());
+    router.addProvider<InitializeParams, InitializeResult>(
+        std::make_shared<InitializeProvider>(serverInfo, capabilities));
+    router.addProvider<EmptyParams, EmptyResult>(std::make_shared<ShutdownProvider>());
+}
+
+void Server::addCapability(const Method& method) {
+    switch (method) {
+        case Method::HOVER:
+            capabilities.set_hover_provider(true);
+            break;
+        case Method::INITIALIZE:
+        case Method::SHUTDOWN:
+        case Method::EXIT:
+            break;
+    }
 }
 
 bool Server::handleRequest() {
     auto request = parseRequest();
-    auto method = MethodEnum::getMethodFromString(request.get_method());
+    auto method = MethodEnum::fromString(request.get_method());
     auto result = router.invoke(method, request.get_params());
     dispatchResponse(request.get_id(), result);
 
@@ -78,11 +86,17 @@ json Server::readPayload(int contentLength) {
     return json;
 }
 
-void Server::dispatchResponse(const std::variant<int64_t, std::string>& id, const LspAny& result) {
+void Server::dispatchResponse(const std::variant<int64_t, std::string>& id,
+                              const std::variant<json, ResponseError>& result) {
     ResponseMessage response;
     response.set_jsonrpc(JSON_RPC_VERSION);
     response.set_id(id);
-    response.set_result(result);
+    if (auto error = std::get_if<ResponseError>(&result)) {
+        response.set_error(*error);
+    } else {
+        auto res = std::get<json>(result);
+        response.set_result(res.dump());
+    }
 
     json json;
     to_json(json, response);

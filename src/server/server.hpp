@@ -20,7 +20,11 @@ class Server {
         : serverInfo(serverInfo), ioHandler(std::move(ioHandler)) {}
 
     void start();
-    void addHandler(std::unique_ptr<MethodProvider> handler);
+    template <class P, class R>
+    void addProvider(std::shared_ptr<MethodProvider<P, R>> provider) {
+        addCapability(provider->method());
+        router.addProvider(provider);
+    };
 
   private:
     std::unique_ptr<IoHandler> ioHandler;
@@ -30,12 +34,14 @@ class Server {
     ServerCapabilities capabilities;
 
     void initialize();
+    void addCapability(const Method& method);
 
     bool handleRequest();
 
     RequestMessage parseRequest();
     int readHeader();
     json readPayload(int contentLength);
-    void dispatchResponse(const std::variant<int64_t, std::string>& id, const LspAny& result);
+    void dispatchResponse(const std::variant<int64_t, std::string>& id,
+                          const std::variant<json, ResponseError>& result);
 };
 }  // namespace lsps

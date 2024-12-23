@@ -56,22 +56,24 @@ std::string ServerTest::queryServer(const std::string& request) {
     serverInfo.set_name("testServer");
     serverInfo.set_version("0.0.1");
     lsps::Server server(serverInfo, std::move(ioHandler));
-    server.addHandler(std::make_unique<TestHandler>());
+    server.addProvider<lsps::HoverParams, lsps::Hover>(std::make_unique<TestProvider>());
 
     server.start();
 
     return oss.str();
 }
 
-void ServerTest::testStartServer() {
+void ServerTest::testStart() {
     auto req1 = createRequest(1, "textDocument/hover");
     auto req2 = createRequest(2, "textDocument/hover");
     auto shutdownRequest = createRequest(3, "shutdown");
     auto request = join({req1, req2, shutdownRequest});
 
-    auto resp1 = createResponse(1, "testRequest");
-    auto resp2 = createResponse(2, "testRequest");
-    auto shutdownResponse = createResponse(3, "shutdown");
+    auto result =
+        R"({"contents":"testResult","range":{"end":{"character":0,"line":0},"start":{"character":0,"line":0}}})";
+    auto resp1 = createResponse(1, result);
+    auto resp2 = createResponse(2, result);
+    auto shutdownResponse = createResponse(3, "null");
     auto expectedResponse = join({resp1, resp2, shutdownResponse});
 
     auto response = queryServer(request);
@@ -80,13 +82,29 @@ void ServerTest::testStartServer() {
     CPPUNIT_ASSERT_MESSAGE(message, response == expectedResponse);
 }
 
+void ServerTest::testAddProvider() {
+    auto initializeRequest = createRequest(1, "initialize");
+    auto shutdownRequest = createRequest(2, "shutdown");
+    auto request = join({initializeRequest, shutdownRequest});
+
+    auto response = queryServer(request);
+
+    auto message = "should have hover capability";
+    auto hoverCapability = R"("hoverProvider\":true)";
+    CPPUNIT_ASSERT_MESSAGE(message, response.find(hoverCapability) != std::string::npos);
+
+    message = "should not have call hierarchy capability";
+    auto callHierarchyCapability = R"("callHierarchyProvider\":null)";
+    CPPUNIT_ASSERT_MESSAGE(message, response.find(callHierarchyCapability) != std::string::npos);
+}
+
 void ServerTest::testInitialize() {
     auto initializeRequest = createRequest(1, "initialize");
     auto shutdownRequest = createRequest(2, "shutdown");
     auto request = join({initializeRequest, shutdownRequest});
-    CPPUNIT_ASSERT_NO_THROW_MESSAGE("initialize handler should not throw", queryServer(request));
+    CPPUNIT_ASSERT_NO_THROW_MESSAGE("initialize provider should not throw", queryServer(request));
 
-    CPPUNIT_ASSERT_NO_THROW_MESSAGE("shutdown handler should not throw", queryServer(shutdownRequest));
+    CPPUNIT_ASSERT_NO_THROW_MESSAGE("shutdown provider should not throw", queryServer(shutdownRequest));
 }
 
 void ServerTest::testHandleRequest() {
@@ -117,7 +135,7 @@ void ServerTest::testHandleRequest() {
     serverInfo.set_name("testServer");
     serverInfo.set_version("0.0.1");
     lsps::Server server(serverInfo, std::move(ioHandler));
-    server.addHandler(std::make_unique<TestHandler>());
+    server.addProvider<lsps::HoverParams, lsps::Hover>(std::make_unique<TestProvider>());
 
     CPPUNIT_ASSERT_THROW_MESSAGE(
         "message after message with extra bytes should throw", server.start(), std::invalid_argument);
