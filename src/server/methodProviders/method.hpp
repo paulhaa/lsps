@@ -5,7 +5,7 @@
 #include <string>
 
 namespace lsps {
-enum Method { INITIALIZE, HOVER, SHUTDOWN, EXIT };
+enum Method { INITIALIZE, INITIALIZED, HOVER, SHUTDOWN, EXIT, UNSUPPORTED };
 
 class MethodEnum {
   public:
@@ -14,7 +14,7 @@ class MethodEnum {
         if (it != stringToMethod.end()) {
             return it->second;
         } else {
-            throw std::runtime_error("Invalid method string");
+            return UNSUPPORTED;
         }
     }
 

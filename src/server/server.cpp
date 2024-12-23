@@ -153,7 +153,7 @@ void Server::dispatchResponse(const std::variant<int64_t, std::string>& id,
         response.set_error(*error);
     } else {
         auto res = std::get<json>(result);
-        response.set_result(res.dump());
+        response.set_result(res);
     }
 
     json json;

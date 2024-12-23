@@ -8,23 +8,23 @@
 
 #pragma once
 
-#include <nlohmann/json.hpp>
 #include <optional>
 #include <variant>
-
-#include "MarkedString.hpp"
+#include <nlohmann/json.hpp>
 #include "helper.hpp"
 
+#include "MarkedString.hpp"
+
 namespace lsps {
-class ContentsMarkupContent;
+    class ContentsMarkupContent;
 }
 
 namespace lsps {
-/**
- * The hover's content
- */
+    /**
+     * The hover's content
+     */
 
-using nlohmann::json;
+    using nlohmann::json;
 
-using ContentsUnion = std::variant<std::vector<MarkedString>, ContentsMarkupContent, std::string>;
-}  // namespace lsps
+    using ContentsUnion = std::variant<std::vector<MarkedString>, ContentsMarkupContent, std::string>;
+}

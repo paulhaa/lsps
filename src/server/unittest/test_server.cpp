@@ -109,7 +109,9 @@ void ServerTest::testStart() {
 }
 
 void ServerTest::testInitialize() {
-    auto initializeRequest = createRequest(1, "initialize");
+    std::map<std::string, nlohmann::json> params;
+    params.emplace("capabilities", "{}");
+    auto initializeRequest = createRequest(1, "initialize", params);
     auto shutdownRequest = createRequest(2, "shutdown");
     auto exitNotification = createNotification("exit");
     auto initialize = join({initializeRequest, shutdownRequest, exitNotification});

@@ -1690,9 +1690,9 @@ void to_json(json & j, const WorkDoneProgressReportKind & x);
 }
 namespace nlohmann {
 template <>
-struct adl_serializer<std::variant<bool, double, int64_t, std::string>> {
-    static void from_json(const json & j, std::variant<bool, double, int64_t, std::string> & x);
-    static void to_json(json & j, const std::variant<bool, double, int64_t, std::string> & x);
+struct adl_serializer<std::variant<std::vector<json>, bool, double, int64_t, std::map<std::string, json>, std::string>> {
+    static void from_json(const json & j, std::variant<std::vector<json>, bool, double, int64_t, std::map<std::string, json>, std::string> & x);
+    static void to_json(json & j, const std::variant<std::vector<json>, bool, double, int64_t, std::map<std::string, json>, std::string> & x);
 };
 
 template <>
@@ -2122,7 +2122,7 @@ namespace lsps {
     }
 
     inline void from_json(const json & j, CallHierarchyItem& x) {
-        x.set_data(get_stack_optional<std::variant<bool, double, int64_t, std::string>>(j, "data"));
+        x.set_data(get_stack_optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>(j, "data"));
         x.set_detail(get_stack_optional<std::string>(j, "detail"));
         x.set_kind(j.at("kind").get<double>());
         x.set_name(j.at("name").get<std::string>());
@@ -3191,7 +3191,7 @@ namespace lsps {
     }
 
     inline void from_json(const json & j, ClientCapabilities& x) {
-        x.set_experimental(get_stack_optional<std::variant<bool, double, int64_t, std::string>>(j, "experimental"));
+        x.set_experimental(get_stack_optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>(j, "experimental"));
         x.set_general(get_stack_optional<General>(j, "general"));
         x.set_notebook_document(get_stack_optional<NotebookDocumentClientCapabilities>(j, "notebookDocument"));
         x.set_text_document(get_stack_optional<TextDocumentClientCapabilities>(j, "textDocument"));
@@ -3256,7 +3256,7 @@ namespace lsps {
     inline void from_json(const json & j, Diagnostic& x) {
         x.set_code(get_stack_optional<std::variant<int64_t, std::string>>(j, "code"));
         x.set_code_description(get_stack_optional<CodeDescription>(j, "codeDescription"));
-        x.set_data(get_stack_optional<std::variant<bool, double, int64_t, std::string>>(j, "data"));
+        x.set_data(get_stack_optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>(j, "data"));
         x.set_message(j.at("message").get<std::string>());
         x.set_range(j.at("range").get<PurpleRange>());
         x.set_related_information(get_stack_optional<std::vector<DiagnosticRelatedInformation>>(j, "relatedInformation"));
@@ -3289,7 +3289,7 @@ namespace lsps {
 
     inline void from_json(const json & j, CodeAction& x) {
         x.set_command(get_stack_optional<Command>(j, "command"));
-        x.set_data(get_stack_optional<std::variant<bool, double, int64_t, std::string>>(j, "data"));
+        x.set_data(get_stack_optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>(j, "data"));
         x.set_diagnostics(get_stack_optional<std::vector<Diagnostic>>(j, "diagnostics"));
         x.set_disabled(get_stack_optional<Disabled>(j, "disabled"));
         x.set_edit(get_stack_optional<WorkspaceEdit>(j, "edit"));
@@ -3370,7 +3370,7 @@ namespace lsps {
 
     inline void from_json(const json & j, CodeLens& x) {
         x.set_command(get_stack_optional<Command>(j, "command"));
-        x.set_data(get_stack_optional<std::variant<bool, double, int64_t, std::string>>(j, "data"));
+        x.set_data(get_stack_optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>(j, "data"));
         x.set_range(j.at("range").get<PurpleRange>());
     }
 
@@ -3526,7 +3526,7 @@ namespace lsps {
         x.set_additional_text_edits(get_stack_optional<std::vector<TextEdit>>(j, "additionalTextEdits"));
         x.set_command(get_stack_optional<Command>(j, "command"));
         x.set_commit_characters(get_stack_optional<std::vector<std::string>>(j, "commitCharacters"));
-        x.set_data(get_stack_optional<std::variant<bool, double, int64_t, std::string>>(j, "data"));
+        x.set_data(get_stack_optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>(j, "data"));
         x.set_deprecated(get_stack_optional<bool>(j, "deprecated"));
         x.set_detail(get_stack_optional<std::string>(j, "detail"));
         x.set_documentation(get_stack_optional<std::variant<DocumentationMarkupContent, std::string>>(j, "documentation"));
@@ -3584,7 +3584,7 @@ namespace lsps {
 
     inline void from_json(const json & j, ItemDefaults& x) {
         x.set_commit_characters(get_stack_optional<std::vector<std::string>>(j, "commitCharacters"));
-        x.set_data(get_stack_optional<std::variant<bool, double, int64_t, std::string>>(j, "data"));
+        x.set_data(get_stack_optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>(j, "data"));
         x.set_edit_range(get_stack_optional<EditRangeClass>(j, "editRange"));
         x.set_insert_text_format(get_stack_optional<double>(j, "insertTextFormat"));
         x.set_insert_text_mode(get_stack_optional<double>(j, "insertTextMode"));
@@ -3907,7 +3907,7 @@ namespace lsps {
     }
 
     inline void from_json(const json & j, DidChangeConfigurationParams& x) {
-        x.set_settings(get_stack_optional<std::variant<bool, double, int64_t, std::string>>(j, "settings"));
+        x.set_settings(get_stack_optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>(j, "settings"));
     }
 
     inline void to_json(json & j, const DidChangeConfigurationParams & x) {
@@ -4428,7 +4428,7 @@ namespace lsps {
     }
 
     inline void from_json(const json & j, DocumentLink& x) {
-        x.set_data(get_stack_optional<std::variant<bool, double, int64_t, std::string>>(j, "data"));
+        x.set_data(get_stack_optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>(j, "data"));
         x.set_range(j.at("range").get<PurpleRange>());
         x.set_target(get_stack_optional<std::string>(j, "target"));
         x.set_tooltip(get_stack_optional<std::string>(j, "tooltip"));
@@ -4896,7 +4896,7 @@ namespace lsps {
     inline void from_json(const json & j, InitializeParams& x) {
         x.set_capabilities(j.at("capabilities").get<ClientCapabilities>());
         x.set_client_info(get_stack_optional<ClientInfo>(j, "clientInfo"));
-        x.set_initialization_options(get_stack_optional<std::variant<bool, double, int64_t, std::string>>(j, "initializationOptions"));
+        x.set_initialization_options(get_stack_optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>(j, "initializationOptions"));
         x.set_locale(get_stack_optional<std::string>(j, "locale"));
         x.set_process_id(get_stack_optional<int64_t>(j, "processId"));
         x.set_root_path(get_stack_optional<std::string>(j, "rootPath"));
@@ -5305,7 +5305,7 @@ namespace lsps {
         x.set_document_range_formatting_provider(get_stack_optional<std::variant<bool, DocumentRangeFormattingOptions>>(j, "documentRangeFormattingProvider"));
         x.set_document_symbol_provider(get_stack_optional<std::variant<bool, DocumentSymbolOptions>>(j, "documentSymbolProvider"));
         x.set_execute_command_provider(get_stack_optional<ExecuteCommandOptions>(j, "executeCommandProvider"));
-        x.set_experimental(get_stack_optional<std::variant<bool, double, int64_t, std::string>>(j, "experimental"));
+        x.set_experimental(get_stack_optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>(j, "experimental"));
         x.set_folding_range_provider(get_stack_optional<std::variant<bool, FoldingRangeOptions>>(j, "foldingRangeProvider"));
         x.set_hover_provider(get_stack_optional<std::variant<bool, HoverOptions>>(j, "hoverProvider"));
         x.set_implementation_provider(get_stack_optional<std::variant<bool, ImplementationAtionOptions>>(j, "implementationProvider"));
@@ -5411,7 +5411,7 @@ namespace lsps {
     }
 
     inline void from_json(const json & j, InlayHint& x) {
-        x.set_data(get_stack_optional<std::variant<bool, double, int64_t, std::string>>(j, "data"));
+        x.set_data(get_stack_optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>(j, "data"));
         x.set_kind(get_stack_optional<double>(j, "kind"));
         x.set_label(j.at("label").get<InlayHintLabel>());
         x.set_padding_left(get_stack_optional<bool>(j, "paddingLeft"));
@@ -5894,7 +5894,7 @@ namespace lsps {
     inline void from_json(const json & j, Registration& x) {
         x.set_id(j.at("id").get<std::string>());
         x.set_method(j.at("method").get<std::string>());
-        x.set_register_options(get_stack_optional<std::variant<bool, double, int64_t, std::string>>(j, "registerOptions"));
+        x.set_register_options(get_stack_optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>(j, "registerOptions"));
     }
 
     inline void to_json(json & j, const Registration & x) {
@@ -6023,7 +6023,7 @@ namespace lsps {
 
     inline void from_json(const json & j, ResponseError& x) {
         x.set_code(j.at("code").get<int64_t>());
-        x.set_data(get_stack_optional<std::variant<bool, double, int64_t, std::string>>(j, "data"));
+        x.set_data(get_stack_optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>(j, "data"));
         x.set_message(j.at("message").get<std::string>());
     }
 
@@ -6038,7 +6038,7 @@ namespace lsps {
         x.set_error(get_stack_optional<ResponseError>(j, "error"));
         x.set_id(get_stack_optional<std::variant<int64_t, std::string>>(j, "id"));
         x.set_jsonrpc(j.at("jsonrpc").get<std::string>());
-        x.set_result(get_stack_optional<std::variant<bool, double, int64_t, std::string>>(j, "result"));
+        x.set_result(get_stack_optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>(j, "result"));
     }
 
     inline void to_json(json & j, const ResponseMessage & x) {
@@ -6517,7 +6517,7 @@ namespace lsps {
     }
 
     inline void from_json(const json & j, TypeHierarchyItem& x) {
-        x.set_data(get_stack_optional<std::variant<bool, double, int64_t, std::string>>(j, "data"));
+        x.set_data(get_stack_optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>(j, "data"));
         x.set_detail(get_stack_optional<std::string>(j, "detail"));
         x.set_kind(j.at("kind").get<double>());
         x.set_name(j.at("name").get<std::string>());
@@ -6801,7 +6801,7 @@ namespace lsps {
 
     inline void from_json(const json & j, WorkspaceSymbol& x) {
         x.set_container_name(get_stack_optional<std::string>(j, "containerName"));
-        x.set_data(get_stack_optional<std::variant<bool, double, int64_t, std::string>>(j, "data"));
+        x.set_data(get_stack_optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>(j, "data"));
         x.set_kind(j.at("kind").get<double>());
         x.set_location(j.at("location").get<WorkspaceSymbolLocation>());
         x.set_name(j.at("name").get<std::string>());
@@ -7056,7 +7056,7 @@ namespace lsps {
         x.set_location_link(get_stack_optional<LocationLink>(j, "LocationLink"));
         x.set_log_message_params(get_stack_optional<LogMessageParams>(j, "LogMessageParams"));
         x.set_log_trace_params(get_stack_optional<LogTraceParams>(j, "LogTraceParams"));
-        x.set_lsp_any(get_stack_optional<std::variant<bool, double, int64_t, std::string>>(j, "LSPAny"));
+        x.set_lsp_any(get_stack_optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>(j, "LSPAny"));
         x.set_lsp_array(get_stack_optional<std::vector<LspAny>>(j, "LSPArray"));
         x.set_lsp_object(get_stack_optional<std::map<std::string, LspAny>>(j, "LSPObject"));
         x.set_markdown_client_capabilities(get_stack_optional<MarkdownClientCapabilities>(j, "MarkdownClientCapabilities"));
@@ -7918,7 +7918,7 @@ namespace lsps {
     }
 }
 namespace nlohmann {
-    inline void adl_serializer<std::variant<bool, double, int64_t, std::string>>::from_json(const json & j, std::variant<bool, double, int64_t, std::string> & x) {
+    inline void adl_serializer<std::variant<std::vector<json>, bool, double, int64_t, std::map<std::string, json>, std::string>>::from_json(const json & j, std::variant<std::vector<json>, bool, double, int64_t, std::map<std::string, json>, std::string> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_number_integer())
@@ -7927,21 +7927,31 @@ namespace nlohmann {
             x = j.get<double>();
         else if (j.is_string())
             x = j.get<std::string>();
+        else if (j.is_object())
+            x = j.get<std::map<std::string, json>>();
+        else if (j.is_array())
+            x = j.get<std::vector<json>>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, double, int64_t, std::string>>::to_json(json & j, const std::variant<bool, double, int64_t, std::string> & x) {
+    inline void adl_serializer<std::variant<std::vector<json>, bool, double, int64_t, std::map<std::string, json>, std::string>>::to_json(json & j, const std::variant<std::vector<json>, bool, double, int64_t, std::map<std::string, json>, std::string> & x) {
         switch (x.index()) {
             case 0:
-                j = std::get<bool>(x);
+                j = std::get<std::vector<json>>(x);
                 break;
             case 1:
-                j = std::get<double>(x);
+                j = std::get<bool>(x);
                 break;
             case 2:
-                j = std::get<int64_t>(x);
+                j = std::get<double>(x);
                 break;
             case 3:
+                j = std::get<int64_t>(x);
+                break;
+            case 4:
+                j = std::get<std::map<std::string, json>>(x);
+                break;
+            case 5:
                 j = std::get<std::string>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");

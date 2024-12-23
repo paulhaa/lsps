@@ -4,8 +4,8 @@
 #include "methodProvider.hpp"
 
 namespace lsps {
-class HoverProvider : public MethodProvider<HoverParams, Hover> {
+class HoverCapabilityProvider : public MethodProvider<HoverParams, Hover> {
   public:
-    HoverProvider() : MethodProvider(Method::HOVER) {}
+    HoverCapabilityProvider() : MethodProvider(Method::HOVER) {}
 };
 }  // namespace lsps

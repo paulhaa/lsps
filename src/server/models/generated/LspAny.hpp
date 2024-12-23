@@ -68,5 +68,5 @@ namespace lsps {
 
     using nlohmann::json;
 
-    using LspAny = std::optional<std::variant<bool, double, int64_t, std::string>>;
+    using LspAny = std::optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>;
 }

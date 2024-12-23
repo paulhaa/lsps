@@ -17,6 +17,12 @@
       "$comment": "TODO: LSPObject and LSPArray do not work, maybe because they are used recursively.",
       "anyOf": [
         {
+          "type": "object"
+        },
+        {
+          "type": "array"
+        },
+        {
           "type": "string"
         },
         {
