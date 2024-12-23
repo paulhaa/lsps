@@ -6,6 +6,7 @@ set(SOURCES
         methodProviders/method.hpp
         methodProviders/initializeProvider.hpp
         methodProviders/shutdownProvider.hpp
+        methodProviders/hoverProvider.hpp
 
 
         server.cpp
