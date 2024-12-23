@@ -1,6 +1,8 @@
 #include "router.hpp"
 
 namespace lsps {
+bool Router::isSupported(const Method& method) { return routes.find(method) != routes.end(); }
+
 std::variant<json, ResponseError> Router::invoke(const Method& method, const std::optional<json>& params) {
     auto provider = routes.find(method);
     if (provider == routes.end()) {

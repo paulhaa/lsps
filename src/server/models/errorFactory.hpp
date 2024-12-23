@@ -11,6 +11,13 @@ class ErrorFactory {
         return error;
     }
 
+    static ResponseError methodNotFound() {
+        ResponseError error;
+        error.set_code(ErrorCode::MethodNotFound);
+        error.set_message("method not found");
+        return error;
+    }
+
     static ResponseError serverNotInitialized() {
         ResponseError error;
         error.set_code(ErrorCode::ServerNotInitialized);

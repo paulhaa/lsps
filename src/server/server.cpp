@@ -81,13 +81,19 @@ void Server::initialize() {
 
 void Server::handleRequest(RequestMessage* request) {
     auto method = MethodEnum::fromString(request->get_method());
-    auto result = router.invoke(method, request->get_params());
-    dispatchResponse(request->get_id(), result);
+    if (router.isSupported(method)) {
+        auto result = router.invoke(method, request->get_params());
+        dispatchResponse(request->get_id(), result);
+    } else {
+        dispatchResponse(request->get_id(), ErrorFactory::methodNotFound());
+    }
 }
 
 void Server::handleNotification(NotificationMessage* notification) {
     auto method = MethodEnum::fromString(notification->get_method());
-    router.invoke(method, notification->get_params());
+    if (router.isSupported(method)) {
+        router.invoke(method, notification->get_params());
+    }
 }
 
 std::variant<RequestMessage, NotificationMessage> Server::parseRequest() {

@@ -31,6 +31,7 @@ class Router {
 
         routes.emplace(provider->method(), func);
     }
+    bool isSupported(const Method& method);
     std::variant<json, ResponseError> invoke(const Method& method, const std::optional<json>& params);
 
   private:
