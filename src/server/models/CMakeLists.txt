@@ -1,6 +1,8 @@
 set(SOURCES
         emptyParams.hpp
         emptyResult.hpp
+        errorCodes.hpp
+        errorFactory.hpp
 
         generated/AnnotatedTextEdit.hpp
         generated/ApplyWorkspaceEditParams.hpp

@@ -13,6 +13,7 @@ class ServerTest : public CppUnit::TestFixture {
     ServerTest() : CppUnit::TestFixture() {}
 
     void testStart();
+    void testShutdown();
     void testAddProvider();
     void testInitialize();
     void testHandleRequest();
@@ -41,14 +42,19 @@ class ServerTest : public CppUnit::TestFixture {
     };
 
     std::string join(const std::vector<std::string>& str, const char* delimiter = "");
+    std::string createNotification(const std::string& method,
+                                   const std::optional<nlohmann::json>& params = std::nullopt);
     std::string createRequest(int64_t id,
                               const std::string& method,
-                              std::optional<nlohmann::json> params = std::nullopt);
-    std::string createResponse(int64_t id, const std::string& result);
+                              const std::optional<nlohmann::json>& params = std::nullopt);
+    std::string createResponse(int64_t id,
+                               const std::optional<std::string>& result,
+                               const std::optional<lsps::ResponseError>& error = std::nullopt);
     std::string queryServer(const std::string& request);
 
     CPPUNIT_TEST_SUITE(ServerTest);
     CPPUNIT_TEST(testStart);
+    CPPUNIT_TEST(testShutdown);
     CPPUNIT_TEST(testInitialize);
     CPPUNIT_TEST(testAddProvider);
     CPPUNIT_TEST(testHandleRequest);

@@ -1,5 +1,6 @@
 #include "server.hpp"
 
+#include "errorFactory.hpp"
 #include "methodProviders/initializeProvider.hpp"
 #include "methodProviders/shutdownProvider.hpp"
 #include "models/generated/Generators.hpp"
@@ -8,7 +9,30 @@ namespace lsps {
 void Server::start() {
     initialize();
 
-    while (handleRequest()) {
+    // Handle requests and notifications.
+    while (true) {
+        auto request = parseRequest();
+        if (auto req = std::get_if<RequestMessage>(&request)) {
+            handleRequest(req);
+            if (MethodEnum::fromString(req->get_method()) == Method::SHUTDOWN) {
+                break;
+            }
+        } else if (auto notification = std::get_if<NotificationMessage>(&request)) {
+            handleNotification(notification);
+        }
+    }
+
+    // Wait for exit notification.
+    while (true) {
+        auto request = parseRequest();
+        if (auto notification = std::get_if<NotificationMessage>(&request)) {
+            if (MethodEnum::fromString(notification->get_method()) == Method::EXIT) {
+                break;
+            }
+            handleNotification(notification);
+        } else if (const auto req = std::get_if<RequestMessage>(&request)) {
+            dispatchResponse(req->get_id(), ErrorFactory::createInvalidRequest());
+        }
     }
 }
 
@@ -30,21 +54,30 @@ void Server::addCapability(const Method& method) {
     }
 }
 
-bool Server::handleRequest() {
-    auto request = parseRequest();
-    auto method = MethodEnum::fromString(request.get_method());
-    auto result = router.invoke(method, request.get_params());
-    dispatchResponse(request.get_id(), result);
-
-    return method != Method::SHUTDOWN;
+void Server::handleRequest(RequestMessage* request) {
+    auto method = MethodEnum::fromString(request->get_method());
+    auto result = router.invoke(method, request->get_params());
+    dispatchResponse(request->get_id(), result);
 }
 
-RequestMessage Server::parseRequest() {
+void Server::handleNotification(NotificationMessage* notification) {
+    auto method = MethodEnum::fromString(notification->get_method());
+    router.invoke(method, notification->get_params());
+}
+
+std::variant<RequestMessage, NotificationMessage> Server::parseRequest() {
     const auto contentLength = readHeader();
     auto payload = readPayload(contentLength);
-    RequestMessage request;
-    from_json(payload, request);
-    return request;
+    if (payload.contains("id")) {
+        RequestMessage request;
+        from_json(payload, request);
+        return request;
+    }
+
+    // Notifications do not have an id.
+    NotificationMessage notification;
+    from_json(payload, notification);
+    return notification;
 }
 
 int Server::readHeader() {

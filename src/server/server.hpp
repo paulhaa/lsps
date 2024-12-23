@@ -36,9 +36,10 @@ class Server {
     void initialize();
     void addCapability(const Method& method);
 
-    bool handleRequest();
+    void handleRequest(RequestMessage* request);
+    void handleNotification(NotificationMessage* notification);
 
-    RequestMessage parseRequest();
+    std::variant<RequestMessage, NotificationMessage> parseRequest();
     int readHeader();
     json readPayload(int contentLength);
     void dispatchResponse(const std::variant<int64_t, std::string>& id,

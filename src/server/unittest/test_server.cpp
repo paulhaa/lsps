@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 
+#include "errorFactory.hpp"
 #include "ioHandler/ioHandler.hpp"
 #include "models/generated/Generators.hpp"
 #include "server.hpp"
@@ -21,7 +22,21 @@ std::string ServerTest::join(const std::vector<std::string>& str, const char* de
         });
 }
 
-std::string ServerTest::createRequest(int64_t id, const std::string& method, std::optional<nlohmann::json> params) {
+std::string ServerTest::createNotification(const std::string& method, const std::optional<nlohmann::json>& params) {
+    lsps::NotificationMessage notification;
+    notification.set_jsonrpc(lsps::JSON_RPC_VERSION);
+    notification.set_method(method);
+    notification.set_params(params);
+    nlohmann::json json;
+    to_json(json, notification);
+    auto content = json.dump();
+    const size_t contentLength = content.length();
+    return "Content-Length: " + std::to_string(contentLength) + "\r\n\r\n" + content;
+}
+
+std::string ServerTest::createRequest(int64_t id,
+                                      const std::string& method,
+                                      const std::optional<nlohmann::json>& params) {
     std::variant<int64_t, std::string> _id(id);
     lsps::RequestMessage request;
     request.set_jsonrpc(lsps::JSON_RPC_VERSION);
@@ -35,12 +50,19 @@ std::string ServerTest::createRequest(int64_t id, const std::string& method, std
     return "Content-Length: " + std::to_string(contentLength) + "\r\n\r\n" + content;
 }
 
-std::string ServerTest::createResponse(int64_t id, const std::string& result) {
+std::string ServerTest::createResponse(int64_t id,
+                                       const std::optional<std::string>& result,
+                                       const std::optional<lsps::ResponseError>& error) {
     std::variant<int64_t, std::string> _id(id);
     lsps::ResponseMessage response;
     response.set_jsonrpc(lsps::JSON_RPC_VERSION);
     response.set_id(_id);
-    response.set_result(result);
+    if (result.has_value()) {
+        response.set_result(result.value());
+    }
+    if (error.has_value()) {
+        response.set_error(error);
+    }
     nlohmann::json json;
     to_json(json, response);
     auto content = json.dump();
@@ -67,7 +89,8 @@ void ServerTest::testStart() {
     auto req1 = createRequest(1, "textDocument/hover");
     auto req2 = createRequest(2, "textDocument/hover");
     auto shutdownRequest = createRequest(3, "shutdown");
-    auto request = join({req1, req2, shutdownRequest});
+    auto exitNotification = createNotification("exit");
+    auto request = join({req1, req2, shutdownRequest, exitNotification});
 
     auto result =
         R"({"contents":"testResult","range":{"end":{"character":0,"line":0},"start":{"character":0,"line":0}}})";
@@ -82,10 +105,31 @@ void ServerTest::testStart() {
     CPPUNIT_ASSERT_MESSAGE(message, response == expectedResponse);
 }
 
+void ServerTest::testShutdown() {
+    auto req1 = createRequest(1, "textDocument/hover");
+    auto shutdownRequest = createRequest(3, "shutdown");
+    auto req2 = createRequest(2, "textDocument/hover");
+    auto exitNotification = createNotification("exit");
+    auto request = join({req1, shutdownRequest, req2, exitNotification});
+
+    auto result =
+        R"({"contents":"testResult","range":{"end":{"character":0,"line":0},"start":{"character":0,"line":0}}})";
+    auto resp1 = createResponse(1, result);
+    auto shutdownResponse = createResponse(3, "null");
+    auto errorResponse = createResponse(2, std::nullopt, lsps::ErrorFactory::createInvalidRequest());
+    auto expectedResponse = join({resp1, shutdownResponse, errorResponse});
+
+    auto response = queryServer(request);
+
+    auto message = "expected '" + std::string(expectedResponse) + "', got '" + response + "'";
+    CPPUNIT_ASSERT_MESSAGE(message, response == expectedResponse);
+}
+
 void ServerTest::testAddProvider() {
     auto initializeRequest = createRequest(1, "initialize");
     auto shutdownRequest = createRequest(2, "shutdown");
-    auto request = join({initializeRequest, shutdownRequest});
+    auto exitNotification = createNotification("exit");
+    auto request = join({initializeRequest, shutdownRequest, exitNotification});
 
     auto response = queryServer(request);
 
@@ -101,10 +145,12 @@ void ServerTest::testAddProvider() {
 void ServerTest::testInitialize() {
     auto initializeRequest = createRequest(1, "initialize");
     auto shutdownRequest = createRequest(2, "shutdown");
-    auto request = join({initializeRequest, shutdownRequest});
-    CPPUNIT_ASSERT_NO_THROW_MESSAGE("initialize provider should not throw", queryServer(request));
+    auto exitNotification = createNotification("exit");
+    auto initialize = join({initializeRequest, shutdownRequest, exitNotification});
+    CPPUNIT_ASSERT_NO_THROW_MESSAGE("initialize provider should not throw", queryServer(initialize));
 
-    CPPUNIT_ASSERT_NO_THROW_MESSAGE("shutdown provider should not throw", queryServer(shutdownRequest));
+    auto shutdown = join({shutdownRequest, exitNotification});
+    CPPUNIT_ASSERT_NO_THROW_MESSAGE("shutdown provider should not throw", queryServer(shutdown));
 }
 
 void ServerTest::testHandleRequest() {
@@ -142,6 +188,7 @@ void ServerTest::testHandleRequest() {
 
     // correct message
     auto shutdownRequest = createRequest(2, "shutdown");
-    auto request = join({req, shutdownRequest});
+    auto exitNotification = createNotification("exit");
+    auto request = join({req, shutdownRequest, exitNotification});
     CPPUNIT_ASSERT_NO_THROW_MESSAGE("correct message should not throw", queryServer(request));
 }
