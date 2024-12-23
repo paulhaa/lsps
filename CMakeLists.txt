@@ -20,7 +20,7 @@ endif ()
 
 # Build the library.
 add_library(lsps STATIC)
-target_include_directories(lsps PRIVATE ${json_SOURCE_DIR}/single_include)
+target_include_directories(lsps PUBLIC ${json_SOURCE_DIR}/single_include)
 
 # Build the tests.
 find_path(CPPUNIT_INCLUDE_DIR NAMES cppunit/TestCase.h)
@@ -34,7 +34,7 @@ else ()
 endif ()
 
 add_executable(lsps_test src/unittest/test_lsps.cpp)
-target_link_libraries(lsps_test ${CPPUNIT_LIBRARIES})
+target_link_libraries(lsps_test PRIVATE ${CPPUNIT_LIBRARIES})
 include_directories(${CPPUNIT_INCLUDE_DIR})
 target_include_directories(lsps_test PRIVATE ${json_SOURCE_DIR}/single_include)
 
