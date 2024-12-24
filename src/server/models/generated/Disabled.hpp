@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Marks that the code action cannot currently be applied.
      *
@@ -63,4 +64,5 @@ namespace lsps {
         std::string & get_mutable_reason() { return reason; }
         void set_reason(const std::string & value) { this->reason = value; }
     };
+}
 }

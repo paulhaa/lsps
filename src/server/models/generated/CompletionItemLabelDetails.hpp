@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Additional details for the label
      *
@@ -53,4 +54,5 @@ namespace lsps {
         std::optional<std::string> get_detail() const { return detail; }
         void set_detail(std::optional<std::string> value) { this->detail = value; }
     };
+}
 }

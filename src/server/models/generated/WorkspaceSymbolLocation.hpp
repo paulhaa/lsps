@@ -16,6 +16,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The location of this symbol. Whether a server is allowed to return a location without a
      * range depends on the client capability `workspace.symbol.resolveSupport`.
@@ -88,4 +89,5 @@ namespace lsps {
         std::string & get_mutable_uri() { return uri; }
         void set_uri(const std::string & value) { this->uri = value; }
     };
+}
 }

@@ -14,11 +14,15 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class RangeClass;
+}
 }
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     using RangeUnion = std::variant<bool, RangeClass>;
+}
 }

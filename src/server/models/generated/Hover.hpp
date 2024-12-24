@@ -20,6 +20,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The result of a hover request.
      */
@@ -53,4 +54,5 @@ namespace lsps {
         std::optional<PurpleRange> get_range() const { return range; }
         void set_range(std::optional<PurpleRange> value) { this->range = value; }
     };
+}
 }

@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The scope in which the moniker is unique
      *
@@ -28,4 +29,5 @@ namespace lsps {
      * Moniker uniqueness level to define scope of the moniker.
      */
     enum class UniquenessLevel : int { DOCUMENT, GLOBAL, GROUP, PROJECT, SCHEME };
+}
 }

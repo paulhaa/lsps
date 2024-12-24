@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Execute command registration options.
      */
@@ -43,4 +44,5 @@ namespace lsps {
         std::optional<bool> get_work_done_progress() const { return work_done_progress; }
         void set_work_done_progress(std::optional<bool> value) { this->work_done_progress = value; }
     };
+}
 }

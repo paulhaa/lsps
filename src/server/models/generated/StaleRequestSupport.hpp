@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Client capability that signals how the client handles stale requests (e.g. a request for
      * which the client will not process the response anymore since the information is outdated).
@@ -50,4 +51,5 @@ namespace lsps {
         std::vector<std::string> & get_mutable_retry_on_content_modified() { return retry_on_content_modified; }
         void set_retry_on_content_modified(const std::vector<std::string> & value) { this->retry_on_content_modified = value; }
     };
+}
 }

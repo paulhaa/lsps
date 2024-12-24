@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class MarkedStringClass;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * MarkedString can be used to render human readable text. It is either a markdown string or
      * a code-block that provides a language and a code snippet. The language identifier is
@@ -33,4 +36,5 @@ namespace lsps {
     using nlohmann::json;
 
     using MarkedString = std::variant<MarkedStringClass, std::string>;
+}
 }

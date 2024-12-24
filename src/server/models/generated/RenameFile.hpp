@@ -16,10 +16,13 @@
 #include "RenameFileOptions.hpp"
 
 namespace lsps {
+namespace models {
     enum class RenameFileKind : int;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * Rename file operation
      */
@@ -75,4 +78,5 @@ namespace lsps {
         std::optional<RenameFileOptions> get_options() const { return options; }
         void set_options(std::optional<RenameFileOptions> value) { this->options = value; }
     };
+}
 }

@@ -17,6 +17,7 @@
 #include "WorkspaceSymbolLocation.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * A special workspace symbol that supports locations without a range
      */
@@ -85,4 +86,5 @@ namespace lsps {
         std::optional<std::vector<double>> get_tags() const { return tags; }
         void set_tags(std::optional<std::vector<double>> value) { this->tags = value; }
     };
+}
 }

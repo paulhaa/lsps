@@ -16,6 +16,7 @@
 #include "CodeActionKind.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The client supports code action literals as a valid response of the
      * `textDocument/codeAction` request.
@@ -43,4 +44,5 @@ namespace lsps {
         CodeActionKind & get_mutable_code_action_kind() { return code_action_kind; }
         void set_code_action_kind(const CodeActionKind & value) { this->code_action_kind = value; }
     };
+}
 }

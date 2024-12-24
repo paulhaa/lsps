@@ -16,6 +16,7 @@
 #include "DocumentFilter.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * General text document registration options.
      */
@@ -41,4 +42,5 @@ namespace lsps {
         std::optional<std::vector<DocumentFilter>> get_document_selector() const { return document_selector; }
         void set_document_selector(std::optional<std::vector<DocumentFilter>> value) { this->document_selector = value; }
     };
+}
 }

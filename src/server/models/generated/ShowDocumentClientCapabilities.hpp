@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Client capabilities for the show document request.
      */
@@ -39,4 +40,5 @@ namespace lsps {
         bool & get_mutable_support() { return support; }
         void set_support(const bool & value) { this->support = value; }
     };
+}
 }

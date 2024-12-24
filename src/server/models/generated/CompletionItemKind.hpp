@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class CompletionItemKind {
@@ -36,4 +37,5 @@ namespace lsps {
         std::optional<std::vector<double>> get_value_set() const { return value_set; }
         void set_value_set(std::optional<std::vector<double>> value) { this->value_set = value; }
     };
+}
 }

@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Contains additional information about the context in which a completion request is
      * triggered.
@@ -55,4 +56,5 @@ namespace lsps {
         double & get_mutable_trigger_kind() { return trigger_kind; }
         void set_trigger_kind(const double & value) { this->trigger_kind = value; }
     };
+}
 }

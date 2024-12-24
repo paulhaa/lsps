@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Specific options for the folding range kind.
      */
@@ -40,4 +41,5 @@ namespace lsps {
         std::optional<std::vector<std::string>> get_value_set() const { return value_set; }
         void set_value_set(std::optional<std::vector<std::string>> value) { this->value_set = value; }
     };
+}
 }

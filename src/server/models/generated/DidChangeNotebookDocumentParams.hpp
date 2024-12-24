@@ -17,6 +17,7 @@
 #include "VersionedNotebookDocumentIdentifier.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The params sent in a change notebook document notification.
      */
@@ -58,4 +59,5 @@ namespace lsps {
         VersionedNotebookDocumentIdentifier & get_mutable_notebook_document() { return notebook_document; }
         void set_notebook_document(const VersionedNotebookDocumentIdentifier & value) { this->notebook_document = value; }
     };
+}
 }

@@ -16,6 +16,7 @@
 #include "Registration.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class RegistrationParams {
@@ -31,4 +32,5 @@ namespace lsps {
         std::vector<Registration> & get_mutable_registrations() { return registrations; }
         void set_registrations(const std::vector<Registration> & value) { this->registrations = value; }
     };
+}
 }

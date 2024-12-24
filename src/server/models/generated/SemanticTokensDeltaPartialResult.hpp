@@ -16,6 +16,7 @@
 #include "SemanticTokensEdit.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class SemanticTokensDeltaPartialResult {
@@ -31,4 +32,5 @@ namespace lsps {
         std::vector<SemanticTokensEdit> & get_mutable_edits() { return edits; }
         void set_edits(const std::vector<SemanticTokensEdit> & value) { this->edits = value; }
     };
+}
 }

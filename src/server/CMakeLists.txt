@@ -5,9 +5,9 @@ set(SOURCES
         ioHandler/stdIoHandler.hpp
         methodProviders/method.hpp
         methodProviders/initializeProvider.hpp
+        methodProviders/initializedProvider.hpp
         methodProviders/shutdownProvider.hpp
         methodProviders/hoverProvider.hpp
-
 
         server.cpp
         router.cpp

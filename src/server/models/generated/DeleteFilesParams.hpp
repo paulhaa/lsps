@@ -16,6 +16,7 @@
 #include "FileDelete.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The parameters sent in notifications/requests for user-initiated deletes of files.
      */
@@ -41,4 +42,5 @@ namespace lsps {
         std::vector<FileDelete> & get_mutable_files() { return files; }
         void set_files(const std::vector<FileDelete> & value) { this->files = value; }
     };
+}
 }

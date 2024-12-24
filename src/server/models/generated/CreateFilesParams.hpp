@@ -16,6 +16,7 @@
 #include "FileCreate.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The parameters sent in notifications/requests for user-initiated creation of files.
      */
@@ -41,4 +42,5 @@ namespace lsps {
         std::vector<FileCreate> & get_mutable_files() { return files; }
         void set_files(const std::vector<FileCreate> & value) { this->files = value; }
     };
+}
 }

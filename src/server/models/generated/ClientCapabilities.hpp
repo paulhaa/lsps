@@ -21,6 +21,7 @@
 #include "Empty.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The capabilities provided by the client (editor or tool)
      */
@@ -80,4 +81,5 @@ namespace lsps {
         std::optional<Empty> get_workspace() const { return workspace; }
         void set_workspace(std::optional<Empty> value) { this->workspace = value; }
     };
+}
 }

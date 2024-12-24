@@ -17,6 +17,7 @@
 #include "EditRangeClass.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * In many cases the items of an actual completion result share the same value for
      * properties like `commitCharacters` or the range of a text edit. A completion list can
@@ -87,4 +88,5 @@ namespace lsps {
         std::optional<double> get_insert_text_mode() const { return insert_text_mode; }
         void set_insert_text_mode(std::optional<double> value) { this->insert_text_mode = value; }
     };
+}
 }

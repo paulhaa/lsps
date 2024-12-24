@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The request id.
      */
@@ -21,4 +22,5 @@ namespace lsps {
     using nlohmann::json;
 
     using Id = std::optional<std::variant<int64_t, std::string>>;
+}
 }

@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * A previous result id in a workspace pull request.
      */
@@ -47,4 +48,5 @@ namespace lsps {
         std::string & get_mutable_value() { return value; }
         void set_value(const std::string & value) { this->value = value; }
     };
+}
 }

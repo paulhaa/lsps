@@ -17,6 +17,7 @@
 #include "WorkspaceFolder.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * A relative pattern is a helper to construct glob patterns that are matched relatively to
      * a base URI. The common value for a `baseUri` is a workspace folder root, but it can be
@@ -54,4 +55,5 @@ namespace lsps {
         std::string & get_mutable_pattern() { return pattern; }
         void set_pattern(const std::string & value) { this->pattern = value; }
     };
+}
 }

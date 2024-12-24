@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Whether the client in general supports change annotations on text edits, create file,
      * rename file and delete file changes.
@@ -41,4 +42,5 @@ namespace lsps {
         std::optional<bool> get_groups_on_label() const { return groups_on_label; }
         void set_groups_on_label(std::optional<bool> value) { this->groups_on_label = value; }
     };
+}
 }

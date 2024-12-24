@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The text document.
      *
@@ -67,4 +68,5 @@ namespace lsps {
         std::string & get_mutable_uri() { return uri; }
         void set_uri(const std::string & value) { this->uri = value; }
     };
+}
 }

@@ -16,6 +16,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class LinkedEditingRanges {
@@ -43,4 +44,5 @@ namespace lsps {
         std::optional<std::string> get_word_pattern() const { return word_pattern; }
         void set_word_pattern(std::optional<std::string> value) { this->word_pattern = value; }
     };
+}
 }

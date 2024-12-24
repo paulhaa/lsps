@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class CallHierarchyOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The server provides call hierarchy support.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using CallHierarchyProvider = std::variant<bool, CallHierarchyOptions>;
+}
 }

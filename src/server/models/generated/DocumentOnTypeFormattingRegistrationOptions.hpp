@@ -16,6 +16,7 @@
 #include "DocumentFilter.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class DocumentOnTypeFormattingRegistrationOptions {
@@ -49,4 +50,5 @@ namespace lsps {
         std::optional<std::vector<std::string>> get_more_trigger_character() const { return more_trigger_character; }
         void set_more_trigger_character(std::optional<std::vector<std::string>> value) { this->more_trigger_character = value; }
     };
+}
 }

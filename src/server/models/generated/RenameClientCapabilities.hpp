@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to the `textDocument/rename` request.
      */
@@ -63,4 +64,5 @@ namespace lsps {
         std::optional<double> get_prepare_support_default_behavior() const { return prepare_support_default_behavior; }
         void set_prepare_support_default_behavior(std::optional<double> value) { this->prepare_support_default_behavior = value; }
     };
+}
 }

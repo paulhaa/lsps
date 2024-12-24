@@ -16,6 +16,7 @@
 #include "LspAny.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The error object in case a request fails.
      */
@@ -57,4 +58,5 @@ namespace lsps {
         std::string & get_mutable_message() { return message; }
         void set_message(const std::string & value) { this->message = value; }
     };
+}
 }

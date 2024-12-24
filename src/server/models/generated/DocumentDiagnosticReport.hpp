@@ -17,10 +17,13 @@
 #include "RelatedDocumentValue.hpp"
 
 namespace lsps {
+namespace models {
     enum class DocumentDiagnosticReportKind : int;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The result of a document diagnostic pull request. A report can either be a full report
      * containing all diagnostics for the requested document or a unchanged report indicating
@@ -88,4 +91,5 @@ namespace lsps {
         std::optional<std::string> get_result_id() const { return result_id; }
         void set_result_id(std::optional<std::string> value) { this->result_id = value; }
     };
+}
 }

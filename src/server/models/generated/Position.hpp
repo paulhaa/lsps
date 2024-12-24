@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The range's end position.
      *
@@ -75,4 +76,5 @@ namespace lsps {
         int64_t & get_mutable_line() { return line; }
         void set_line(const int64_t & value) { this->line = value; }
     };
+}
 }

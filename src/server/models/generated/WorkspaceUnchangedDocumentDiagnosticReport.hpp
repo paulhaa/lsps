@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     enum class RelatedUnchangedDocumentDiagnosticReportKind : int;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * An unchanged document diagnostic report for a workspace diagnostic result.
      */
@@ -68,4 +71,5 @@ namespace lsps {
         std::optional<int64_t> get_version() const { return version; }
         void set_version(std::optional<int64_t> value) { this->version = value; }
     };
+}
 }

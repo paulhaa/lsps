@@ -16,6 +16,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The parent selection range containing this range. Therefore `parent.range` must contain
      * `this.range`.
@@ -51,4 +52,5 @@ namespace lsps {
         PurpleRange & get_mutable_range() { return range; }
         void set_range(const PurpleRange & value) { this->range = value; }
     };
+}
 }

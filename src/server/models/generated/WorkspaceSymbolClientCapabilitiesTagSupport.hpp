@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The client supports tags on `SymbolInformation` and `WorkspaceSymbol`. Clients supporting
      * tags have to handle unknown tags gracefully.
@@ -41,4 +42,5 @@ namespace lsps {
         std::vector<double> & get_mutable_value_set() { return value_set; }
         void set_value_set(const std::vector<double> & value) { this->value_set = value; }
     };
+}
 }

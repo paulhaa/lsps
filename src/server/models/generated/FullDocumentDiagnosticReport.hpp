@@ -16,10 +16,13 @@
 #include "Diagnostic.hpp"
 
 namespace lsps {
+namespace models {
     enum class FullDocumentDiagnosticReportKind : int;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * A diagnostic report with a full set of problems.
      */
@@ -61,4 +64,5 @@ namespace lsps {
         std::optional<std::string> get_result_id() const { return result_id; }
         void set_result_id(std::optional<std::string> value) { this->result_id = value; }
     };
+}
 }

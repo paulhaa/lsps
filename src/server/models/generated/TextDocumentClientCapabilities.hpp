@@ -45,6 +45,7 @@
 #include "TypeHierarchyClientCapabilities.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Text document specific client capabilities.
      */
@@ -270,4 +271,5 @@ namespace lsps {
         std::optional<TypeHierarchyClientCapabilities> get_type_hierarchy() const { return type_hierarchy; }
         void set_type_hierarchy(std::optional<TypeHierarchyClientCapabilities> value) { this->type_hierarchy = value; }
     };
+}
 }

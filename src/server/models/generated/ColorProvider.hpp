@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class DocumentColorOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The server provides color provider support.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using ColorProvider = std::variant<bool, DocumentColorOptions>;
+}
 }

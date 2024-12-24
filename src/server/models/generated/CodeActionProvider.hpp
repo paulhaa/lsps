@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class CodeActionOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The server provides code actions. The `CodeActionOptions` return type is only valid if
      * the client signals code action literal support via the property
@@ -27,4 +30,5 @@ namespace lsps {
     using nlohmann::json;
 
     using CodeActionProvider = std::variant<bool, CodeActionOptions>;
+}
 }

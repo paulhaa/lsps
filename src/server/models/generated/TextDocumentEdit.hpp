@@ -18,10 +18,13 @@
 #include "EFileOptions.hpp"
 
 namespace lsps {
+namespace models {
     enum class ResourceOperationKind : int;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * Create file operation
      *
@@ -113,4 +116,5 @@ namespace lsps {
         std::optional<std::string> get_old_uri() const { return old_uri; }
         void set_old_uri(std::optional<std::string> value) { this->old_uri = value; }
     };
+}
 }

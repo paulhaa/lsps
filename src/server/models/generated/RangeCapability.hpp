@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class RangeCapabilityClass;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The client will send the `textDocument/semanticTokens/range` request if the server
      * provides a corresponding handler.
@@ -26,4 +29,5 @@ namespace lsps {
     using nlohmann::json;
 
     using RangeCapability = std::variant<bool, RangeCapabilityClass>;
+}
 }

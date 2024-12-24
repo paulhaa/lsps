@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class Message {
@@ -29,4 +30,5 @@ namespace lsps {
         std::string & get_mutable_jsonrpc() { return jsonrpc; }
         void set_jsonrpc(const std::string & value) { this->jsonrpc = value; }
     };
+}
 }

@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class SemanticTokens {
@@ -41,4 +42,5 @@ namespace lsps {
         std::optional<std::string> get_result_id() const { return result_id; }
         void set_result_id(std::optional<std::string> value) { this->result_id = value; }
     };
+}
 }

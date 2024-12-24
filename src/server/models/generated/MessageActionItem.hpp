@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to the `MessageActionItem` type.
      */
@@ -39,4 +40,5 @@ namespace lsps {
         std::optional<bool> get_additional_properties_support() const { return additional_properties_support; }
         void set_additional_properties_support(std::optional<bool> value) { this->additional_properties_support = value; }
     };
+}
 }

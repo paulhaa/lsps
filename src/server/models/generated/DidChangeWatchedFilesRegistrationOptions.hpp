@@ -16,6 +16,7 @@
 #include "FileSystemWatcher.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Describe options to be used when registering for file system change events.
      */
@@ -41,4 +42,5 @@ namespace lsps {
         std::vector<FileSystemWatcher> & get_mutable_watchers() { return watchers; }
         void set_watchers(const std::vector<FileSystemWatcher> & value) { this->watchers = value; }
     };
+}
 }

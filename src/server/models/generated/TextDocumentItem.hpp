@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The document that was opened.
      */
@@ -64,4 +65,5 @@ namespace lsps {
         int64_t & get_mutable_version() { return version; }
         void set_version(const int64_t & value) { this->version = value; }
     };
+}
 }

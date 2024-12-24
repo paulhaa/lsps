@@ -16,6 +16,7 @@
 #include "Diagnostic.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Contains additional diagnostic information about the context in which a code action is
      * run.
@@ -68,4 +69,5 @@ namespace lsps {
         std::optional<double> get_trigger_kind() const { return trigger_kind; }
         void set_trigger_kind(std::optional<double> value) { this->trigger_kind = value; }
     };
+}
 }

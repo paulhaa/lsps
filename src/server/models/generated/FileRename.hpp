@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Represents information on a file/folder rename.
      */
@@ -47,4 +48,5 @@ namespace lsps {
         std::string & get_mutable_old_uri() { return old_uri; }
         void set_old_uri(const std::string & value) { this->old_uri = value; }
     };
+}
 }

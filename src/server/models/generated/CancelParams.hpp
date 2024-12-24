@@ -16,6 +16,7 @@
 #include "ProgressToken.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class CancelParams {
@@ -34,4 +35,5 @@ namespace lsps {
         ProgressToken & get_mutable_id() { return id; }
         void set_id(const ProgressToken & value) { this->id = value; }
     };
+}
 }

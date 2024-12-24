@@ -16,6 +16,7 @@
 #include "WorkspaceFoldersChangeEvent.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class DidChangeWorkspaceFoldersParams {
@@ -34,4 +35,5 @@ namespace lsps {
         WorkspaceFoldersChangeEvent & get_mutable_event() { return event; }
         void set_event(const WorkspaceFoldersChangeEvent & value) { this->event = value; }
     };
+}
 }

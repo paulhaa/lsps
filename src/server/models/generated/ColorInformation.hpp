@@ -17,6 +17,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class ColorInformation {
@@ -43,4 +44,5 @@ namespace lsps {
         PurpleRange & get_mutable_range() { return range; }
         void set_range(const PurpleRange & value) { this->range = value; }
     };
+}
 }

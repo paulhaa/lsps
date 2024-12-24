@@ -17,6 +17,7 @@
 #include "PreviousResultId.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Parameters of the workspace diagnostic request.
      */
@@ -64,4 +65,5 @@ namespace lsps {
         std::optional<ProgressToken> get_work_done_token() const { return work_done_token; }
         void set_work_done_token(std::optional<ProgressToken> value) { this->work_done_token = value; }
     };
+}
 }

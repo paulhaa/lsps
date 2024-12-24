@@ -16,6 +16,7 @@
 #include "LspAny.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class DidChangeConfigurationParams {
@@ -33,4 +34,5 @@ namespace lsps {
         LspAny get_settings() const { return settings; }
         void set_settings(LspAny value) { this->settings = value; }
     };
+}
 }

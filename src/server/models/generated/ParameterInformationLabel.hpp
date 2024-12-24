@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The label of this parameter information.
      *
@@ -29,4 +30,5 @@ namespace lsps {
     using nlohmann::json;
 
     using ParameterInformationLabel = std::variant<std::vector<int64_t>, std::string>;
+}
 }

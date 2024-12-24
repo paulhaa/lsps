@@ -16,6 +16,7 @@
 #include "FileRename.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The parameters sent in notifications/requests for user-initiated renames of files.
      */
@@ -42,4 +43,5 @@ namespace lsps {
         std::vector<FileRename> & get_mutable_files() { return files; }
         void set_files(const std::vector<FileRename> & value) { this->files = value; }
     };
+}
 }

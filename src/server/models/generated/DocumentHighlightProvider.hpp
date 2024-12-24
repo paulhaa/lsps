@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class DocumentHighlightOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The server provides document highlight support.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using DocumentHighlightProvider = std::variant<bool, DocumentHighlightOptions>;
+}
 }

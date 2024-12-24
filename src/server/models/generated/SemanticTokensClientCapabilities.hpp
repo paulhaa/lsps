@@ -16,10 +16,13 @@
 #include "Requests.hpp"
 
 namespace lsps {
+namespace models {
     enum class TokenFormat : int;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to the various semantic token requests.
      */
@@ -119,4 +122,5 @@ namespace lsps {
         std::vector<std::string> & get_mutable_token_types() { return token_types; }
         void set_token_types(const std::vector<std::string> & value) { this->token_types = value; }
     };
+}
 }

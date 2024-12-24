@@ -16,6 +16,7 @@
 #include "ConfigurationItem.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class ConfigurationParams {
@@ -31,4 +32,5 @@ namespace lsps {
         std::vector<ConfigurationItem> & get_mutable_items() { return items; }
         void set_items(const std::vector<ConfigurationItem> & value) { this->items = value; }
     };
+}
 }

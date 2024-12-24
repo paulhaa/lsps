@@ -16,6 +16,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Represents programming constructs like variables, classes, interfaces etc. that appear in
      * a document. Document symbols can be hierarchical and they have two ranges: one that
@@ -103,4 +104,5 @@ namespace lsps {
         std::optional<std::vector<double>> get_tags() const { return tags; }
         void set_tags(std::optional<std::vector<double>> value) { this->tags = value; }
     };
+}
 }

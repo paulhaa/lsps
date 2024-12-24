@@ -14,11 +14,15 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class FullClass;
+}
 }
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     using FullUnion = std::variant<bool, FullClass>;
+}
 }

@@ -16,6 +16,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class LocationLink {
@@ -65,4 +66,5 @@ namespace lsps {
         std::string & get_mutable_target_uri() { return target_uri; }
         void set_target_uri(const std::string & value) { this->target_uri = value; }
     };
+}
 }

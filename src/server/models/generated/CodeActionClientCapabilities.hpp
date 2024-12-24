@@ -17,6 +17,7 @@
 #include "CodeActionClientCapabilitiesResolveSupport.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to the `textDocument/codeAction` request.
      */
@@ -88,4 +89,5 @@ namespace lsps {
         std::optional<CodeActionClientCapabilitiesResolveSupport> get_resolve_support() const { return resolve_support; }
         void set_resolve_support(std::optional<CodeActionClientCapabilitiesResolveSupport> value) { this->resolve_support = value; }
     };
+}
 }

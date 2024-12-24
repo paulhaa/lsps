@@ -16,6 +16,7 @@
 #include "NotebookSelector.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Defines how notebook documents are synced.
      *
@@ -74,4 +75,5 @@ namespace lsps {
         std::optional<std::string> get_id() const { return id; }
         void set_id(std::optional<std::string> value) { this->id = value; }
     };
+}
 }

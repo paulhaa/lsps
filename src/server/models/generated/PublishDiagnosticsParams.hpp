@@ -16,6 +16,7 @@
 #include "Diagnostic.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class PublishDiagnosticsParams {
@@ -49,4 +50,5 @@ namespace lsps {
         std::optional<int64_t> get_version() const { return version; }
         void set_version(std::optional<int64_t> value) { this->version = value; }
     };
+}
 }

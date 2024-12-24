@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class NotebookClass {
@@ -45,4 +46,5 @@ namespace lsps {
         std::optional<std::string> get_scheme() const { return scheme; }
         void set_scheme(std::optional<std::string> value) { this->scheme = value; }
     };
+}
 }

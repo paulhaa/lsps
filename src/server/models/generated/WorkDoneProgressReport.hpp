@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     enum class WorkDoneProgressReportKind : int;
+}
 }
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class WorkDoneProgressReport {
@@ -67,4 +70,5 @@ namespace lsps {
         std::optional<int64_t> get_percentage() const { return percentage; }
         void set_percentage(std::optional<int64_t> value) { this->percentage = value; }
     };
+}
 }

@@ -2,6 +2,7 @@
 
 #include "errorFactory.hpp"
 #include "methodProviders/initializeProvider.hpp"
+#include "methodProviders/initializedProvider.hpp"
 #include "methodProviders/shutdownProvider.hpp"
 #include "models/generated/Generators.hpp"
 
@@ -31,16 +32,16 @@ void Server::addCapability(const Method& method) {
 bool Server::handleInitialize() {
     while (true) {
         auto request = parseRequest();
-        if (auto notification = std::get_if<NotificationMessage>(&request)) {
+        if (auto notification = std::get_if<models::NotificationMessage>(&request)) {
             if (MethodEnum::fromString(notification->get_method()) == Method::EXIT) {
                 return false;
             }
-        } else if (const auto req = std::get_if<RequestMessage>(&request)) {
+        } else if (const auto req = std::get_if<models::RequestMessage>(&request)) {
             if (MethodEnum::fromString(req->get_method()) == Method::INITIALIZE) {
                 handleRequest(req);
                 return true;
             }
-            dispatchResponse(req->get_id(), ErrorFactory::serverNotInitialized());
+            dispatchResponse(req->get_id(), models::ErrorFactory::serverNotInitialized());
         }
     }
 }
@@ -48,12 +49,12 @@ bool Server::handleInitialize() {
 void Server::handleRequests() {
     while (true) {
         auto request = parseRequest();
-        if (auto req = std::get_if<RequestMessage>(&request)) {
+        if (auto req = std::get_if<models::RequestMessage>(&request)) {
             handleRequest(req);
             if (MethodEnum::fromString(req->get_method()) == Method::SHUTDOWN) {
                 break;
             }
-        } else if (auto notification = std::get_if<NotificationMessage>(&request)) {
+        } else if (auto notification = std::get_if<models::NotificationMessage>(&request)) {
             handleNotification(notification);
         }
     }
@@ -62,51 +63,52 @@ void Server::handleRequests() {
 void Server::handleShutdown() {
     while (true) {
         auto request = parseRequest();
-        if (auto notification = std::get_if<NotificationMessage>(&request)) {
+        if (auto notification = std::get_if<models::NotificationMessage>(&request)) {
             if (MethodEnum::fromString(notification->get_method()) == Method::EXIT) {
                 break;
             }
             handleNotification(notification);
-        } else if (const auto req = std::get_if<RequestMessage>(&request)) {
-            dispatchResponse(req->get_id(), ErrorFactory::invalidRequest());
+        } else if (const auto req = std::get_if<models::RequestMessage>(&request)) {
+            dispatchResponse(req->get_id(), models::ErrorFactory::invalidRequest());
         }
     }
 }
 
 void Server::initialize() {
-    router.addProvider<InitializeParams, InitializeResult>(
+    router.addProvider<models::InitializeParams, models::InitializeResult>(
         std::make_shared<InitializeProvider>(serverInfo, capabilities));
-    router.addProvider<EmptyParams, EmptyResult>(std::make_shared<ShutdownProvider>());
+    router.addProvider<models::EmptyParams, models::EmptyResult>(std::make_shared<InitializedProvider>());
+    router.addProvider<models::EmptyParams, models::EmptyResult>(std::make_shared<ShutdownProvider>());
 }
 
-void Server::handleRequest(RequestMessage* request) {
+void Server::handleRequest(models::RequestMessage* request) {
     auto method = MethodEnum::fromString(request->get_method());
     if (router.isSupported(method)) {
         auto result = router.invoke(method, request->get_params());
         dispatchResponse(request->get_id(), result);
     } else {
-        dispatchResponse(request->get_id(), ErrorFactory::methodNotFound());
+        dispatchResponse(request->get_id(), models::ErrorFactory::methodNotFound());
     }
 }
 
-void Server::handleNotification(NotificationMessage* notification) {
+void Server::handleNotification(models::NotificationMessage* notification) {
     auto method = MethodEnum::fromString(notification->get_method());
     if (router.isSupported(method)) {
         router.invoke(method, notification->get_params());
     }
 }
 
-std::variant<RequestMessage, NotificationMessage> Server::parseRequest() {
+std::variant<models::RequestMessage, models::NotificationMessage> Server::parseRequest() {
     const auto contentLength = readHeader();
     auto payload = readPayload(contentLength);
     if (payload.contains("id")) {
-        RequestMessage request;
+        models::RequestMessage request;
         from_json(payload, request);
         return request;
     }
 
     // Notifications do not have an id.
-    NotificationMessage notification;
+    models::NotificationMessage notification;
     from_json(payload, notification);
     return notification;
 }
@@ -151,15 +153,17 @@ json Server::readPayload(int contentLength) {
 }
 
 void Server::dispatchResponse(const std::variant<int64_t, std::string>& id,
-                              const std::variant<json, ResponseError>& result) {
-    ResponseMessage response;
+                              const std::variant<json, models::ResponseError>& result) {
+    models::ResponseMessage response;
     response.set_jsonrpc(JSON_RPC_VERSION);
     response.set_id(id);
-    if (auto error = std::get_if<ResponseError>(&result)) {
+    if (auto error = std::get_if<models::ResponseError>(&result)) {
         response.set_error(*error);
     } else {
         auto res = std::get<json>(result);
-        response.set_result(res);
+        if (!res.is_null()) {
+            response.set_result(res);
+        }
     }
 
     json json;

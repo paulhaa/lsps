@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Client capabilities specific to parameter information.
      */
@@ -38,4 +39,5 @@ namespace lsps {
         std::optional<bool> get_label_offset_support() const { return label_offset_support; }
         void set_label_offset_support(std::optional<bool> value) { this->label_offset_support = value; }
     };
+}
 }

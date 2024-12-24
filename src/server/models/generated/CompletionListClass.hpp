@@ -17,6 +17,7 @@
 #include "CompletionItem.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Represents a collection of [completion items](#CompletionItem) to be presented in the
      * editor.
@@ -71,4 +72,5 @@ namespace lsps {
         std::vector<CompletionItem> & get_mutable_items() { return items; }
         void set_items(const std::vector<CompletionItem> & value) { this->items = value; }
     };
+}
 }

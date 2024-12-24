@@ -16,10 +16,13 @@
 #include "DeleteFileOptions.hpp"
 
 namespace lsps {
+namespace models {
     enum class DeleteFileKind : int;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * Delete file operation
      */
@@ -67,4 +70,5 @@ namespace lsps {
         std::string & get_mutable_uri() { return uri; }
         void set_uri(const std::string & value) { this->uri = value; }
     };
+}
 }

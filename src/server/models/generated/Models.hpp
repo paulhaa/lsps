@@ -14,11 +14,15 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class ModelsClass;
+}
 }
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     using Models = std::optional<std::variant<std::vector<nlohmann::json>, bool, ModelsClass, double, int64_t, std::string>>;
+}
 }

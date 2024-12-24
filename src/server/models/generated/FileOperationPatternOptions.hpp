@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Additional options used during matching.
      *
@@ -42,4 +43,5 @@ namespace lsps {
         std::optional<bool> get_ignore_case() const { return ignore_case; }
         void set_ignore_case(std::optional<bool> value) { this->ignore_case = value; }
     };
+}
 }

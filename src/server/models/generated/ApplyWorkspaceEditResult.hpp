@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class ApplyWorkspaceEditResult {
@@ -50,4 +51,5 @@ namespace lsps {
         std::optional<std::string> get_failure_reason() const { return failure_reason; }
         void set_failure_reason(std::optional<std::string> value) { this->failure_reason = value; }
     };
+}
 }

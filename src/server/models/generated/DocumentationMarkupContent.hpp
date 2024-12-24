@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     enum class MarkupKind : int;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * A `MarkupContent` literal represents a string value which content is interpreted base on
      * its kind flag. Currently the protocol supports `plaintext` and `markdown` as markup
@@ -77,4 +80,5 @@ namespace lsps {
         std::string & get_mutable_value() { return value; }
         void set_value(const std::string & value) { this->value = value; }
     };
+}
 }

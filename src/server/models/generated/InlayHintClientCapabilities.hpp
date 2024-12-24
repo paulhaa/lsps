@@ -16,6 +16,7 @@
 #include "InlayHintClientCapabilitiesResolveSupport.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to the `textDocument/inlayHint` request.
      *
@@ -51,4 +52,5 @@ namespace lsps {
         std::optional<InlayHintClientCapabilitiesResolveSupport> get_resolve_support() const { return resolve_support; }
         void set_resolve_support(std::optional<InlayHintClientCapabilitiesResolveSupport> value) { this->resolve_support = value; }
     };
+}
 }

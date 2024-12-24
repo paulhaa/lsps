@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * A create
      */
@@ -24,4 +25,5 @@ namespace lsps {
      * A create
      */
     enum class CreateFileKind : int { CREATE };
+}
 }

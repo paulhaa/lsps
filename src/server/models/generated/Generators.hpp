@@ -467,6 +467,7 @@
 #include "Position.hpp"
 
 namespace lsps {
+namespace models {
 void from_json(const json & j, Position & x);
 void to_json(json & j, const Position & x);
 
@@ -1688,6 +1689,7 @@ void to_json(json & j, const WorkDoneProgressEndKind & x);
 void from_json(const json & j, WorkDoneProgressReportKind & x);
 void to_json(json & j, const WorkDoneProgressReportKind & x);
 }
+}
 namespace nlohmann {
 template <>
 struct adl_serializer<std::variant<std::vector<json>, bool, double, int64_t, std::map<std::string, json>, std::string>> {
@@ -1702,195 +1704,195 @@ struct adl_serializer<std::variant<int64_t, std::string>> {
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::FullCapabilityClass>> {
-    static void from_json(const json & j, std::variant<bool, lsps::FullCapabilityClass> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::FullCapabilityClass> & x);
+struct adl_serializer<std::variant<bool, lsps::models::FullCapabilityClass>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::FullCapabilityClass> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::FullCapabilityClass> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::RangeCapabilityClass>> {
-    static void from_json(const json & j, std::variant<bool, lsps::RangeCapabilityClass> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::RangeCapabilityClass> & x);
+struct adl_serializer<std::variant<bool, lsps::models::RangeCapabilityClass>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::RangeCapabilityClass> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::RangeCapabilityClass> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<lsps::DocumentationMarkupContent, std::string>> {
-    static void from_json(const json & j, std::variant<lsps::DocumentationMarkupContent, std::string> & x);
-    static void to_json(json & j, const std::variant<lsps::DocumentationMarkupContent, std::string> & x);
+struct adl_serializer<std::variant<lsps::models::DocumentationMarkupContent, std::string>> {
+    static void from_json(const json & j, std::variant<lsps::models::DocumentationMarkupContent, std::string> & x);
+    static void to_json(json & j, const std::variant<lsps::models::DocumentationMarkupContent, std::string> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<lsps::WorkspaceFolder, std::string>> {
-    static void from_json(const json & j, std::variant<lsps::WorkspaceFolder, std::string> & x);
-    static void to_json(json & j, const std::variant<lsps::WorkspaceFolder, std::string> & x);
+struct adl_serializer<std::variant<lsps::models::WorkspaceFolder, std::string>> {
+    static void from_json(const json & j, std::variant<lsps::models::WorkspaceFolder, std::string> & x);
+    static void to_json(json & j, const std::variant<lsps::models::WorkspaceFolder, std::string> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<lsps::RelativePattern, std::string>> {
-    static void from_json(const json & j, std::variant<lsps::RelativePattern, std::string> & x);
-    static void to_json(json & j, const std::variant<lsps::RelativePattern, std::string> & x);
+struct adl_serializer<std::variant<lsps::models::RelativePattern, std::string>> {
+    static void from_json(const json & j, std::variant<lsps::models::RelativePattern, std::string> & x);
+    static void to_json(json & j, const std::variant<lsps::models::RelativePattern, std::string> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<lsps::MarkedStringClass, std::string>> {
-    static void from_json(const json & j, std::variant<lsps::MarkedStringClass, std::string> & x);
-    static void to_json(json & j, const std::variant<lsps::MarkedStringClass, std::string> & x);
+struct adl_serializer<std::variant<lsps::models::MarkedStringClass, std::string>> {
+    static void from_json(const json & j, std::variant<lsps::models::MarkedStringClass, std::string> & x);
+    static void to_json(json & j, const std::variant<lsps::models::MarkedStringClass, std::string> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<std::vector<lsps::MarkedString>, lsps::ContentsMarkupContent, std::string>> {
-    static void from_json(const json & j, std::variant<std::vector<lsps::MarkedString>, lsps::ContentsMarkupContent, std::string> & x);
-    static void to_json(json & j, const std::variant<std::vector<lsps::MarkedString>, lsps::ContentsMarkupContent, std::string> & x);
+struct adl_serializer<std::variant<std::vector<lsps::models::MarkedString>, lsps::models::ContentsMarkupContent, std::string>> {
+    static void from_json(const json & j, std::variant<std::vector<lsps::models::MarkedString>, lsps::models::ContentsMarkupContent, std::string> & x);
+    static void to_json(json & j, const std::variant<std::vector<lsps::models::MarkedString>, lsps::models::ContentsMarkupContent, std::string> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::CallHierarchyOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::CallHierarchyOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::CallHierarchyOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::CallHierarchyOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::CallHierarchyOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::CallHierarchyOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::CodeActionOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::CodeActionOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::CodeActionOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::CodeActionOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::CodeActionOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::CodeActionOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::DocumentColorOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::DocumentColorOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::DocumentColorOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::DocumentColorOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::DocumentColorOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::DocumentColorOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::DeclarationRationOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::DeclarationRationOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::DeclarationRationOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::DeclarationRationOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::DeclarationRationOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::DeclarationRationOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::DefinitionOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::DefinitionOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::DefinitionOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::DefinitionOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::DefinitionOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::DefinitionOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::DocumentFormattingOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::DocumentFormattingOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::DocumentFormattingOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::DocumentFormattingOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::DocumentFormattingOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::DocumentFormattingOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::DocumentHighlightOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::DocumentHighlightOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::DocumentHighlightOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::DocumentHighlightOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::DocumentHighlightOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::DocumentHighlightOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::DocumentRangeFormattingOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::DocumentRangeFormattingOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::DocumentRangeFormattingOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::DocumentRangeFormattingOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::DocumentRangeFormattingOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::DocumentRangeFormattingOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::DocumentSymbolOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::DocumentSymbolOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::DocumentSymbolOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::DocumentSymbolOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::DocumentSymbolOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::DocumentSymbolOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::FoldingRangeOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::FoldingRangeOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::FoldingRangeOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::FoldingRangeOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::FoldingRangeOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::FoldingRangeOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::HoverOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::HoverOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::HoverOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::HoverOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::HoverOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::HoverOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::ImplementationAtionOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::ImplementationAtionOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::ImplementationAtionOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::ImplementationAtionOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::ImplementationAtionOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::ImplementationAtionOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::InlayHintOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::InlayHintOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::InlayHintOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::InlayHintOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::InlayHintOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::InlayHintOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::InlineValueOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::InlineValueOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::InlineValueOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::InlineValueOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::InlineValueOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::InlineValueOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::LinkedEditingRangeOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::LinkedEditingRangeOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::LinkedEditingRangeOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::LinkedEditingRangeOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::LinkedEditingRangeOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::LinkedEditingRangeOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::MonikerOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::MonikerOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::MonikerOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::MonikerOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::MonikerOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::MonikerOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<lsps::NotebookClass, std::string>> {
-    static void from_json(const json & j, std::variant<lsps::NotebookClass, std::string> & x);
-    static void to_json(json & j, const std::variant<lsps::NotebookClass, std::string> & x);
+struct adl_serializer<std::variant<lsps::models::NotebookClass, std::string>> {
+    static void from_json(const json & j, std::variant<lsps::models::NotebookClass, std::string> & x);
+    static void to_json(json & j, const std::variant<lsps::models::NotebookClass, std::string> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::ReferenceOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::ReferenceOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::ReferenceOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::ReferenceOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::ReferenceOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::ReferenceOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::RenameOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::RenameOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::RenameOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::RenameOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::RenameOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::RenameOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::SelectionRangeOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::SelectionRangeOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::SelectionRangeOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::SelectionRangeOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::SelectionRangeOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::SelectionRangeOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::FullClass>> {
-    static void from_json(const json & j, std::variant<bool, lsps::FullClass> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::FullClass> & x);
+struct adl_serializer<std::variant<bool, lsps::models::FullClass>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::FullClass> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::FullClass> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::RangeClass>> {
-    static void from_json(const json & j, std::variant<bool, lsps::RangeClass> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::RangeClass> & x);
+struct adl_serializer<std::variant<bool, lsps::models::RangeClass>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::RangeClass> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::RangeClass> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<lsps::TextDocumentSyncOptions, double>> {
-    static void from_json(const json & j, std::variant<lsps::TextDocumentSyncOptions, double> & x);
-    static void to_json(json & j, const std::variant<lsps::TextDocumentSyncOptions, double> & x);
+struct adl_serializer<std::variant<lsps::models::TextDocumentSyncOptions, double>> {
+    static void from_json(const json & j, std::variant<lsps::models::TextDocumentSyncOptions, double> & x);
+    static void to_json(json & j, const std::variant<lsps::models::TextDocumentSyncOptions, double> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::TypeDefinitionTionOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::TypeDefinitionTionOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::TypeDefinitionTionOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::TypeDefinitionTionOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::TypeDefinitionTionOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::TypeDefinitionTionOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::TypeHierarchyOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::TypeHierarchyOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::TypeHierarchyOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::TypeHierarchyOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::TypeHierarchyOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::TypeHierarchyOptions> & x);
 };
 
 template <>
@@ -1900,15 +1902,15 @@ struct adl_serializer<std::variant<bool, std::string>> {
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::WorkspaceSymbolOptions>> {
-    static void from_json(const json & j, std::variant<bool, lsps::WorkspaceSymbolOptions> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::WorkspaceSymbolOptions> & x);
+struct adl_serializer<std::variant<bool, lsps::models::WorkspaceSymbolOptions>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::WorkspaceSymbolOptions> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::WorkspaceSymbolOptions> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<std::vector<lsps::InlayHintLabelPart>, std::string>> {
-    static void from_json(const json & j, std::variant<std::vector<lsps::InlayHintLabelPart>, std::string> & x);
-    static void to_json(json & j, const std::variant<std::vector<lsps::InlayHintLabelPart>, std::string> & x);
+struct adl_serializer<std::variant<std::vector<lsps::models::InlayHintLabelPart>, std::string>> {
+    static void from_json(const json & j, std::variant<std::vector<lsps::models::InlayHintLabelPart>, std::string> & x);
+    static void to_json(json & j, const std::variant<std::vector<lsps::models::InlayHintLabelPart>, std::string> & x);
 };
 
 template <>
@@ -1924,36 +1926,37 @@ struct adl_serializer<std::variant<std::vector<int64_t>, std::string>> {
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::FullOptionClass>> {
-    static void from_json(const json & j, std::variant<bool, lsps::FullOptionClass> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::FullOptionClass> & x);
+struct adl_serializer<std::variant<bool, lsps::models::FullOptionClass>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::FullOptionClass> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::FullOptionClass> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::RangeOptionClass>> {
-    static void from_json(const json & j, std::variant<bool, lsps::RangeOptionClass> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::RangeOptionClass> & x);
+struct adl_serializer<std::variant<bool, lsps::models::RangeOptionClass>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::RangeOptionClass> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::RangeOptionClass> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::FullRegistrationOptionsClass>> {
-    static void from_json(const json & j, std::variant<bool, lsps::FullRegistrationOptionsClass> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::FullRegistrationOptionsClass> & x);
+struct adl_serializer<std::variant<bool, lsps::models::FullRegistrationOptionsClass>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::FullRegistrationOptionsClass> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::FullRegistrationOptionsClass> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<bool, lsps::RangeRegistrationOptionClass>> {
-    static void from_json(const json & j, std::variant<bool, lsps::RangeRegistrationOptionClass> & x);
-    static void to_json(json & j, const std::variant<bool, lsps::RangeRegistrationOptionClass> & x);
+struct adl_serializer<std::variant<bool, lsps::models::RangeRegistrationOptionClass>> {
+    static void from_json(const json & j, std::variant<bool, lsps::models::RangeRegistrationOptionClass> & x);
+    static void to_json(json & j, const std::variant<bool, lsps::models::RangeRegistrationOptionClass> & x);
 };
 
 template <>
-struct adl_serializer<std::variant<std::vector<json>, bool, lsps::ModelsClass, double, int64_t, std::string>> {
-    static void from_json(const json & j, std::variant<std::vector<json>, bool, lsps::ModelsClass, double, int64_t, std::string> & x);
-    static void to_json(json & j, const std::variant<std::vector<json>, bool, lsps::ModelsClass, double, int64_t, std::string> & x);
+struct adl_serializer<std::variant<std::vector<json>, bool, lsps::models::ModelsClass, double, int64_t, std::string>> {
+    static void from_json(const json & j, std::variant<std::vector<json>, bool, lsps::models::ModelsClass, double, int64_t, std::string> & x);
+    static void to_json(json & j, const std::variant<std::vector<json>, bool, lsps::models::ModelsClass, double, int64_t, std::string> & x);
 };
 }
 namespace lsps {
+namespace models {
     inline void from_json(const json & j, Position& x) {
         x.set_character(j.at("character").get<int64_t>());
         x.set_line(j.at("line").get<int64_t>());
@@ -7917,6 +7920,7 @@ namespace lsps {
         }
     }
 }
+}
 namespace nlohmann {
     inline void adl_serializer<std::variant<std::vector<json>, bool, double, int64_t, std::map<std::string, json>, std::string>>::from_json(const json & j, std::variant<std::vector<json>, bool, double, int64_t, std::map<std::string, json>, std::string> & x) {
         if (j.is_boolean())
@@ -7978,58 +7982,58 @@ namespace nlohmann {
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::FullCapabilityClass>>::from_json(const json & j, std::variant<bool, lsps::FullCapabilityClass> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::FullCapabilityClass>>::from_json(const json & j, std::variant<bool, lsps::models::FullCapabilityClass> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::FullCapabilityClass>();
+            x = j.get<lsps::models::FullCapabilityClass>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::FullCapabilityClass>>::to_json(json & j, const std::variant<bool, lsps::FullCapabilityClass> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::FullCapabilityClass>>::to_json(json & j, const std::variant<bool, lsps::models::FullCapabilityClass> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::FullCapabilityClass>(x);
+                j = std::get<lsps::models::FullCapabilityClass>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::RangeCapabilityClass>>::from_json(const json & j, std::variant<bool, lsps::RangeCapabilityClass> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::RangeCapabilityClass>>::from_json(const json & j, std::variant<bool, lsps::models::RangeCapabilityClass> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::RangeCapabilityClass>();
+            x = j.get<lsps::models::RangeCapabilityClass>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::RangeCapabilityClass>>::to_json(json & j, const std::variant<bool, lsps::RangeCapabilityClass> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::RangeCapabilityClass>>::to_json(json & j, const std::variant<bool, lsps::models::RangeCapabilityClass> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::RangeCapabilityClass>(x);
+                j = std::get<lsps::models::RangeCapabilityClass>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<lsps::DocumentationMarkupContent, std::string>>::from_json(const json & j, std::variant<lsps::DocumentationMarkupContent, std::string> & x) {
+    inline void adl_serializer<std::variant<lsps::models::DocumentationMarkupContent, std::string>>::from_json(const json & j, std::variant<lsps::models::DocumentationMarkupContent, std::string> & x) {
         if (j.is_string())
             x = j.get<std::string>();
         else if (j.is_object())
-            x = j.get<lsps::DocumentationMarkupContent>();
+            x = j.get<lsps::models::DocumentationMarkupContent>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<lsps::DocumentationMarkupContent, std::string>>::to_json(json & j, const std::variant<lsps::DocumentationMarkupContent, std::string> & x) {
+    inline void adl_serializer<std::variant<lsps::models::DocumentationMarkupContent, std::string>>::to_json(json & j, const std::variant<lsps::models::DocumentationMarkupContent, std::string> & x) {
         switch (x.index()) {
             case 0:
-                j = std::get<lsps::DocumentationMarkupContent>(x);
+                j = std::get<lsps::models::DocumentationMarkupContent>(x);
                 break;
             case 1:
                 j = std::get<std::string>(x);
@@ -8038,18 +8042,18 @@ namespace nlohmann {
         }
     }
 
-    inline void adl_serializer<std::variant<lsps::WorkspaceFolder, std::string>>::from_json(const json & j, std::variant<lsps::WorkspaceFolder, std::string> & x) {
+    inline void adl_serializer<std::variant<lsps::models::WorkspaceFolder, std::string>>::from_json(const json & j, std::variant<lsps::models::WorkspaceFolder, std::string> & x) {
         if (j.is_string())
             x = j.get<std::string>();
         else if (j.is_object())
-            x = j.get<lsps::WorkspaceFolder>();
+            x = j.get<lsps::models::WorkspaceFolder>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<lsps::WorkspaceFolder, std::string>>::to_json(json & j, const std::variant<lsps::WorkspaceFolder, std::string> & x) {
+    inline void adl_serializer<std::variant<lsps::models::WorkspaceFolder, std::string>>::to_json(json & j, const std::variant<lsps::models::WorkspaceFolder, std::string> & x) {
         switch (x.index()) {
             case 0:
-                j = std::get<lsps::WorkspaceFolder>(x);
+                j = std::get<lsps::models::WorkspaceFolder>(x);
                 break;
             case 1:
                 j = std::get<std::string>(x);
@@ -8058,18 +8062,18 @@ namespace nlohmann {
         }
     }
 
-    inline void adl_serializer<std::variant<lsps::RelativePattern, std::string>>::from_json(const json & j, std::variant<lsps::RelativePattern, std::string> & x) {
+    inline void adl_serializer<std::variant<lsps::models::RelativePattern, std::string>>::from_json(const json & j, std::variant<lsps::models::RelativePattern, std::string> & x) {
         if (j.is_string())
             x = j.get<std::string>();
         else if (j.is_object())
-            x = j.get<lsps::RelativePattern>();
+            x = j.get<lsps::models::RelativePattern>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<lsps::RelativePattern, std::string>>::to_json(json & j, const std::variant<lsps::RelativePattern, std::string> & x) {
+    inline void adl_serializer<std::variant<lsps::models::RelativePattern, std::string>>::to_json(json & j, const std::variant<lsps::models::RelativePattern, std::string> & x) {
         switch (x.index()) {
             case 0:
-                j = std::get<lsps::RelativePattern>(x);
+                j = std::get<lsps::models::RelativePattern>(x);
                 break;
             case 1:
                 j = std::get<std::string>(x);
@@ -8078,18 +8082,18 @@ namespace nlohmann {
         }
     }
 
-    inline void adl_serializer<std::variant<lsps::MarkedStringClass, std::string>>::from_json(const json & j, std::variant<lsps::MarkedStringClass, std::string> & x) {
+    inline void adl_serializer<std::variant<lsps::models::MarkedStringClass, std::string>>::from_json(const json & j, std::variant<lsps::models::MarkedStringClass, std::string> & x) {
         if (j.is_string())
             x = j.get<std::string>();
         else if (j.is_object())
-            x = j.get<lsps::MarkedStringClass>();
+            x = j.get<lsps::models::MarkedStringClass>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<lsps::MarkedStringClass, std::string>>::to_json(json & j, const std::variant<lsps::MarkedStringClass, std::string> & x) {
+    inline void adl_serializer<std::variant<lsps::models::MarkedStringClass, std::string>>::to_json(json & j, const std::variant<lsps::models::MarkedStringClass, std::string> & x) {
         switch (x.index()) {
             case 0:
-                j = std::get<lsps::MarkedStringClass>(x);
+                j = std::get<lsps::models::MarkedStringClass>(x);
                 break;
             case 1:
                 j = std::get<std::string>(x);
@@ -8098,23 +8102,23 @@ namespace nlohmann {
         }
     }
 
-    inline void adl_serializer<std::variant<std::vector<lsps::MarkedString>, lsps::ContentsMarkupContent, std::string>>::from_json(const json & j, std::variant<std::vector<lsps::MarkedString>, lsps::ContentsMarkupContent, std::string> & x) {
+    inline void adl_serializer<std::variant<std::vector<lsps::models::MarkedString>, lsps::models::ContentsMarkupContent, std::string>>::from_json(const json & j, std::variant<std::vector<lsps::models::MarkedString>, lsps::models::ContentsMarkupContent, std::string> & x) {
         if (j.is_string())
             x = j.get<std::string>();
         else if (j.is_object())
-            x = j.get<lsps::ContentsMarkupContent>();
+            x = j.get<lsps::models::ContentsMarkupContent>();
         else if (j.is_array())
-            x = j.get<std::vector<lsps::MarkedString>>();
+            x = j.get<std::vector<lsps::models::MarkedString>>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<std::vector<lsps::MarkedString>, lsps::ContentsMarkupContent, std::string>>::to_json(json & j, const std::variant<std::vector<lsps::MarkedString>, lsps::ContentsMarkupContent, std::string> & x) {
+    inline void adl_serializer<std::variant<std::vector<lsps::models::MarkedString>, lsps::models::ContentsMarkupContent, std::string>>::to_json(json & j, const std::variant<std::vector<lsps::models::MarkedString>, lsps::models::ContentsMarkupContent, std::string> & x) {
         switch (x.index()) {
             case 0:
-                j = std::get<std::vector<lsps::MarkedString>>(x);
+                j = std::get<std::vector<lsps::models::MarkedString>>(x);
                 break;
             case 1:
-                j = std::get<lsps::ContentsMarkupContent>(x);
+                j = std::get<lsps::models::ContentsMarkupContent>(x);
                 break;
             case 2:
                 j = std::get<std::string>(x);
@@ -8123,338 +8127,338 @@ namespace nlohmann {
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::CallHierarchyOptions>>::from_json(const json & j, std::variant<bool, lsps::CallHierarchyOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::CallHierarchyOptions>>::from_json(const json & j, std::variant<bool, lsps::models::CallHierarchyOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::CallHierarchyOptions>();
+            x = j.get<lsps::models::CallHierarchyOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::CallHierarchyOptions>>::to_json(json & j, const std::variant<bool, lsps::CallHierarchyOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::CallHierarchyOptions>>::to_json(json & j, const std::variant<bool, lsps::models::CallHierarchyOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::CallHierarchyOptions>(x);
+                j = std::get<lsps::models::CallHierarchyOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::CodeActionOptions>>::from_json(const json & j, std::variant<bool, lsps::CodeActionOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::CodeActionOptions>>::from_json(const json & j, std::variant<bool, lsps::models::CodeActionOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::CodeActionOptions>();
+            x = j.get<lsps::models::CodeActionOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::CodeActionOptions>>::to_json(json & j, const std::variant<bool, lsps::CodeActionOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::CodeActionOptions>>::to_json(json & j, const std::variant<bool, lsps::models::CodeActionOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::CodeActionOptions>(x);
+                j = std::get<lsps::models::CodeActionOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::DocumentColorOptions>>::from_json(const json & j, std::variant<bool, lsps::DocumentColorOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::DocumentColorOptions>>::from_json(const json & j, std::variant<bool, lsps::models::DocumentColorOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::DocumentColorOptions>();
+            x = j.get<lsps::models::DocumentColorOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::DocumentColorOptions>>::to_json(json & j, const std::variant<bool, lsps::DocumentColorOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::DocumentColorOptions>>::to_json(json & j, const std::variant<bool, lsps::models::DocumentColorOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::DocumentColorOptions>(x);
+                j = std::get<lsps::models::DocumentColorOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::DeclarationRationOptions>>::from_json(const json & j, std::variant<bool, lsps::DeclarationRationOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::DeclarationRationOptions>>::from_json(const json & j, std::variant<bool, lsps::models::DeclarationRationOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::DeclarationRationOptions>();
+            x = j.get<lsps::models::DeclarationRationOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::DeclarationRationOptions>>::to_json(json & j, const std::variant<bool, lsps::DeclarationRationOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::DeclarationRationOptions>>::to_json(json & j, const std::variant<bool, lsps::models::DeclarationRationOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::DeclarationRationOptions>(x);
+                j = std::get<lsps::models::DeclarationRationOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::DefinitionOptions>>::from_json(const json & j, std::variant<bool, lsps::DefinitionOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::DefinitionOptions>>::from_json(const json & j, std::variant<bool, lsps::models::DefinitionOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::DefinitionOptions>();
+            x = j.get<lsps::models::DefinitionOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::DefinitionOptions>>::to_json(json & j, const std::variant<bool, lsps::DefinitionOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::DefinitionOptions>>::to_json(json & j, const std::variant<bool, lsps::models::DefinitionOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::DefinitionOptions>(x);
+                j = std::get<lsps::models::DefinitionOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::DocumentFormattingOptions>>::from_json(const json & j, std::variant<bool, lsps::DocumentFormattingOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::DocumentFormattingOptions>>::from_json(const json & j, std::variant<bool, lsps::models::DocumentFormattingOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::DocumentFormattingOptions>();
+            x = j.get<lsps::models::DocumentFormattingOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::DocumentFormattingOptions>>::to_json(json & j, const std::variant<bool, lsps::DocumentFormattingOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::DocumentFormattingOptions>>::to_json(json & j, const std::variant<bool, lsps::models::DocumentFormattingOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::DocumentFormattingOptions>(x);
+                j = std::get<lsps::models::DocumentFormattingOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::DocumentHighlightOptions>>::from_json(const json & j, std::variant<bool, lsps::DocumentHighlightOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::DocumentHighlightOptions>>::from_json(const json & j, std::variant<bool, lsps::models::DocumentHighlightOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::DocumentHighlightOptions>();
+            x = j.get<lsps::models::DocumentHighlightOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::DocumentHighlightOptions>>::to_json(json & j, const std::variant<bool, lsps::DocumentHighlightOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::DocumentHighlightOptions>>::to_json(json & j, const std::variant<bool, lsps::models::DocumentHighlightOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::DocumentHighlightOptions>(x);
+                j = std::get<lsps::models::DocumentHighlightOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::DocumentRangeFormattingOptions>>::from_json(const json & j, std::variant<bool, lsps::DocumentRangeFormattingOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::DocumentRangeFormattingOptions>>::from_json(const json & j, std::variant<bool, lsps::models::DocumentRangeFormattingOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::DocumentRangeFormattingOptions>();
+            x = j.get<lsps::models::DocumentRangeFormattingOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::DocumentRangeFormattingOptions>>::to_json(json & j, const std::variant<bool, lsps::DocumentRangeFormattingOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::DocumentRangeFormattingOptions>>::to_json(json & j, const std::variant<bool, lsps::models::DocumentRangeFormattingOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::DocumentRangeFormattingOptions>(x);
+                j = std::get<lsps::models::DocumentRangeFormattingOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::DocumentSymbolOptions>>::from_json(const json & j, std::variant<bool, lsps::DocumentSymbolOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::DocumentSymbolOptions>>::from_json(const json & j, std::variant<bool, lsps::models::DocumentSymbolOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::DocumentSymbolOptions>();
+            x = j.get<lsps::models::DocumentSymbolOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::DocumentSymbolOptions>>::to_json(json & j, const std::variant<bool, lsps::DocumentSymbolOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::DocumentSymbolOptions>>::to_json(json & j, const std::variant<bool, lsps::models::DocumentSymbolOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::DocumentSymbolOptions>(x);
+                j = std::get<lsps::models::DocumentSymbolOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::FoldingRangeOptions>>::from_json(const json & j, std::variant<bool, lsps::FoldingRangeOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::FoldingRangeOptions>>::from_json(const json & j, std::variant<bool, lsps::models::FoldingRangeOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::FoldingRangeOptions>();
+            x = j.get<lsps::models::FoldingRangeOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::FoldingRangeOptions>>::to_json(json & j, const std::variant<bool, lsps::FoldingRangeOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::FoldingRangeOptions>>::to_json(json & j, const std::variant<bool, lsps::models::FoldingRangeOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::FoldingRangeOptions>(x);
+                j = std::get<lsps::models::FoldingRangeOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::HoverOptions>>::from_json(const json & j, std::variant<bool, lsps::HoverOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::HoverOptions>>::from_json(const json & j, std::variant<bool, lsps::models::HoverOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::HoverOptions>();
+            x = j.get<lsps::models::HoverOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::HoverOptions>>::to_json(json & j, const std::variant<bool, lsps::HoverOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::HoverOptions>>::to_json(json & j, const std::variant<bool, lsps::models::HoverOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::HoverOptions>(x);
+                j = std::get<lsps::models::HoverOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::ImplementationAtionOptions>>::from_json(const json & j, std::variant<bool, lsps::ImplementationAtionOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::ImplementationAtionOptions>>::from_json(const json & j, std::variant<bool, lsps::models::ImplementationAtionOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::ImplementationAtionOptions>();
+            x = j.get<lsps::models::ImplementationAtionOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::ImplementationAtionOptions>>::to_json(json & j, const std::variant<bool, lsps::ImplementationAtionOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::ImplementationAtionOptions>>::to_json(json & j, const std::variant<bool, lsps::models::ImplementationAtionOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::ImplementationAtionOptions>(x);
+                j = std::get<lsps::models::ImplementationAtionOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::InlayHintOptions>>::from_json(const json & j, std::variant<bool, lsps::InlayHintOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::InlayHintOptions>>::from_json(const json & j, std::variant<bool, lsps::models::InlayHintOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::InlayHintOptions>();
+            x = j.get<lsps::models::InlayHintOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::InlayHintOptions>>::to_json(json & j, const std::variant<bool, lsps::InlayHintOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::InlayHintOptions>>::to_json(json & j, const std::variant<bool, lsps::models::InlayHintOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::InlayHintOptions>(x);
+                j = std::get<lsps::models::InlayHintOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::InlineValueOptions>>::from_json(const json & j, std::variant<bool, lsps::InlineValueOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::InlineValueOptions>>::from_json(const json & j, std::variant<bool, lsps::models::InlineValueOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::InlineValueOptions>();
+            x = j.get<lsps::models::InlineValueOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::InlineValueOptions>>::to_json(json & j, const std::variant<bool, lsps::InlineValueOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::InlineValueOptions>>::to_json(json & j, const std::variant<bool, lsps::models::InlineValueOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::InlineValueOptions>(x);
+                j = std::get<lsps::models::InlineValueOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::LinkedEditingRangeOptions>>::from_json(const json & j, std::variant<bool, lsps::LinkedEditingRangeOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::LinkedEditingRangeOptions>>::from_json(const json & j, std::variant<bool, lsps::models::LinkedEditingRangeOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::LinkedEditingRangeOptions>();
+            x = j.get<lsps::models::LinkedEditingRangeOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::LinkedEditingRangeOptions>>::to_json(json & j, const std::variant<bool, lsps::LinkedEditingRangeOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::LinkedEditingRangeOptions>>::to_json(json & j, const std::variant<bool, lsps::models::LinkedEditingRangeOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::LinkedEditingRangeOptions>(x);
+                j = std::get<lsps::models::LinkedEditingRangeOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::MonikerOptions>>::from_json(const json & j, std::variant<bool, lsps::MonikerOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::MonikerOptions>>::from_json(const json & j, std::variant<bool, lsps::models::MonikerOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::MonikerOptions>();
+            x = j.get<lsps::models::MonikerOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::MonikerOptions>>::to_json(json & j, const std::variant<bool, lsps::MonikerOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::MonikerOptions>>::to_json(json & j, const std::variant<bool, lsps::models::MonikerOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::MonikerOptions>(x);
+                j = std::get<lsps::models::MonikerOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<lsps::NotebookClass, std::string>>::from_json(const json & j, std::variant<lsps::NotebookClass, std::string> & x) {
+    inline void adl_serializer<std::variant<lsps::models::NotebookClass, std::string>>::from_json(const json & j, std::variant<lsps::models::NotebookClass, std::string> & x) {
         if (j.is_string())
             x = j.get<std::string>();
         else if (j.is_object())
-            x = j.get<lsps::NotebookClass>();
+            x = j.get<lsps::models::NotebookClass>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<lsps::NotebookClass, std::string>>::to_json(json & j, const std::variant<lsps::NotebookClass, std::string> & x) {
+    inline void adl_serializer<std::variant<lsps::models::NotebookClass, std::string>>::to_json(json & j, const std::variant<lsps::models::NotebookClass, std::string> & x) {
         switch (x.index()) {
             case 0:
-                j = std::get<lsps::NotebookClass>(x);
+                j = std::get<lsps::models::NotebookClass>(x);
                 break;
             case 1:
                 j = std::get<std::string>(x);
@@ -8463,118 +8467,118 @@ namespace nlohmann {
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::ReferenceOptions>>::from_json(const json & j, std::variant<bool, lsps::ReferenceOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::ReferenceOptions>>::from_json(const json & j, std::variant<bool, lsps::models::ReferenceOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::ReferenceOptions>();
+            x = j.get<lsps::models::ReferenceOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::ReferenceOptions>>::to_json(json & j, const std::variant<bool, lsps::ReferenceOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::ReferenceOptions>>::to_json(json & j, const std::variant<bool, lsps::models::ReferenceOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::ReferenceOptions>(x);
+                j = std::get<lsps::models::ReferenceOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::RenameOptions>>::from_json(const json & j, std::variant<bool, lsps::RenameOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::RenameOptions>>::from_json(const json & j, std::variant<bool, lsps::models::RenameOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::RenameOptions>();
+            x = j.get<lsps::models::RenameOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::RenameOptions>>::to_json(json & j, const std::variant<bool, lsps::RenameOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::RenameOptions>>::to_json(json & j, const std::variant<bool, lsps::models::RenameOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::RenameOptions>(x);
+                j = std::get<lsps::models::RenameOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::SelectionRangeOptions>>::from_json(const json & j, std::variant<bool, lsps::SelectionRangeOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::SelectionRangeOptions>>::from_json(const json & j, std::variant<bool, lsps::models::SelectionRangeOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::SelectionRangeOptions>();
+            x = j.get<lsps::models::SelectionRangeOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::SelectionRangeOptions>>::to_json(json & j, const std::variant<bool, lsps::SelectionRangeOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::SelectionRangeOptions>>::to_json(json & j, const std::variant<bool, lsps::models::SelectionRangeOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::SelectionRangeOptions>(x);
+                j = std::get<lsps::models::SelectionRangeOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::FullClass>>::from_json(const json & j, std::variant<bool, lsps::FullClass> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::FullClass>>::from_json(const json & j, std::variant<bool, lsps::models::FullClass> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::FullClass>();
+            x = j.get<lsps::models::FullClass>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::FullClass>>::to_json(json & j, const std::variant<bool, lsps::FullClass> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::FullClass>>::to_json(json & j, const std::variant<bool, lsps::models::FullClass> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::FullClass>(x);
+                j = std::get<lsps::models::FullClass>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::RangeClass>>::from_json(const json & j, std::variant<bool, lsps::RangeClass> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::RangeClass>>::from_json(const json & j, std::variant<bool, lsps::models::RangeClass> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::RangeClass>();
+            x = j.get<lsps::models::RangeClass>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::RangeClass>>::to_json(json & j, const std::variant<bool, lsps::RangeClass> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::RangeClass>>::to_json(json & j, const std::variant<bool, lsps::models::RangeClass> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::RangeClass>(x);
+                j = std::get<lsps::models::RangeClass>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<lsps::TextDocumentSyncOptions, double>>::from_json(const json & j, std::variant<lsps::TextDocumentSyncOptions, double> & x) {
+    inline void adl_serializer<std::variant<lsps::models::TextDocumentSyncOptions, double>>::from_json(const json & j, std::variant<lsps::models::TextDocumentSyncOptions, double> & x) {
         if (j.is_number())
             x = j.get<double>();
         else if (j.is_object())
-            x = j.get<lsps::TextDocumentSyncOptions>();
+            x = j.get<lsps::models::TextDocumentSyncOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<lsps::TextDocumentSyncOptions, double>>::to_json(json & j, const std::variant<lsps::TextDocumentSyncOptions, double> & x) {
+    inline void adl_serializer<std::variant<lsps::models::TextDocumentSyncOptions, double>>::to_json(json & j, const std::variant<lsps::models::TextDocumentSyncOptions, double> & x) {
         switch (x.index()) {
             case 0:
-                j = std::get<lsps::TextDocumentSyncOptions>(x);
+                j = std::get<lsps::models::TextDocumentSyncOptions>(x);
                 break;
             case 1:
                 j = std::get<double>(x);
@@ -8583,41 +8587,41 @@ namespace nlohmann {
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::TypeDefinitionTionOptions>>::from_json(const json & j, std::variant<bool, lsps::TypeDefinitionTionOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::TypeDefinitionTionOptions>>::from_json(const json & j, std::variant<bool, lsps::models::TypeDefinitionTionOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::TypeDefinitionTionOptions>();
+            x = j.get<lsps::models::TypeDefinitionTionOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::TypeDefinitionTionOptions>>::to_json(json & j, const std::variant<bool, lsps::TypeDefinitionTionOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::TypeDefinitionTionOptions>>::to_json(json & j, const std::variant<bool, lsps::models::TypeDefinitionTionOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::TypeDefinitionTionOptions>(x);
+                j = std::get<lsps::models::TypeDefinitionTionOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::TypeHierarchyOptions>>::from_json(const json & j, std::variant<bool, lsps::TypeHierarchyOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::TypeHierarchyOptions>>::from_json(const json & j, std::variant<bool, lsps::models::TypeHierarchyOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::TypeHierarchyOptions>();
+            x = j.get<lsps::models::TypeHierarchyOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::TypeHierarchyOptions>>::to_json(json & j, const std::variant<bool, lsps::TypeHierarchyOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::TypeHierarchyOptions>>::to_json(json & j, const std::variant<bool, lsps::models::TypeHierarchyOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::TypeHierarchyOptions>(x);
+                j = std::get<lsps::models::TypeHierarchyOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
@@ -8643,38 +8647,38 @@ namespace nlohmann {
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::WorkspaceSymbolOptions>>::from_json(const json & j, std::variant<bool, lsps::WorkspaceSymbolOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::WorkspaceSymbolOptions>>::from_json(const json & j, std::variant<bool, lsps::models::WorkspaceSymbolOptions> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::WorkspaceSymbolOptions>();
+            x = j.get<lsps::models::WorkspaceSymbolOptions>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::WorkspaceSymbolOptions>>::to_json(json & j, const std::variant<bool, lsps::WorkspaceSymbolOptions> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::WorkspaceSymbolOptions>>::to_json(json & j, const std::variant<bool, lsps::models::WorkspaceSymbolOptions> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::WorkspaceSymbolOptions>(x);
+                j = std::get<lsps::models::WorkspaceSymbolOptions>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<std::vector<lsps::InlayHintLabelPart>, std::string>>::from_json(const json & j, std::variant<std::vector<lsps::InlayHintLabelPart>, std::string> & x) {
+    inline void adl_serializer<std::variant<std::vector<lsps::models::InlayHintLabelPart>, std::string>>::from_json(const json & j, std::variant<std::vector<lsps::models::InlayHintLabelPart>, std::string> & x) {
         if (j.is_string())
             x = j.get<std::string>();
         else if (j.is_array())
-            x = j.get<std::vector<lsps::InlayHintLabelPart>>();
+            x = j.get<std::vector<lsps::models::InlayHintLabelPart>>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<std::vector<lsps::InlayHintLabelPart>, std::string>>::to_json(json & j, const std::variant<std::vector<lsps::InlayHintLabelPart>, std::string> & x) {
+    inline void adl_serializer<std::variant<std::vector<lsps::models::InlayHintLabelPart>, std::string>>::to_json(json & j, const std::variant<std::vector<lsps::models::InlayHintLabelPart>, std::string> & x) {
         switch (x.index()) {
             case 0:
-                j = std::get<std::vector<lsps::InlayHintLabelPart>>(x);
+                j = std::get<std::vector<lsps::models::InlayHintLabelPart>>(x);
                 break;
             case 1:
                 j = std::get<std::string>(x);
@@ -8723,87 +8727,87 @@ namespace nlohmann {
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::FullOptionClass>>::from_json(const json & j, std::variant<bool, lsps::FullOptionClass> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::FullOptionClass>>::from_json(const json & j, std::variant<bool, lsps::models::FullOptionClass> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::FullOptionClass>();
+            x = j.get<lsps::models::FullOptionClass>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::FullOptionClass>>::to_json(json & j, const std::variant<bool, lsps::FullOptionClass> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::FullOptionClass>>::to_json(json & j, const std::variant<bool, lsps::models::FullOptionClass> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::FullOptionClass>(x);
+                j = std::get<lsps::models::FullOptionClass>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::RangeOptionClass>>::from_json(const json & j, std::variant<bool, lsps::RangeOptionClass> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::RangeOptionClass>>::from_json(const json & j, std::variant<bool, lsps::models::RangeOptionClass> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::RangeOptionClass>();
+            x = j.get<lsps::models::RangeOptionClass>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::RangeOptionClass>>::to_json(json & j, const std::variant<bool, lsps::RangeOptionClass> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::RangeOptionClass>>::to_json(json & j, const std::variant<bool, lsps::models::RangeOptionClass> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::RangeOptionClass>(x);
+                j = std::get<lsps::models::RangeOptionClass>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::FullRegistrationOptionsClass>>::from_json(const json & j, std::variant<bool, lsps::FullRegistrationOptionsClass> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::FullRegistrationOptionsClass>>::from_json(const json & j, std::variant<bool, lsps::models::FullRegistrationOptionsClass> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::FullRegistrationOptionsClass>();
+            x = j.get<lsps::models::FullRegistrationOptionsClass>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::FullRegistrationOptionsClass>>::to_json(json & j, const std::variant<bool, lsps::FullRegistrationOptionsClass> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::FullRegistrationOptionsClass>>::to_json(json & j, const std::variant<bool, lsps::models::FullRegistrationOptionsClass> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::FullRegistrationOptionsClass>(x);
+                j = std::get<lsps::models::FullRegistrationOptionsClass>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::RangeRegistrationOptionClass>>::from_json(const json & j, std::variant<bool, lsps::RangeRegistrationOptionClass> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::RangeRegistrationOptionClass>>::from_json(const json & j, std::variant<bool, lsps::models::RangeRegistrationOptionClass> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_object())
-            x = j.get<lsps::RangeRegistrationOptionClass>();
+            x = j.get<lsps::models::RangeRegistrationOptionClass>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<bool, lsps::RangeRegistrationOptionClass>>::to_json(json & j, const std::variant<bool, lsps::RangeRegistrationOptionClass> & x) {
+    inline void adl_serializer<std::variant<bool, lsps::models::RangeRegistrationOptionClass>>::to_json(json & j, const std::variant<bool, lsps::models::RangeRegistrationOptionClass> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<bool>(x);
                 break;
             case 1:
-                j = std::get<lsps::RangeRegistrationOptionClass>(x);
+                j = std::get<lsps::models::RangeRegistrationOptionClass>(x);
                 break;
             default: throw std::runtime_error("Input JSON does not conform to schema!");
         }
     }
 
-    inline void adl_serializer<std::variant<std::vector<json>, bool, lsps::ModelsClass, double, int64_t, std::string>>::from_json(const json & j, std::variant<std::vector<json>, bool, lsps::ModelsClass, double, int64_t, std::string> & x) {
+    inline void adl_serializer<std::variant<std::vector<json>, bool, lsps::models::ModelsClass, double, int64_t, std::string>>::from_json(const json & j, std::variant<std::vector<json>, bool, lsps::models::ModelsClass, double, int64_t, std::string> & x) {
         if (j.is_boolean())
             x = j.get<bool>();
         else if (j.is_number_integer())
@@ -8813,13 +8817,13 @@ namespace nlohmann {
         else if (j.is_string())
             x = j.get<std::string>();
         else if (j.is_object())
-            x = j.get<lsps::ModelsClass>();
+            x = j.get<lsps::models::ModelsClass>();
         else if (j.is_array())
             x = j.get<std::vector<json>>();
         else throw std::runtime_error("Could not deserialise!");
     }
 
-    inline void adl_serializer<std::variant<std::vector<json>, bool, lsps::ModelsClass, double, int64_t, std::string>>::to_json(json & j, const std::variant<std::vector<json>, bool, lsps::ModelsClass, double, int64_t, std::string> & x) {
+    inline void adl_serializer<std::variant<std::vector<json>, bool, lsps::models::ModelsClass, double, int64_t, std::string>>::to_json(json & j, const std::variant<std::vector<json>, bool, lsps::models::ModelsClass, double, int64_t, std::string> & x) {
         switch (x.index()) {
             case 0:
                 j = std::get<std::vector<json>>(x);
@@ -8828,7 +8832,7 @@ namespace nlohmann {
                 j = std::get<bool>(x);
                 break;
             case 2:
-                j = std::get<lsps::ModelsClass>(x);
+                j = std::get<lsps::models::ModelsClass>(x);
                 break;
             case 3:
                 j = std::get<double>(x);

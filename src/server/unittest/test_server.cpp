@@ -23,7 +23,7 @@ std::string ServerTest::join(const std::vector<std::string>& str, const char* de
 }
 
 std::string ServerTest::createNotification(const std::string& method, const std::optional<nlohmann::json>& params) {
-    lsps::NotificationMessage notification;
+    lsps::models::NotificationMessage notification;
     notification.set_jsonrpc(lsps::JSON_RPC_VERSION);
     notification.set_method(method);
     notification.set_params(params);
@@ -38,7 +38,7 @@ std::string ServerTest::createRequest(int64_t id,
                                       const std::string& method,
                                       const std::optional<nlohmann::json>& params) {
     std::variant<int64_t, std::string> _id(id);
-    lsps::RequestMessage request;
+    lsps::models::RequestMessage request;
     request.set_jsonrpc(lsps::JSON_RPC_VERSION);
     request.set_id(_id);
     request.set_method(method);
@@ -51,14 +51,15 @@ std::string ServerTest::createRequest(int64_t id,
 }
 
 std::string ServerTest::createResponse(int64_t id,
-                                       const std::optional<std::string>& result,
-                                       const std::optional<lsps::ResponseError>& error) {
+                                       const std::optional<nlohmann::json>& result,
+                                       const std::optional<lsps::models::ResponseError>& error) {
     std::variant<int64_t, std::string> _id(id);
-    lsps::ResponseMessage response;
+    lsps::models::ResponseMessage response;
     response.set_jsonrpc(lsps::JSON_RPC_VERSION);
     response.set_id(_id);
     if (result.has_value()) {
-        response.set_result(result.value());
+        auto value = result.value();
+        response.set_result(value);
     }
     if (error.has_value()) {
         response.set_error(error);
@@ -74,11 +75,11 @@ std::string ServerTest::queryServer(const std::string& request) {
     std::istringstream iss(request);
     std::ostringstream oss;
     std::unique_ptr<lsps::IoHandler> ioHandler = std::make_unique<lsps::StdIoHandler>(iss, oss);
-    lsps::ServerInfo serverInfo;
+    lsps::models::ServerInfo serverInfo;
     serverInfo.set_name("testServer");
     serverInfo.set_version("0.0.1");
     lsps::Server server(serverInfo, std::move(ioHandler));
-    server.addProvider<lsps::HoverParams, lsps::Hover>(std::make_unique<TestProvider>());
+    server.addProvider<lsps::models::HoverParams, lsps::models::Hover>(std::make_unique<TestProvider>());
 
     server.start();
 
@@ -93,16 +94,17 @@ void ServerTest::testStart() {
     auto exitNotification = createNotification("exit");
     auto request = join({initializeRequest, req1, req2, shutdownRequest, exitNotification});
 
-    auto result =
-        R"({"contents":"testResult","range":{"end":{"character":0,"line":0},"start":{"character":0,"line":0}}})";
+    auto position = nlohmann::json::object({{"character", 0}, {"line", 0}});
+    auto range = nlohmann::json::object({{"end", position}, {"start", position}});
+    auto result = nlohmann::json::object({{"contents", "testResult"}, {"range", range}});
     auto resp1 = createResponse(2, result);
     auto resp2 = createResponse(3, result);
-    auto shutdownResponse = createResponse(4, "null");
+    auto shutdownResponse = createResponse(4);
     auto expectedResponse = join({resp1, resp2, shutdownResponse});
 
     auto response = queryServer(request);
     // Remove initialize response.
-    auto resp = response.substr(1193);
+    auto resp = response.substr(1109);
 
     auto message = "expected '" + std::string(expectedResponse) + "', got '" + resp + "'";
     CPPUNIT_ASSERT_MESSAGE(message, resp == expectedResponse);
@@ -122,7 +124,7 @@ void ServerTest::testInitialize() {
     auto req = createRequest(1, "textDocument/hover");
     auto request = join({req, exitNotification});
     auto response = queryServer(request);
-    auto notInitializedResponse = createResponse(1, std::nullopt, lsps::ErrorFactory::serverNotInitialized());
+    auto notInitializedResponse = createResponse(1, std::nullopt, lsps::models::ErrorFactory::serverNotInitialized());
     auto message = "expected '" + std::string(notInitializedResponse) + "', got '" + response + "'";
     CPPUNIT_ASSERT_MESSAGE(message, response == notInitializedResponse);
 }
@@ -135,16 +137,17 @@ void ServerTest::testShutdown() {
     auto exitNotification = createNotification("exit");
     auto request = join({initializeRequest, req1, shutdownRequest, req2, exitNotification});
 
-    auto result =
-        R"({"contents":"testResult","range":{"end":{"character":0,"line":0},"start":{"character":0,"line":0}}})";
+    auto position = nlohmann::json::object({{"character", 0}, {"line", 0}});
+    auto range = nlohmann::json::object({{"end", position}, {"start", position}});
+    auto result = nlohmann::json::object({{"contents", "testResult"}, {"range", range}});
     auto resp1 = createResponse(2, result);
-    auto shutdownResponse = createResponse(3, "null");
-    auto errorResponse = createResponse(4, std::nullopt, lsps::ErrorFactory::invalidRequest());
+    auto shutdownResponse = createResponse(3);
+    auto errorResponse = createResponse(4, std::nullopt, lsps::models::ErrorFactory::invalidRequest());
     auto expectedResponse = join({resp1, shutdownResponse, errorResponse});
 
     auto response = queryServer(request);
     // Remove initialize response.
-    auto resp = response.substr(1193);
+    auto resp = response.substr(1109);
 
     auto message = "expected '" + std::string(expectedResponse) + "', got '" + resp + "'";
     CPPUNIT_ASSERT_MESSAGE(message, resp == expectedResponse);
@@ -159,11 +162,11 @@ void ServerTest::testAddProvider() {
     auto response = queryServer(request);
 
     auto message = "should have hover capability";
-    auto hoverCapability = R"("hoverProvider\":true)";
+    auto hoverCapability = R"("hoverProvider":true)";
     CPPUNIT_ASSERT_MESSAGE(message, response.find(hoverCapability) != std::string::npos);
 
     message = "should not have call hierarchy capability";
-    auto callHierarchyCapability = R"("callHierarchyProvider\":null)";
+    auto callHierarchyCapability = R"("callHierarchyProvider":null)";
     CPPUNIT_ASSERT_MESSAGE(message, response.find(callHierarchyCapability) != std::string::npos);
 }
 
@@ -191,11 +194,11 @@ void ServerTest::testHandleRequest() {
     std::istringstream iss(extraBytes);
     std::ostringstream oss;
     std::unique_ptr<lsps::IoHandler> ioHandler = std::make_unique<lsps::StdIoHandler>(iss, oss);
-    lsps::ServerInfo serverInfo;
+    lsps::models::ServerInfo serverInfo;
     serverInfo.set_name("testServer");
     serverInfo.set_version("0.0.1");
     lsps::Server server(serverInfo, std::move(ioHandler));
-    server.addProvider<lsps::HoverParams, lsps::Hover>(std::make_unique<TestProvider>());
+    server.addProvider<lsps::models::HoverParams, lsps::models::Hover>(std::make_unique<TestProvider>());
 
     CPPUNIT_ASSERT_THROW_MESSAGE(
         "message after message with extra bytes should throw", server.start(), std::invalid_argument);

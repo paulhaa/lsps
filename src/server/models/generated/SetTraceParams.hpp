@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     enum class TraceValue : int;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * {     "method": "client/unregisterCapability",     "params": {
      * "unregisterations": [             {                 "id":
@@ -49,4 +52,5 @@ namespace lsps {
         TraceValue & get_mutable_value() { return value; }
         void set_value(const TraceValue & value) { this->value = value; }
     };
+}
 }

@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The client has support for file requests/notifications.
      */
@@ -80,4 +81,5 @@ namespace lsps {
         std::optional<bool> get_will_rename() const { return will_rename; }
         void set_will_rename(std::optional<bool> value) { this->will_rename = value; }
     };
+}
 }

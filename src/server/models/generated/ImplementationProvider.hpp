@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class ImplementationAtionOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The server provides goto implementation support.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using ImplementationProvider = std::variant<bool, ImplementationAtionOptions>;
+}
 }

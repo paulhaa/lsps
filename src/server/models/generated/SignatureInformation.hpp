@@ -16,10 +16,13 @@
 #include "ParameterInformation.hpp"
 
 namespace lsps {
+namespace models {
     enum class MarkupKind : int;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The client supports the following `SignatureInformation` specific properties.
      */
@@ -59,4 +62,5 @@ namespace lsps {
         std::optional<ParameterInformation> get_parameter_information() const { return parameter_information; }
         void set_parameter_information(std::optional<ParameterInformation> value) { this->parameter_information = value; }
     };
+}
 }

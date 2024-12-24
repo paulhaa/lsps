@@ -18,6 +18,7 @@
 #include "ParameterInformationLabel.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Represents a parameter of a callable-signature. A parameter can have a label and a
      * doc-comment.
@@ -61,4 +62,5 @@ namespace lsps {
         ParameterInformationLabel & get_mutable_label() { return label; }
         void set_label(const ParameterInformationLabel & value) { this->label = value; }
     };
+}
 }

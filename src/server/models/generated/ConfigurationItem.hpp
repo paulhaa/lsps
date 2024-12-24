@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class ConfigurationItem {
@@ -38,4 +39,5 @@ namespace lsps {
         std::optional<std::string> get_section() const { return section; }
         void set_section(std::optional<std::string> value) { this->section = value; }
     };
+}
 }

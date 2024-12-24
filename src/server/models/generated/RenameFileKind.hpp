@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * A rename
      */
@@ -24,4 +25,5 @@ namespace lsps {
      * A rename
      */
     enum class RenameFileKind : int { RENAME };
+}
 }

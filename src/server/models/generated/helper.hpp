@@ -20,10 +20,11 @@
 #include <sstream>
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
-    #ifndef NLOHMANN_UNTYPED_lsps_HELPER
-    #define NLOHMANN_UNTYPED_lsps_HELPER
+    #ifndef NLOHMANN_UNTYPED_lsps_models_HELPER
+    #define NLOHMANN_UNTYPED_lsps_models_HELPER
     inline json get_untyped(const json & j, const char * property) {
         if (j.find(property) != j.end()) {
             return j.at(property).get<json>();
@@ -36,8 +37,8 @@ namespace lsps {
     }
     #endif
 
-    #ifndef NLOHMANN_OPTIONAL_lsps_HELPER
-    #define NLOHMANN_OPTIONAL_lsps_HELPER
+    #ifndef NLOHMANN_OPTIONAL_lsps_models_HELPER
+    #define NLOHMANN_OPTIONAL_lsps_models_HELPER
     template <typename T>
     inline std::shared_ptr<T> get_heap_optional(const json & j, const char * property) {
         auto it = j.find(property);
@@ -65,6 +66,7 @@ namespace lsps {
         return get_stack_optional<T>(j, property.data());
     }
     #endif
+}
 }
 
 #ifndef NLOHMANN_OPT_HELPER

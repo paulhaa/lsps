@@ -16,10 +16,13 @@
 #include "Diagnostic.hpp"
 
 namespace lsps {
+namespace models {
     enum class DocumentDiagnosticReportKind : int;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * A workspace diagnostic document report.
      *
@@ -89,4 +92,5 @@ namespace lsps {
         std::optional<int64_t> get_version() const { return version; }
         void set_version(std::optional<int64_t> value) { this->version = value; }
     };
+}
 }

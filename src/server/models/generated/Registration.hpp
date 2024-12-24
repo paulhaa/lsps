@@ -16,6 +16,7 @@
 #include "LspAny.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * General parameters to register for a capability.
      */
@@ -56,4 +57,5 @@ namespace lsps {
         LspAny get_register_options() const { return register_options; }
         void set_register_options(LspAny value) { this->register_options = value; }
     };
+}
 }

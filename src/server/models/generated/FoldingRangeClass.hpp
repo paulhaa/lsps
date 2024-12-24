@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Represents a folding range. To be valid, start and end line must be bigger than zero and
      * smaller than the number of lines in the document. Clients are free to ignore invalid
@@ -88,4 +89,5 @@ namespace lsps {
         int64_t & get_mutable_start_line() { return start_line; }
         void set_start_line(const int64_t & value) { this->start_line = value; }
     };
+}
 }

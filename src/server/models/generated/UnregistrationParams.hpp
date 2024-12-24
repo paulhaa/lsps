@@ -16,6 +16,7 @@
 #include "Unregistration.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class UnregistrationParams {
@@ -31,4 +32,5 @@ namespace lsps {
         std::vector<Unregistration> & get_mutable_unregisterations() { return unregisterations; }
         void set_unregisterations(const std::vector<Unregistration> & value) { this->unregisterations = value; }
     };
+}
 }

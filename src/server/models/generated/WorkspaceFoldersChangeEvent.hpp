@@ -16,6 +16,7 @@
 #include "WorkspaceFolder.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The actual workspace folder change event.
      *
@@ -53,4 +54,5 @@ namespace lsps {
         std::vector<WorkspaceFolder> & get_mutable_removed() { return removed; }
         void set_removed(const std::vector<WorkspaceFolder> & value) { this->removed = value; }
     };
+}
 }

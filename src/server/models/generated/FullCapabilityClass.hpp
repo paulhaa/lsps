@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class FullCapabilityClass {
@@ -32,4 +33,5 @@ namespace lsps {
         std::optional<bool> get_delta() const { return delta; }
         void set_delta(std::optional<bool> value) { this->delta = value; }
     };
+}
 }

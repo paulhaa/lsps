@@ -16,6 +16,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * An edit which is applied to a document when selecting this completion. When an edit is
      * provided the value of `insertText` is ignored.
@@ -111,4 +112,5 @@ namespace lsps {
         std::optional<PurpleRange> get_replace() const { return replace; }
         void set_replace(std::optional<PurpleRange> value) { this->replace = value; }
     };
+}
 }

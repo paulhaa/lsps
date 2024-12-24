@@ -16,6 +16,7 @@
 #include "RelatedDocumentValue.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * A partial result for a document diagnostic report.
      */
@@ -38,4 +39,5 @@ namespace lsps {
         std::map<std::string, RelatedDocumentValue> & get_mutable_related_documents() { return related_documents; }
         void set_related_documents(const std::map<std::string, RelatedDocumentValue> & value) { this->related_documents = value; }
     };
+}
 }

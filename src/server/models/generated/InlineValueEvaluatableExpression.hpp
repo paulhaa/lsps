@@ -16,6 +16,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Provide an inline value through an expression evaluation.
      *
@@ -59,4 +60,5 @@ namespace lsps {
         PurpleRange & get_mutable_range() { return range; }
         void set_range(const PurpleRange & value) { this->range = value; }
     };
+}
 }

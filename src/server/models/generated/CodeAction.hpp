@@ -20,6 +20,7 @@
 #include "WorkspaceEdit.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * A code action represents a change that can be performed in code, e.g. to fix a problem or
      * to refactor code.
@@ -122,4 +123,5 @@ namespace lsps {
         std::string & get_mutable_title() { return title; }
         void set_title(const std::string & value) { this->title = value; }
     };
+}
 }

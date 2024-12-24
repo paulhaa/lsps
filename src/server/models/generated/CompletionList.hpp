@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The client supports the following `CompletionList` specific capabilities.
      */
@@ -41,4 +42,5 @@ namespace lsps {
         std::optional<std::vector<std::string>> get_item_defaults() const { return item_defaults; }
         void set_item_defaults(std::optional<std::vector<std::string>> value) { this->item_defaults = value; }
     };
+}
 }

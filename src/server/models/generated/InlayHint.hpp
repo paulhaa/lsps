@@ -22,6 +22,7 @@
 #include "DocumentationMarkupContent.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Inlay hint information.
      */
@@ -120,4 +121,5 @@ namespace lsps {
         std::optional<Documentation> get_tooltip() const { return tooltip; }
         void set_tooltip(std::optional<Documentation> value) { this->tooltip = value; }
     };
+}
 }

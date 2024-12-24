@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class TypeHierarchyOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The server provides type hierarchy support.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using TypeHierarchyProvider = std::variant<bool, TypeHierarchyOptions>;
+}
 }

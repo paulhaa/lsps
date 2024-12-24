@@ -17,6 +17,7 @@
 #include "Params.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class RequestMessage {
@@ -55,4 +56,5 @@ namespace lsps {
         std::optional<Params> get_params() const { return params; }
         void set_params(std::optional<Params> value) { this->params = value; }
     };
+}
 }

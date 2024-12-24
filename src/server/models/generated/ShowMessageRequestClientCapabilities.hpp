@@ -16,6 +16,7 @@
 #include "MessageActionItem.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to the showMessage request
      *
@@ -44,4 +45,5 @@ namespace lsps {
         std::optional<MessageActionItem> get_message_action_item() const { return message_action_item; }
         void set_message_action_item(std::optional<MessageActionItem> value) { this->message_action_item = value; }
     };
+}
 }

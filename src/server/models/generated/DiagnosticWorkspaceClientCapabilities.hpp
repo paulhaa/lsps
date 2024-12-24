@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Client workspace capabilities specific to diagnostics.
      *
@@ -48,4 +49,5 @@ namespace lsps {
         std::optional<bool> get_refresh_support() const { return refresh_support; }
         void set_refresh_support(std::optional<bool> value) { this->refresh_support = value; }
     };
+}
 }

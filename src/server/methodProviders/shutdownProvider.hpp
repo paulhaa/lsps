@@ -4,12 +4,13 @@
 #include "generated/Params.hpp"
 
 namespace lsps {
-class ShutdownProvider : public MethodProvider<EmptyParams, EmptyResult> {
+class ShutdownProvider : public MethodProvider<models::EmptyParams, models::EmptyResult> {
   public:
     ShutdownProvider() : MethodProvider(Method::SHUTDOWN) {}
 
-    std::variant<EmptyResult, ResponseError> handle(const std::optional<EmptyParams>& request) override {
-        return EmptyResult();
+    std::variant<models::EmptyResult, models::ResponseError> handle(
+        const std::optional<models::EmptyParams>& request) override {
+        return models::EmptyResult();
     }
 };
 }  // namespace lsps

@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * An optional property to describe the error code.
      *
@@ -43,4 +44,5 @@ namespace lsps {
         std::string & get_mutable_href() { return href; }
         void set_href(const std::string & value) { this->href = value; }
     };
+}
 }

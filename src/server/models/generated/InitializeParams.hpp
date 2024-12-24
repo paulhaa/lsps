@@ -20,10 +20,13 @@
 #include "WorkspaceFolder.hpp"
 
 namespace lsps {
+namespace models {
     enum class TraceValue : int;
+}
 }
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class InitializeParams {
@@ -114,4 +117,5 @@ namespace lsps {
         std::optional<std::vector<WorkspaceFolder>> get_workspace_folders() const { return workspace_folders; }
         void set_workspace_folders(std::optional<std::vector<WorkspaceFolder>> value) { this->workspace_folders = value; }
     };
+}
 }

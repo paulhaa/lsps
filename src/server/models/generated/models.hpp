@@ -466,4 +466,6 @@
 #include "ModelsClass.hpp"
 #include "Models.hpp"
 namespace lsps {
+namespace models {
+}
 }

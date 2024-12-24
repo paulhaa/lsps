@@ -14,7 +14,9 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     using ProgressToken = std::variant<int64_t, std::string>;
+}
 }

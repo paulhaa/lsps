@@ -14,11 +14,14 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     enum class MonikerKind : int;
     enum class UniquenessLevel : int;
 }
+}
 
 namespace lsps {
+namespace models {
     /**
      * Moniker definition to match LSIF 0.5 moniker definition.
      */
@@ -68,4 +71,5 @@ namespace lsps {
         UniquenessLevel & get_mutable_unique() { return unique; }
         void set_unique(const UniquenessLevel & value) { this->unique = value; }
     };
+}
 }

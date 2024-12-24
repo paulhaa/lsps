@@ -16,6 +16,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * An event describing a change to a text document. If only a text is provided it is
      * considered to be the full content of the document.
@@ -59,4 +60,5 @@ namespace lsps {
         std::string & get_mutable_text() { return text; }
         void set_text(const std::string & value) { this->text = value; }
     };
+}
 }

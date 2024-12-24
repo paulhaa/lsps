@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Represents a color in RGBA space.
      *
@@ -71,4 +72,5 @@ namespace lsps {
         double & get_mutable_red() { return red; }
         void set_red(const double & value) { this->red = value; }
     };
+}
 }

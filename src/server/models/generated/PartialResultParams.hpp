@@ -16,6 +16,7 @@
 #include "ProgressToken.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * /**  * Window specific client capabilities.  * window?: {     /**      * Whether client
      * supports server initiated progress using the      * `window/workDoneProgress/create`
@@ -57,4 +58,5 @@ namespace lsps {
         std::optional<ProgressToken> get_partial_result_token() const { return partial_result_token; }
         void set_partial_result_token(std::optional<ProgressToken> value) { this->partial_result_token = value; }
     };
+}
 }

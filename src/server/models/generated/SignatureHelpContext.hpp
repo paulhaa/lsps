@@ -16,6 +16,7 @@
 #include "SignatureHelp.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Additional information about the context in which a signature help request was
      * triggered.
@@ -79,4 +80,5 @@ namespace lsps {
         double & get_mutable_trigger_kind() { return trigger_kind; }
         void set_trigger_kind(const double & value) { this->trigger_kind = value; }
     };
+}
 }

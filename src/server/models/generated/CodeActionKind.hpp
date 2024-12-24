@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The code action kind is supported with the following value set.
      */
@@ -41,4 +42,5 @@ namespace lsps {
         std::vector<std::string> & get_mutable_value_set() { return value_set; }
         void set_value_set(const std::vector<std::string> & value) { this->value_set = value; }
     };
+}
 }

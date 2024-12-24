@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class HoverOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The server provides hover support.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using HoverProvider = std::variant<bool, HoverOptions>;
+}
 }

@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class RangeOptionClass;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * Server supports providing semantic tokens for a specific range of a document.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using RangeOption = std::variant<bool, RangeOptionClass>;
+}
 }

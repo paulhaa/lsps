@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class LinkedEditingRangeOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The server provides linked editing range support.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using LinkedEditingRangeProvider = std::variant<bool, LinkedEditingRangeOptions>;
+}
 }

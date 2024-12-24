@@ -16,6 +16,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * An [edit](#TextEdit) which is applied to a document when selecting this presentation for
      * the color. When omitted the [label](#ColorPresentation.label) is used.
@@ -63,4 +64,5 @@ namespace lsps {
         std::optional<std::string> get_annotation_id() const { return annotation_id; }
         void set_annotation_id(std::optional<std::string> value) { this->annotation_id = value; }
     };
+}
 }

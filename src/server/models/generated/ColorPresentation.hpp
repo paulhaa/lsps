@@ -16,6 +16,7 @@
 #include "TextEdit.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class ColorPresentation {
@@ -52,4 +53,5 @@ namespace lsps {
         std::optional<TextEdit> get_text_edit() const { return text_edit; }
         void set_text_edit(std::optional<TextEdit> value) { this->text_edit = value; }
     };
+}
 }

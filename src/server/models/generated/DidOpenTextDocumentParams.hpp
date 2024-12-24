@@ -16,6 +16,7 @@
 #include "TextDocumentItem.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class DidOpenTextDocumentParams {
@@ -34,4 +35,5 @@ namespace lsps {
         TextDocumentItem & get_mutable_text_document() { return text_document; }
         void set_text_document(const TextDocumentItem & value) { this->text_document = value; }
     };
+}
 }

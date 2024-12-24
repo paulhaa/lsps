@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class TextDocumentSyncOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * Defines how text documents are synced. Is either a detailed structure defining each
      * notification or for backwards compatibility the TextDocumentSyncKind number. If omitted
@@ -27,4 +30,5 @@ namespace lsps {
     using nlohmann::json;
 
     using TextDocumentSync = std::variant<TextDocumentSyncOptions, double>;
+}
 }

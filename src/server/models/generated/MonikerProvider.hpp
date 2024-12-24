@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class MonikerOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * Whether server provides moniker support.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using MonikerProvider = std::variant<bool, MonikerOptions>;
+}
 }

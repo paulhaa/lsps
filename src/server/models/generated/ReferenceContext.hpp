@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class ReferenceContext {
@@ -32,4 +33,5 @@ namespace lsps {
         bool & get_mutable_include_declaration() { return include_declaration; }
         void set_include_declaration(const bool & value) { this->include_declaration = value; }
     };
+}
 }

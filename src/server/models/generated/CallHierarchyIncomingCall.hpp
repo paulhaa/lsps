@@ -17,6 +17,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class CallHierarchyIncomingCall {
@@ -44,4 +45,5 @@ namespace lsps {
         std::vector<PurpleRange> & get_mutable_from_ranges() { return from_ranges; }
         void set_from_ranges(const std::vector<PurpleRange> & value) { this->from_ranges = value; }
     };
+}
 }

@@ -16,6 +16,7 @@
 #include "NotebookSelector.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Options specific to a notebook plus its cells to be synced to the server.
      *
@@ -58,4 +59,5 @@ namespace lsps {
         std::optional<bool> get_save() const { return save; }
         void set_save(std::optional<bool> value) { this->save = value; }
     };
+}
 }

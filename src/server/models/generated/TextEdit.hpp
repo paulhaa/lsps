@@ -16,6 +16,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * An [edit](#TextEdit) which is applied to a document when selecting this presentation for
      * the color. When omitted the [label](#ColorPresentation.label) is used.
@@ -52,4 +53,5 @@ namespace lsps {
         PurpleRange & get_mutable_range() { return range; }
         void set_range(const PurpleRange & value) { this->range = value; }
     };
+}
 }

@@ -18,6 +18,7 @@
 #include "TextDocumentIdentifier.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class DocumentOnTypeFormattingParams {
@@ -63,4 +64,5 @@ namespace lsps {
         TextDocumentIdentifier & get_mutable_text_document() { return text_document; }
         void set_text_document(const TextDocumentIdentifier & value) { this->text_document = value; }
     };
+}
 }

@@ -14,11 +14,15 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class DocumentationMarkupContent;
+}
 }
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     using Documentation = std::variant<DocumentationMarkupContent, std::string>;
+}
 }

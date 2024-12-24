@@ -19,6 +19,7 @@
 #include "DocumentationMarkupContent.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * An inlay hint label part allows for interactive and composite labels of inlay hints.
      */
@@ -78,4 +79,5 @@ namespace lsps {
         std::string & get_mutable_value() { return value; }
         void set_value(const std::string & value) { this->value = value; }
     };
+}
 }

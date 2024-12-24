@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The client support partial workspace symbols. The client will send the request
      * `workspaceSymbol/resolve` to the server to resolve additional properties.
@@ -41,4 +42,5 @@ namespace lsps {
         std::vector<std::string> & get_mutable_properties() { return properties; }
         void set_properties(const std::vector<std::string> & value) { this->properties = value; }
     };
+}
 }

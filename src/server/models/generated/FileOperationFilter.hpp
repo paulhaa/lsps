@@ -16,6 +16,7 @@
 #include "FileOperationPattern.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * A filter to describe in which file operation requests or notifications the server is
      * interested in.
@@ -50,4 +51,5 @@ namespace lsps {
         std::optional<std::string> get_scheme() const { return scheme; }
         void set_scheme(std::optional<std::string> value) { this->scheme = value; }
     };
+}
 }

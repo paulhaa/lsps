@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class InlayHintOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The server provides inlay hints.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using InlayHintProvider = std::variant<bool, InlayHintOptions>;
+}
 }

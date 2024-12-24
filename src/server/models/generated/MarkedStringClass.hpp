@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class MarkedStringClass {
@@ -34,4 +35,5 @@ namespace lsps {
         std::string & get_mutable_value() { return value; }
         void set_value(const std::string & value) { this->value = value; }
     };
+}
 }

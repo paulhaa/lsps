@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class SelectionRangeOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The server provides selection range support.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using SelectionRangeProvider = std::variant<bool, SelectionRangeOptions>;
+}
 }

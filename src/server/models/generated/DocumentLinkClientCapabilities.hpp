@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to the `textDocument/documentLink` request.
      */
@@ -45,4 +46,5 @@ namespace lsps {
         std::optional<bool> get_tooltip_support() const { return tooltip_support; }
         void set_tooltip_support(std::optional<bool> value) { this->tooltip_support = value; }
     };
+}
 }

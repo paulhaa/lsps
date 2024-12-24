@@ -16,6 +16,7 @@
 #include "DocumentFilter.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class MonikerOptions {
@@ -38,4 +39,5 @@ namespace lsps {
         std::optional<std::vector<DocumentFilter>> get_document_selector() const { return document_selector; }
         void set_document_selector(std::optional<std::vector<DocumentFilter>> value) { this->document_selector = value; }
     };
+}
 }

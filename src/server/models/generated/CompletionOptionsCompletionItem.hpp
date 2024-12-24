@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The server supports the following `CompletionItem` specific capabilities.
      */
@@ -39,4 +40,5 @@ namespace lsps {
         std::optional<bool> get_label_details_support() const { return label_details_support; }
         void set_label_details_support(std::optional<bool> value) { this->label_details_support = value; }
     };
+}
 }

@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to notebook document synchronization
      *
@@ -52,4 +53,5 @@ namespace lsps {
         std::optional<bool> get_execution_summary_support() const { return execution_summary_support; }
         void set_execution_summary_support(std::optional<bool> value) { this->execution_summary_support = value; }
     };
+}
 }

@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The format options.
      *
@@ -80,4 +81,5 @@ namespace lsps {
         std::optional<bool> get_trim_trailing_whitespace() const { return trim_trailing_whitespace; }
         void set_trim_trailing_whitespace(std::optional<bool> value) { this->trim_trailing_whitespace = value; }
     };
+}
 }

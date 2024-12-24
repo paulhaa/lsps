@@ -16,6 +16,7 @@
 #include "FileOperationFilter.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The options to register for file operations.
      *
@@ -65,4 +66,5 @@ namespace lsps {
         std::vector<FileOperationFilter> & get_mutable_filters() { return filters; }
         void set_filters(const std::vector<FileOperationFilter> & value) { this->filters = value; }
     };
+}
 }

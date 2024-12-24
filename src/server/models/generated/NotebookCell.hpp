@@ -17,6 +17,7 @@
 #include "LspAny.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * A notebook cell.
      *
@@ -70,4 +71,5 @@ namespace lsps {
         std::optional<std::map<std::string, LspAny>> get_metadata() const { return metadata; }
         void set_metadata(std::optional<std::map<std::string, LspAny>> value) { this->metadata = value; }
     };
+}
 }

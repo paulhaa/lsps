@@ -16,10 +16,13 @@
 #include "MarkedString.hpp"
 
 namespace lsps {
+namespace models {
     class ContentsMarkupContent;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The hover's content
      */
@@ -27,4 +30,5 @@ namespace lsps {
     using nlohmann::json;
 
     using ContentsUnion = std::variant<std::vector<MarkedString>, ContentsMarkupContent, std::string>;
+}
 }

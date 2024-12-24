@@ -21,6 +21,7 @@
 #include "DocumentFilter.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The server provides semantic tokens support.
      */
@@ -80,4 +81,5 @@ namespace lsps {
         std::optional<std::string> get_id() const { return id; }
         void set_id(std::optional<std::string> value) { this->id = value; }
     };
+}
 }

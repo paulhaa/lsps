@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * {     "token": "1d546990-40a3-4b77-b134-46622995f6ae",     "value": {         "kind":
      * "begin",         "title": "Finding references for A#foo",         "cancellable":
@@ -43,4 +44,5 @@ namespace lsps {
         std::optional<bool> get_work_done_progress() const { return work_done_progress; }
         void set_work_done_progress(std::optional<bool> value) { this->work_done_progress = value; }
     };
+}
 }

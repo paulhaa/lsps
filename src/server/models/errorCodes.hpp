@@ -1,4 +1,4 @@
-namespace lsps {
+namespace lsps::models {
 enum ErrorCode {
     ParseError = -32700,
     InvalidRequest = -32600,

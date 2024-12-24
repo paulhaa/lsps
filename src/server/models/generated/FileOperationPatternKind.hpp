@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Whether to match files or folders with this pattern.
      *
@@ -32,4 +33,5 @@ namespace lsps {
      * A pattern kind describing if a glob pattern matches a file a folder or both.
      */
     enum class FileOperationPatternKind : int { FILE, FOLDER };
+}
 }

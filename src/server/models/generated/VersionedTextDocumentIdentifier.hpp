@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The document that did change. The version number points to the version after all provided
      * content changes have been applied.
@@ -52,4 +53,5 @@ namespace lsps {
         int64_t & get_mutable_version() { return version; }
         void set_version(const int64_t & value) { this->version = value; }
     };
+}
 }

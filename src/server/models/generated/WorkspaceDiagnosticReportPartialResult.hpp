@@ -16,6 +16,7 @@
 #include "WorkspaceDocumentDiagnosticReport.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * A partial result for a workspace diagnostic report.
      */
@@ -38,4 +39,5 @@ namespace lsps {
         std::vector<WorkspaceDocumentDiagnosticReport> & get_mutable_items() { return items; }
         void set_items(const std::vector<WorkspaceDocumentDiagnosticReport> & value) { this->items = value; }
     };
+}
 }

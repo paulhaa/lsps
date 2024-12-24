@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Additional information that describes document changes.
      */
@@ -54,4 +55,5 @@ namespace lsps {
         std::optional<bool> get_needs_confirmation() const { return needs_confirmation; }
         void set_needs_confirmation(std::optional<bool> value) { this->needs_confirmation = value; }
     };
+}
 }

@@ -17,6 +17,7 @@
 #include "RelativePattern.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class FileSystemWatcher {
@@ -43,4 +44,5 @@ namespace lsps {
         std::optional<int64_t> get_kind() const { return kind; }
         void set_kind(std::optional<int64_t> value) { this->kind = value; }
     };
+}
 }

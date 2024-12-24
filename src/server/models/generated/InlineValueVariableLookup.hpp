@@ -16,6 +16,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Provide inline value through a variable lookup.
      *
@@ -67,4 +68,5 @@ namespace lsps {
         std::optional<std::string> get_variable_name() const { return variable_name; }
         void set_variable_name(std::optional<std::string> value) { this->variable_name = value; }
     };
+}
 }

@@ -17,6 +17,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * A document link is a range in a text document that links to an internal or external
      * resource, like another text document or a web site.
@@ -70,4 +71,5 @@ namespace lsps {
         std::optional<std::string> get_tooltip() const { return tooltip; }
         void set_tooltip(std::optional<std::string> value) { this->tooltip = value; }
     };
+}
 }

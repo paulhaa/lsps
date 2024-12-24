@@ -16,10 +16,13 @@
 #include "CreateFileOptions.hpp"
 
 namespace lsps {
+namespace models {
     enum class CreateFileKind : int;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * Create file operation
      */
@@ -67,4 +70,5 @@ namespace lsps {
         std::string & get_mutable_uri() { return uri; }
         void set_uri(const std::string & value) { this->uri = value; }
     };
+}
 }

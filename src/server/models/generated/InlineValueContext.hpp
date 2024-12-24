@@ -16,6 +16,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Additional information about the context in which inline values were requested.
      */
@@ -50,4 +51,5 @@ namespace lsps {
         PurpleRange & get_mutable_stopped_location() { return stopped_location; }
         void set_stopped_location(const PurpleRange & value) { this->stopped_location = value; }
     };
+}
 }

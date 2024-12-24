@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The initial trace setting. If omitted trace is disabled ('off').
      *
@@ -28,4 +29,5 @@ namespace lsps {
      * The new value that should be assigned to the trace setting.
      */
     enum class TraceValue : int { MESSAGES, OFF, VERBOSE };
+}
 }

@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * General parameters to unregister a capability.
      */
@@ -48,4 +49,5 @@ namespace lsps {
         std::string & get_mutable_method() { return method; }
         void set_method(const std::string & value) { this->method = value; }
     };
+}
 }

@@ -16,6 +16,7 @@
 #include "Position.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The range of the text document to be manipulated. To insert text into a document create a
      * range where start === end.
@@ -205,4 +206,5 @@ namespace lsps {
         Position & get_mutable_start() { return start; }
         void set_start(const Position & value) { this->start = value; }
     };
+}
 }

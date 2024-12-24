@@ -16,19 +16,20 @@ class RouterTest : public CppUnit::TestFixture {
     void testInvoke();
 
   private:
-    class TestProvider : public lsps::MethodProvider<lsps::HoverParams, lsps::Hover> {
+    class TestProvider : public lsps::MethodProvider<lsps::models::HoverParams, lsps::models::Hover> {
       public:
         TestProvider() : MethodProvider(lsps::HOVER) {}
-        std::variant<lsps::Hover, lsps::ResponseError> handle(const std::optional<lsps::HoverParams>& params) override {
-            lsps::Hover hover;
+        std::variant<lsps::models::Hover, lsps::models::ResponseError> handle(
+            const std::optional<lsps::models::HoverParams>& params) override {
+            lsps::models::Hover hover;
             hover.set_contents("testResult");
 
-            lsps::PurpleRange range;
-            lsps::Position start;
+            lsps::models::PurpleRange range;
+            lsps::models::Position start;
             start.set_line(0);
             start.set_character(0);
             range.set_start(start);
-            lsps::Position end;
+            lsps::models::Position end;
             end.set_line(0);
             end.set_character(0);
             range.set_end(end);

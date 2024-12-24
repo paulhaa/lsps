@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class InitializeError {
@@ -34,4 +35,5 @@ namespace lsps {
         bool & get_mutable_retry() { return retry; }
         void set_retry(const bool & value) { this->retry = value; }
     };
+}
 }

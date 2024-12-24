@@ -18,6 +18,7 @@
 #include "TextDocumentItem.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Changes to the cell structure to add or remove cells.
      */
@@ -57,4 +58,5 @@ namespace lsps {
         std::optional<std::vector<TextDocumentItem>> get_did_open() const { return did_open; }
         void set_did_open(std::optional<std::vector<TextDocumentItem>> value) { this->did_open = value; }
     };
+}
 }

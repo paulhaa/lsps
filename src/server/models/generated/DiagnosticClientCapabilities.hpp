@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to the diagnostic pull model.
      *
@@ -51,4 +52,5 @@ namespace lsps {
         std::optional<bool> get_related_document_support() const { return related_document_support; }
         void set_related_document_support(std::optional<bool> value) { this->related_document_support = value; }
     };
+}
 }

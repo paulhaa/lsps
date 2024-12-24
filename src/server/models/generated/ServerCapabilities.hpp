@@ -72,6 +72,7 @@
 #include "WorkspaceSymbolOptions.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The capabilities the language server provides.
      */
@@ -345,4 +346,5 @@ namespace lsps {
         std::optional<WorkspaceSymbolProvider> get_workspace_symbol_provider() const { return workspace_symbol_provider; }
         void set_workspace_symbol_provider(std::optional<WorkspaceSymbolProvider> value) { this->workspace_symbol_provider = value; }
     };
+}
 }

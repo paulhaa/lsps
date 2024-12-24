@@ -14,7 +14,9 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     enum class SemanticTokenTypes : int { CLASS, COMMENT, DECORATOR, ENUM, ENUM_MEMBER, EVENT, FUNCTION, INTERFACE, KEYWORD, MACRO, METHOD, MODIFIER, NAMESPACE, NUMBER, OPERATOR, PARAMETER, PROPERTY, REGEXP, STRING, STRUCT, TYPE, TYPE_PARAMETER, VARIABLE };
+}
 }

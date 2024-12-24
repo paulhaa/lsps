@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Specific capabilities for the `SymbolKind` in the `workspace/symbol` request.
      */
@@ -43,4 +44,5 @@ namespace lsps {
         std::optional<std::vector<double>> get_value_set() const { return value_set; }
         void set_value_set(std::optional<std::vector<double>> value) { this->value_set = value; }
     };
+}
 }

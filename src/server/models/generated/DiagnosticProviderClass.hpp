@@ -16,6 +16,7 @@
 #include "DocumentFilter.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The server has support for pull model diagnostics.
      *
@@ -86,4 +87,5 @@ namespace lsps {
         std::optional<std::string> get_id() const { return id; }
         void set_id(std::optional<std::string> value) { this->id = value; }
     };
+}
 }

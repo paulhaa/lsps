@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The moniker kind if known.
      *
@@ -28,4 +29,5 @@ namespace lsps {
      * The moniker kind.
      */
     enum class MonikerKind : int { EXPORT, IMPORT, LOCAL };
+}
 }

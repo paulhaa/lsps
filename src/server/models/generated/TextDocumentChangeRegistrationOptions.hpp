@@ -16,6 +16,7 @@
 #include "DocumentFilter.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Describe options to be used when registering for text document change events.
      */
@@ -50,4 +51,5 @@ namespace lsps {
         double & get_mutable_sync_kind() { return sync_kind; }
         void set_sync_kind(const double & value) { this->sync_kind = value; }
     };
+}
 }

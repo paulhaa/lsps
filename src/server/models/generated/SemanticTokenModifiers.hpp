@@ -14,7 +14,9 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     enum class SemanticTokenModifiers : int { ABSTRACT, ASYNC, DECLARATION, DEFAULT_LIBRARY, DEFINITION, DEPRECATED, DOCUMENTATION, MODIFICATION, READONLY, STATIC };
+}
 }

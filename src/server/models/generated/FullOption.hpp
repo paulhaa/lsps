@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class FullOptionClass;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * Server supports providing semantic tokens for a full document.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using FullOption = std::variant<bool, FullOptionClass>;
+}
 }

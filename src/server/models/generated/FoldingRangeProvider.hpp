@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class FoldingRangeOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The server provides folding provider support.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using FoldingRangeProvider = std::variant<bool, FoldingRangeOptions>;
+}
 }

@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class RelativePattern;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The glob pattern to watch. See  {@link  GlobPattern glob pattern }  for more detail.
      *
@@ -27,4 +30,5 @@ namespace lsps {
     using nlohmann::json;
 
     using GlobPattern = std::variant<RelativePattern, std::string>;
+}
 }

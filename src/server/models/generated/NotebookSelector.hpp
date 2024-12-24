@@ -18,6 +18,7 @@
 #include "NotebookClass.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The notebooks to be synced
      */
@@ -50,4 +51,5 @@ namespace lsps {
         std::optional<NotebookUnion> get_notebook() const { return notebook; }
         void set_notebook(std::optional<NotebookUnion> value) { this->notebook = value; }
     };
+}
 }

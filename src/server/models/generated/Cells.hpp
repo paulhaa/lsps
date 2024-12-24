@@ -18,6 +18,7 @@
 #include "TextContent.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Changes to cells
      */
@@ -56,4 +57,5 @@ namespace lsps {
         std::optional<std::vector<TextContent>> get_text_content() const { return text_content; }
         void set_text_content(std::optional<std::vector<TextContent>> value) { this->text_content = value; }
     };
+}
 }

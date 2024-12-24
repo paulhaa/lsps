@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The result of an show document request.
      */
@@ -39,4 +40,5 @@ namespace lsps {
         bool & get_mutable_success() { return success; }
         void set_success(const bool & value) { this->success = value; }
     };
+}
 }

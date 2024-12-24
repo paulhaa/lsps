@@ -16,6 +16,7 @@
 #include "LspAny.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * A command this code action executes. If a code action provides an edit and a command,
      * first the edit is executed and then the command.
@@ -80,4 +81,5 @@ namespace lsps {
         std::string & get_mutable_title() { return title; }
         void set_title(const std::string & value) { this->title = value; }
     };
+}
 }

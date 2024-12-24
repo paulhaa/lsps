@@ -16,6 +16,7 @@
 #include "MessageActionItemElement.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class ShowMessageRequestParams {
@@ -49,4 +50,5 @@ namespace lsps {
         double & get_mutable_type() { return type; }
         void set_type(const double & value) { this->type = value; }
     };
+}
 }

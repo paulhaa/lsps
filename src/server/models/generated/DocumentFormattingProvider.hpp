@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class DocumentFormattingOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The server provides document formatting.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using DocumentFormattingProvider = std::variant<bool, DocumentFormattingOptions>;
+}
 }

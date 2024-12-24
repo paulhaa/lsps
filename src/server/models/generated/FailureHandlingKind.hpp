@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The failure handling strategy of a client if applying the workspace edit fails.
      */
@@ -24,4 +25,5 @@ namespace lsps {
      * The failure handling strategy of a client if applying the workspace edit fails.
      */
     enum class FailureHandlingKind : int { ABORT, TEXT_ONLY_TRANSACTIONAL, TRANSACTIONAL, UNDO };
+}
 }

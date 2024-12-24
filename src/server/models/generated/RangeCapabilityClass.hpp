@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class RangeCapabilityClass {
@@ -25,4 +26,5 @@ namespace lsps {
 
         public:
     };
+}
 }

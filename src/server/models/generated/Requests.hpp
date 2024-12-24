@@ -19,6 +19,7 @@
 #include "RangeCapabilityClass.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Which requests the client supports and might send to the server depending on the server's
      * capability. Please note that clients might not show semantic tokens or degrade some of
@@ -64,4 +65,5 @@ namespace lsps {
         std::optional<RangeCapability> get_range() const { return range; }
         void set_range(std::optional<RangeCapability> value) { this->range = value; }
     };
+}
 }

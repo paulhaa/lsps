@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     enum class WorkDoneProgressEndKind : int;
+}
 }
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class WorkDoneProgressEnd {
@@ -40,4 +43,5 @@ namespace lsps {
         std::optional<std::string> get_message() const { return message; }
         void set_message(std::optional<std::string> value) { this->message = value; }
     };
+}
 }

@@ -16,6 +16,7 @@
 #include "DocumentFilter.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class TypeDefinitionTionOptions {
@@ -46,4 +47,5 @@ namespace lsps {
         std::optional<std::string> get_id() const { return id; }
         void set_id(std::optional<std::string> value) { this->id = value; }
     };
+}
 }

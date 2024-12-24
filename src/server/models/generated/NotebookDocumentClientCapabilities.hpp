@@ -16,6 +16,7 @@
 #include "NotebookDocumentSyncClientCapabilities.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to the notebook document support.
      */
@@ -41,4 +42,5 @@ namespace lsps {
         NotebookDocumentSyncClientCapabilities & get_mutable_synchronization() { return synchronization; }
         void set_synchronization(const NotebookDocumentSyncClientCapabilities & value) { this->synchronization = value; }
     };
+}
 }

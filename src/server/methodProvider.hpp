@@ -15,7 +15,7 @@ class MethodProvider {
 
     [[nodiscard]] const Method& method() const { return method_; }
 
-    virtual std::variant<R, ResponseError> handle(const std::optional<P>& request) = 0;
+    virtual std::variant<R, models::ResponseError> handle(const std::optional<P>& request) = 0;
 
   protected:
     explicit MethodProvider(Method method) : method_(method) {}

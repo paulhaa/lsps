@@ -17,6 +17,7 @@
 #include "NotebookDocument.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The params sent in an open notebook document notification.
      */
@@ -50,4 +51,5 @@ namespace lsps {
         NotebookDocument & get_mutable_notebook_document() { return notebook_document; }
         void set_notebook_document(const NotebookDocument & value) { this->notebook_document = value; }
     };
+}
 }

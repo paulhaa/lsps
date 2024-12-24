@@ -17,6 +17,7 @@
 #include "VersionedTextDocumentIdentifier.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class DidChangeTextDocumentParams {
@@ -53,4 +54,5 @@ namespace lsps {
         VersionedTextDocumentIdentifier & get_mutable_text_document() { return text_document; }
         void set_text_document(const VersionedTextDocumentIdentifier & value) { this->text_document = value; }
     };
+}
 }

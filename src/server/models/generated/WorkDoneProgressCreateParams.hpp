@@ -16,6 +16,7 @@
 #include "ProgressToken.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class WorkDoneProgressCreateParams {
@@ -34,4 +35,5 @@ namespace lsps {
         ProgressToken & get_mutable_token() { return token; }
         void set_token(const ProgressToken & value) { this->token = value; }
     };
+}
 }

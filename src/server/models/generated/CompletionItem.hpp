@@ -22,6 +22,7 @@
 #include "Edit.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class CompletionItem {
@@ -229,4 +230,5 @@ namespace lsps {
         std::optional<std::string> get_text_edit_text() const { return text_edit_text; }
         void set_text_edit_text(std::optional<std::string> value) { this->text_edit_text = value; }
     };
+}
 }

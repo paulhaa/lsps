@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Whether the server wants to receive workspace folder change notifications.
      *
@@ -25,4 +26,5 @@ namespace lsps {
     using nlohmann::json;
 
     using ChangeNotifications = std::variant<bool, std::string>;
+}
 }

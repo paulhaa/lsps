@@ -14,11 +14,15 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class NotebookClass;
+}
 }
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     using NotebookUnion = std::variant<NotebookClass, std::string>;
+}
 }

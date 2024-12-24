@@ -18,6 +18,7 @@
 #include "CompletionList.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to the `textDocument/completion` request.
      */
@@ -75,4 +76,5 @@ namespace lsps {
         std::optional<double> get_insert_text_mode() const { return insert_text_mode; }
         void set_insert_text_mode(std::optional<double> value) { this->insert_text_mode = value; }
     };
+}
 }

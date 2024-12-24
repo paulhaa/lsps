@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class DefinitionOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The server provides goto definition support.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using DefinitionProvider = std::variant<bool, DefinitionOptions>;
+}
 }

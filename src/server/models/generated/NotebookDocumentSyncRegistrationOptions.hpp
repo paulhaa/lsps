@@ -16,6 +16,7 @@
 #include "NotebookSelector.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Registration options specific to a notebook.
      */
@@ -54,4 +55,5 @@ namespace lsps {
         std::optional<bool> get_save() const { return save; }
         void set_save(std::optional<bool> value) { this->save = value; }
     };
+}
 }

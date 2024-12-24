@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class SemanticTokensPartialResult {
@@ -29,4 +30,5 @@ namespace lsps {
         std::vector<int64_t> & get_mutable_data() { return data; }
         void set_data(const std::vector<int64_t> & value) { this->data = value; }
     };
+}
 }

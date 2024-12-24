@@ -17,6 +17,7 @@
 #include "DocumentSymbolClientCapabilitiesTagSupport.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to the `textDocument/documentSymbol` request.
      */
@@ -72,4 +73,5 @@ namespace lsps {
         std::optional<DocumentSymbolClientCapabilitiesTagSupport> get_tag_support() const { return tag_support; }
         void set_tag_support(std::optional<DocumentSymbolClientCapabilitiesTagSupport> value) { this->tag_support = value; }
     };
+}
 }

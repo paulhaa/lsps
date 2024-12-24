@@ -16,6 +16,7 @@
 #include "NotebookCell.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The change to the cell array.
      *
@@ -60,4 +61,5 @@ namespace lsps {
         int64_t & get_mutable_start() { return start; }
         void set_start(const int64_t & value) { this->start = value; }
     };
+}
 }

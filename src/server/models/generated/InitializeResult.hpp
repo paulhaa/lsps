@@ -17,6 +17,7 @@
 #include "ServerInfo.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class InitializeResult {
@@ -42,4 +43,5 @@ namespace lsps {
         std::optional<ServerInfo> get_server_info() const { return server_info; }
         void set_server_info(std::optional<ServerInfo> value) { this->server_info = value; }
     };
+}
 }

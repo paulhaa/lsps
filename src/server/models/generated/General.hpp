@@ -18,6 +18,7 @@
 #include "StaleRequestSupport.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * General client capabilities.
      */
@@ -76,4 +77,5 @@ namespace lsps {
         std::optional<StaleRequestSupport> get_stale_request_support() const { return stale_request_support; }
         void set_stale_request_support(std::optional<StaleRequestSupport> value) { this->stale_request_support = value; }
     };
+}
 }

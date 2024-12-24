@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class RenameOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The server provides rename support. RenameOptions may only be specified if the client
      * states that it supports `prepareSupport` in its initial `initialize` request.
@@ -26,4 +29,5 @@ namespace lsps {
     using nlohmann::json;
 
     using RenameProvider = std::variant<bool, RenameOptions>;
+}
 }

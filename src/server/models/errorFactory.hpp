@@ -1,7 +1,7 @@
 #include "errorCodes.hpp"
 #include "generated/ResponseError.hpp"
 
-namespace lsps {
+namespace lsps::models {
 class ErrorFactory {
   public:
     static ResponseError invalidRequest() {
@@ -25,4 +25,4 @@ class ErrorFactory {
         return error;
     }
 };
-}  // namespace lsps
+}  // namespace lsps::models

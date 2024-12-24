@@ -16,6 +16,7 @@
 #include "ChangeNotifications.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The server supports workspace folder.
      */
@@ -51,4 +52,5 @@ namespace lsps {
         std::optional<bool> get_supported() const { return supported; }
         void set_supported(std::optional<bool> value) { this->supported = value; }
     };
+}
 }

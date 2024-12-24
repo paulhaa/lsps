@@ -18,6 +18,7 @@
 #include "WorkspaceSymbolClientCapabilitiesTagSupport.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to the `workspace/symbol` request.
      */
@@ -65,4 +66,5 @@ namespace lsps {
         std::optional<WorkspaceSymbolClientCapabilitiesTagSupport> get_tag_support() const { return tag_support; }
         void set_tag_support(std::optional<WorkspaceSymbolClientCapabilitiesTagSupport> value) { this->tag_support = value; }
     };
+}
 }

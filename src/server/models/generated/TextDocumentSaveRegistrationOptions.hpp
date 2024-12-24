@@ -16,6 +16,7 @@
 #include "DocumentFilter.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class TextDocumentSaveRegistrationOptions {
@@ -41,4 +42,5 @@ namespace lsps {
         std::optional<bool> get_include_text() const { return include_text; }
         void set_include_text(std::optional<bool> value) { this->include_text = value; }
     };
+}
 }

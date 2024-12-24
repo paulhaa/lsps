@@ -16,6 +16,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Provide inline value as text.
      */
@@ -49,4 +50,5 @@ namespace lsps {
         std::string & get_mutable_text() { return text; }
         void set_text(const std::string & value) { this->text = value; }
     };
+}
 }

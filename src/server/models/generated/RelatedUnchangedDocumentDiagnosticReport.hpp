@@ -16,10 +16,13 @@
 #include "RelatedDocumentValue.hpp"
 
 namespace lsps {
+namespace models {
     enum class RelatedUnchangedDocumentDiagnosticReportKind : int;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * An unchanged diagnostic report with a set of related documents.
      */
@@ -64,4 +67,5 @@ namespace lsps {
         std::string & get_mutable_result_id() { return result_id; }
         void set_result_id(const std::string & value) { this->result_id = value; }
     };
+}
 }

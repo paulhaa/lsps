@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to the `textDocument/documentColor` and the
      * `textDocument/colorPresentation` request.
@@ -40,4 +41,5 @@ namespace lsps {
         std::optional<bool> get_dynamic_registration() const { return dynamic_registration; }
         void set_dynamic_registration(std::optional<bool> value) { this->dynamic_registration = value; }
     };
+}
 }

@@ -17,6 +17,7 @@
 #include "WorkspaceFoldersServerCapabilities.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Workspace specific server capabilities
      */
@@ -48,4 +49,5 @@ namespace lsps {
         std::optional<WorkspaceFoldersServerCapabilities> get_workspace_folders() const { return workspace_folders; }
         void set_workspace_folders(std::optional<WorkspaceFoldersServerCapabilities> value) { this->workspace_folders = value; }
     };
+}
 }

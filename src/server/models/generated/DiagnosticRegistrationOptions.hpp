@@ -16,6 +16,7 @@
 #include "DocumentFilter.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Diagnostic registration options.
      */
@@ -78,4 +79,5 @@ namespace lsps {
         bool & get_mutable_workspace_diagnostics() { return workspace_diagnostics; }
         void set_workspace_diagnostics(const bool & value) { this->workspace_diagnostics = value; }
     };
+}
 }

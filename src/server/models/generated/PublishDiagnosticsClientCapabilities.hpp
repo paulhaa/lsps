@@ -16,6 +16,7 @@
 #include "PublishDiagnosticsClientCapabilitiesTagSupport.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to the `textDocument/publishDiagnostics` notification.
      */
@@ -71,4 +72,5 @@ namespace lsps {
         std::optional<bool> get_version_support() const { return version_support; }
         void set_version_support(std::optional<bool> value) { this->version_support = value; }
     };
+}
 }

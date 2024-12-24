@@ -16,6 +16,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * A special text edit to provide an insert and a replace operation.
      */
@@ -57,4 +58,5 @@ namespace lsps {
         PurpleRange & get_mutable_replace() { return replace; }
         void set_replace(const PurpleRange & value) { this->replace = value; }
     };
+}
 }

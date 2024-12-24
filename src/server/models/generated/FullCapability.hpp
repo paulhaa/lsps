@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class FullCapabilityClass;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The client will send the `textDocument/semanticTokens/full` request if the server
      * provides a corresponding handler.
@@ -26,4 +29,5 @@ namespace lsps {
     using nlohmann::json;
 
     using FullCapability = std::variant<bool, FullCapabilityClass>;
+}
 }

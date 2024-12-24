@@ -18,6 +18,7 @@
 #include "ParameterInformationElement.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Represents the signature of something callable. A signature can have a label, like a
      * function-name, a doc-comment, and a set of parameters.
@@ -69,4 +70,5 @@ namespace lsps {
         std::optional<std::vector<ParameterInformationElement>> get_parameters() const { return parameters; }
         void set_parameters(std::optional<std::vector<ParameterInformationElement>> value) { this->parameters = value; }
     };
+}
 }

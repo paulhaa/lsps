@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The server provides document formatting on typing.
      */
@@ -46,4 +47,5 @@ namespace lsps {
         std::optional<std::vector<std::string>> get_more_trigger_character() const { return more_trigger_character; }
         void set_more_trigger_character(std::optional<std::vector<std::string>> value) { this->more_trigger_character = value; }
     };
+}
 }

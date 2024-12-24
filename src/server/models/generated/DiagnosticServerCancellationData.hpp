@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Cancellation data returned from a diagnostic request.
      */
@@ -36,4 +37,5 @@ namespace lsps {
         bool & get_mutable_retrigger_request() { return retrigger_request; }
         void set_retrigger_request(const bool & value) { this->retrigger_request = value; }
     };
+}
 }

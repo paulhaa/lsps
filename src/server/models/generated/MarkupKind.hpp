@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Describes the content type that a client supports in various result literals like
      * `Hover`, `ParameterInfo` or `CompletionItem`.
@@ -36,4 +37,5 @@ namespace lsps {
      * The type of the Markup
      */
     enum class MarkupKind : int { MARKDOWN, PLAINTEXT };
+}
 }

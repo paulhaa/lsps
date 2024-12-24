@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * A data entry field that is preserved between a call hierarchy prepare and incoming calls
      * or outgoing calls requests.
@@ -69,4 +70,5 @@ namespace lsps {
     using nlohmann::json;
 
     using LspAny = std::optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>;
+}
 }

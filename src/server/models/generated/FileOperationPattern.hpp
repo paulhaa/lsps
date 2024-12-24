@@ -16,10 +16,13 @@
 #include "FileOperationPatternOptions.hpp"
 
 namespace lsps {
+namespace models {
     enum class FileOperationPatternKind : int;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The actual file operation pattern.
      *
@@ -76,4 +79,5 @@ namespace lsps {
         std::optional<FileOperationPatternOptions> get_options() const { return options; }
         void set_options(std::optional<FileOperationPatternOptions> value) { this->options = value; }
     };
+}
 }

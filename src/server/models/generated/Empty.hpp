@@ -26,6 +26,7 @@
 #include "WorkspaceEditClientCapabilities.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Workspace specific client capabilities.
      */
@@ -142,4 +143,5 @@ namespace lsps {
         std::optional<bool> get_workspace_folders() const { return workspace_folders; }
         void set_workspace_folders(std::optional<bool> value) { this->workspace_folders = value; }
     };
+}
 }

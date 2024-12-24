@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class Cell {
@@ -29,4 +30,5 @@ namespace lsps {
         std::string & get_mutable_language() { return language; }
         void set_language(const std::string & value) { this->language = value; }
     };
+}
 }

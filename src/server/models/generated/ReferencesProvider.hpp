@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class ReferenceOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The server provides find references support.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using ReferencesProvider = std::variant<bool, ReferenceOptions>;
+}
 }

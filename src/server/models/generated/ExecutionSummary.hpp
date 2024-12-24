@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Additional execution summary information if supported by the client.
      */
@@ -47,4 +48,5 @@ namespace lsps {
         std::optional<bool> get_success() const { return success; }
         void set_success(std::optional<bool> value) { this->success = value; }
     };
+}
 }

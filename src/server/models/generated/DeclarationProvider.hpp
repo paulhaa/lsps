@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class DeclarationRationOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The server provides go to declaration support.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using DeclarationProvider = std::variant<bool, DeclarationRationOptions>;
+}
 }

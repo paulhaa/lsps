@@ -16,6 +16,7 @@
 #include "FileEvent.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class DidChangeWatchedFilesParams {
@@ -34,4 +35,5 @@ namespace lsps {
         std::vector<FileEvent> & get_mutable_changes() { return changes; }
         void set_changes(const std::vector<FileEvent> & value) { this->changes = value; }
     };
+}
 }

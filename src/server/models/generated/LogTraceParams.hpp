@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class LogTraceParams {
@@ -40,4 +41,5 @@ namespace lsps {
         std::optional<std::string> get_verbose() const { return verbose; }
         void set_verbose(std::optional<std::string> value) { this->verbose = value; }
     };
+}
 }

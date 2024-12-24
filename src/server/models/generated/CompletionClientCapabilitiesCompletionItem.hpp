@@ -18,10 +18,13 @@
 #include "CompletionItemTagSupport.hpp"
 
 namespace lsps {
+namespace models {
     enum class MarkupKind : int;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The client supports the following `CompletionItem` specific capabilities.
      */
@@ -121,4 +124,5 @@ namespace lsps {
         std::optional<CompletionItemTagSupport> get_tag_support() const { return tag_support; }
         void set_tag_support(std::optional<CompletionItemTagSupport> value) { this->tag_support = value; }
     };
+}
 }

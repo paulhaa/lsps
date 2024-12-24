@@ -17,6 +17,7 @@
 #include "NotebookClass.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * A notebook cell text document filter denotes a cell text document by different properties.
      */
@@ -53,4 +54,5 @@ namespace lsps {
         NotebookUnion & get_mutable_notebook() { return notebook; }
         void set_notebook(const NotebookUnion & value) { this->notebook = value; }
     };
+}
 }

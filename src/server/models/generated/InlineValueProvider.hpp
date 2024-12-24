@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class InlineValueOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The server provides inline values.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using InlineValueProvider = std::variant<bool, InlineValueOptions>;
+}
 }

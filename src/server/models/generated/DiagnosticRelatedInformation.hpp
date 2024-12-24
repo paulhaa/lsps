@@ -16,6 +16,7 @@
 #include "LocationClass.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Represents a related message and source code location for a diagnostic. This should be
      * used to point to code locations that cause or are related to a diagnostics, e.g when
@@ -53,4 +54,5 @@ namespace lsps {
         std::string & get_mutable_message() { return message; }
         void set_message(const std::string & value) { this->message = value; }
     };
+}
 }

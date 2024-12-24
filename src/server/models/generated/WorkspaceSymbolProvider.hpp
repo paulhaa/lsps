@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class WorkspaceSymbolOptions;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * The server provides workspace symbol support.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using WorkspaceSymbolProvider = std::variant<bool, WorkspaceSymbolOptions>;
+}
 }

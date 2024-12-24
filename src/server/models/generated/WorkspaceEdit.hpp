@@ -18,6 +18,7 @@
 #include "TextDocumentEdit.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The edits to apply.
      *
@@ -75,4 +76,5 @@ namespace lsps {
         std::optional<std::vector<TextDocumentEdit>> get_document_changes() const { return document_changes; }
         void set_document_changes(std::optional<std::vector<TextDocumentEdit>> value) { this->document_changes = value; }
     };
+}
 }

@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class TextDocumentSyncOptions {
@@ -66,4 +67,5 @@ namespace lsps {
         std::optional<bool> get_will_save_wait_until() const { return will_save_wait_until; }
         void set_will_save_wait_until(std::optional<bool> value) { this->will_save_wait_until = value; }
     };
+}
 }

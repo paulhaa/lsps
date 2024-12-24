@@ -7,13 +7,14 @@
 #include "methodProvider.hpp"
 
 namespace lsps {
-class InitializeProvider : public MethodProvider<InitializeParams, InitializeResult> {
+class InitializeProvider : public MethodProvider<models::InitializeParams, models::InitializeResult> {
   public:
-    InitializeProvider(const ServerInfo& serverInfo, const ServerCapabilities& capabilities)
+    InitializeProvider(const models::ServerInfo& serverInfo, const models::ServerCapabilities& capabilities)
         : serverInfo(serverInfo), capabilities(capabilities), MethodProvider(Method::INITIALIZE) {}
 
-    std::variant<InitializeResult, ResponseError> handle(const std::optional<InitializeParams>& params) override {
-        InitializeResult result;
+    std::variant<models::InitializeResult, models::ResponseError> handle(
+        const std::optional<models::InitializeParams>& params) override {
+        models::InitializeResult result;
         result.set_server_info(serverInfo);
         result.set_capabilities(capabilities);
 
@@ -21,7 +22,7 @@ class InitializeProvider : public MethodProvider<InitializeParams, InitializeRes
     }
 
   private:
-    ServerInfo serverInfo;
-    ServerCapabilities capabilities;
+    models::ServerInfo serverInfo;
+    models::ServerCapabilities capabilities;
 };
 }  // namespace lsps

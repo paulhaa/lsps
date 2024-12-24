@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to the `textDocument/definition` request.
      */
@@ -45,4 +46,5 @@ namespace lsps {
         std::optional<bool> get_link_support() const { return link_support; }
         void set_link_support(std::optional<bool> value) { this->link_support = value; }
     };
+}
 }

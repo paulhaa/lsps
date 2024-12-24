@@ -16,6 +16,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Inline value information can be provided by different means:
      * - directly as a text value (class InlineValueText).
@@ -115,4 +116,5 @@ namespace lsps {
         std::optional<std::string> get_expression() const { return expression; }
         void set_expression(std::optional<std::string> value) { this->expression = value; }
     };
+}
 }

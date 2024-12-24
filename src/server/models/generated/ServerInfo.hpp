@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Information about the server.
      */
@@ -46,4 +47,5 @@ namespace lsps {
         std::optional<std::string> get_version() const { return version; }
         void set_version(std::optional<std::string> value) { this->version = value; }
     };
+}
 }

@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Whether the client supports resolving additional code action properties via a separate
      * `codeAction/resolve` request.
@@ -41,4 +42,5 @@ namespace lsps {
         std::vector<std::string> & get_mutable_properties() { return properties; }
         void set_properties(const std::vector<std::string> & value) { this->properties = value; }
     };
+}
 }

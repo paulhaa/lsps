@@ -16,6 +16,7 @@
 #include "FileOperationRegistrationOptions.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The server is interested in file notifications/requests.
      */
@@ -75,4 +76,5 @@ namespace lsps {
         std::optional<FileOperationRegistrationOptions> get_will_rename() const { return will_rename; }
         void set_will_rename(std::optional<FileOperationRegistrationOptions> value) { this->will_rename = value; }
     };
+}
 }

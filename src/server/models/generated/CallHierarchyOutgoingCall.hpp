@@ -17,6 +17,7 @@
 #include "CallHierarchyItem.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class CallHierarchyOutgoingCall {
@@ -44,4 +45,5 @@ namespace lsps {
         CallHierarchyItem & get_mutable_to() { return to; }
         void set_to(const CallHierarchyItem & value) { this->to = value; }
     };
+}
 }

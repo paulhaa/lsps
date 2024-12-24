@@ -16,6 +16,7 @@
 #include "NotebookDocumentIdentifier.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The params sent in a save notebook document notification.
      */
@@ -41,4 +42,5 @@ namespace lsps {
         NotebookDocumentIdentifier & get_mutable_notebook_document() { return notebook_document; }
         void set_notebook_document(const NotebookDocumentIdentifier & value) { this->notebook_document = value; }
     };
+}
 }

@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The text document to change.
      */
@@ -53,4 +54,5 @@ namespace lsps {
         std::optional<int64_t> get_version() const { return version; }
         void set_version(std::optional<int64_t> value) { this->version = value; }
     };
+}
 }

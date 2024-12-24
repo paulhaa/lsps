@@ -333,6 +333,7 @@
 #include "WorkspaceUnchangedDocumentDiagnosticReport.hpp"
 
 namespace lsps {
+namespace models {
     enum class DocumentDiagnosticReportKind : int;
     enum class FailureHandlingKind : int;
     enum class FileOperationPatternKind : int;
@@ -345,8 +346,10 @@ namespace lsps {
     enum class TraceValue : int;
     enum class UniquenessLevel : int;
 }
+}
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class ModelsClass {
@@ -1809,4 +1812,5 @@ namespace lsps {
         std::optional<WorkspaceUnchangedDocumentDiagnosticReport> get_workspace_unchanged_document_diagnostic_report() const { return workspace_unchanged_document_diagnostic_report; }
         void set_workspace_unchanged_document_diagnostic_report(std::optional<WorkspaceUnchangedDocumentDiagnosticReport> value) { this->workspace_unchanged_document_diagnostic_report = value; }
     };
+}
 }

@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Specific options for the folding range.
      */
@@ -39,4 +40,5 @@ namespace lsps {
         std::optional<bool> get_collapsed_text() const { return collapsed_text; }
         void set_collapsed_text(std::optional<bool> value) { this->collapsed_text = value; }
     };
+}
 }

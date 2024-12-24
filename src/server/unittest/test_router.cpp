@@ -7,14 +7,14 @@ void RouterTest::testAddProvider() {
     CPPUNIT_ASSERT_THROW_MESSAGE(
         "missing provider should throw", router.invoke(lsps::HOVER, std::nullopt), std::runtime_error);
 
-    router.addProvider<lsps::HoverParams, lsps::Hover>(std::make_shared<TestProvider>());
+    router.addProvider<lsps::models::HoverParams, lsps::models::Hover>(std::make_shared<TestProvider>());
 
     CPPUNIT_ASSERT_NO_THROW_MESSAGE("added provider should not throw", router.invoke(lsps::HOVER, std::nullopt));
 }
 
 void RouterTest::testInvoke() {
     lsps::Router router;
-    router.addProvider<lsps::HoverParams, lsps::Hover>(std::make_shared<TestProvider>());
+    router.addProvider<lsps::models::HoverParams, lsps::models::Hover>(std::make_shared<TestProvider>());
     auto result = router.invoke(lsps::HOVER, std::nullopt);
     auto res = std::get_if<nlohmann::json>(&result);
 

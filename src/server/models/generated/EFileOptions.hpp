@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Additional options
      *
@@ -83,4 +84,5 @@ namespace lsps {
         std::optional<bool> get_recursive() const { return recursive; }
         void set_recursive(std::optional<bool> value) { this->recursive = value; }
     };
+}
 }

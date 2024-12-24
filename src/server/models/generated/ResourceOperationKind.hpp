@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * A create
      *
@@ -36,4 +37,5 @@ namespace lsps {
      * The kind of resource operations supported by the client.
      */
     enum class ResourceOperationKind : int { CREATE, DELETE, RENAME };
+}
 }

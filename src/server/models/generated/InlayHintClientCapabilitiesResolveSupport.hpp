@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Indicates which properties a client can resolve lazily on an inlay hint.
      */
@@ -39,4 +40,5 @@ namespace lsps {
         std::vector<std::string> & get_mutable_properties() { return properties; }
         void set_properties(const std::vector<std::string> & value) { this->properties = value; }
     };
+}
 }

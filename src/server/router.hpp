@@ -6,12 +6,14 @@
 #include "models/generated/RequestMessage.hpp"
 
 namespace lsps {
+using json = nlohmann::json;
+
 class Router {
   public:
     template <class P, class R>
     void addProvider(std::shared_ptr<MethodProvider<P, R>> provider) {
-        auto func = [provider = provider](const json& params) -> std::variant<json, ResponseError> {
-            std::variant<R, ResponseError> result;
+        auto func = [provider = provider](const json& params) -> std::variant<json, models::ResponseError> {
+            std::variant<R, models::ResponseError> result;
             if (!params.is_null()) {
                 P p;
                 from_json(params, p);
@@ -20,7 +22,7 @@ class Router {
                 result = provider->handle(std::nullopt);
             }
 
-            if (const auto error = std::get_if<ResponseError>(&result)) {
+            if (const auto error = std::get_if<models::ResponseError>(&result)) {
                 return *error;
             }
 
@@ -32,9 +34,9 @@ class Router {
         routes.emplace(provider->method(), func);
     }
     bool isSupported(const Method& method);
-    std::variant<json, ResponseError> invoke(const Method& method, const std::optional<json>& params);
+    std::variant<json, models::ResponseError> invoke(const Method& method, const std::optional<json>& params);
 
   private:
-    std::unordered_map<Method, std::function<std::variant<json, ResponseError>(const json&)>> routes;
+    std::unordered_map<Method, std::function<std::variant<json, models::ResponseError>(const json&)>> routes;
 };
 }  // namespace lsps

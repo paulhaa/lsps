@@ -18,6 +18,7 @@
 #include "PurpleRange.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * A code lens represents a command that should be shown along with source text, like the
      * number of references, a way to run tests, etc.
@@ -66,4 +67,5 @@ namespace lsps {
         PurpleRange & get_mutable_range() { return range; }
         void set_range(const PurpleRange & value) { this->range = value; }
     };
+}
 }

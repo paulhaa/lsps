@@ -14,10 +14,13 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     class WorkspaceFolder;
+}
 }
 
 namespace lsps {
+namespace models {
     /**
      * A workspace folder or a base URI to which this pattern will be matched against relatively.
      */
@@ -25,4 +28,5 @@ namespace lsps {
     using nlohmann::json;
 
     using BaseUri = std::variant<WorkspaceFolder, std::string>;
+}
 }

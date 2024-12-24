@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Static registration options to be returned in the initialize request.
      */
@@ -39,4 +40,5 @@ namespace lsps {
         std::optional<std::string> get_id() const { return id; }
         void set_id(std::optional<std::string> value) { this->id = value; }
     };
+}
 }

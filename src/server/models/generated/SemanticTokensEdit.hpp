@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class SemanticTokensEdit {
@@ -47,4 +48,5 @@ namespace lsps {
         int64_t & get_mutable_start() { return start; }
         void set_start(const int64_t & value) { this->start = value; }
     };
+}
 }

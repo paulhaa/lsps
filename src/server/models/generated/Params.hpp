@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The notification's params.
      *
@@ -23,4 +24,5 @@ namespace lsps {
     using nlohmann::json;
 
     using Params = std::variant<std::vector<nlohmann::json>, std::map<std::string, nlohmann::json>>;
+}
 }

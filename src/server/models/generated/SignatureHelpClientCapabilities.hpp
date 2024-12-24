@@ -16,6 +16,7 @@
 #include "SignatureInformation.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to the `textDocument/signatureHelp` request.
      */
@@ -56,4 +57,5 @@ namespace lsps {
         std::optional<SignatureInformation> get_signature_information() const { return signature_information; }
         void set_signature_information(std::optional<SignatureInformation> value) { this->signature_information = value; }
     };
+}
 }

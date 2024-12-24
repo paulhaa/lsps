@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * A full document diagnostic report.
      *
@@ -34,4 +35,5 @@ namespace lsps {
      * The document diagnostic report kinds.
      */
     enum class DocumentDiagnosticReportKind : int { FULL, UNCHANGED };
+}
 }

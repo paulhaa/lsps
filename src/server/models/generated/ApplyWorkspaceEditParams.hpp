@@ -16,6 +16,7 @@
 #include "WorkspaceEdit.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class ApplyWorkspaceEditParams {
@@ -42,4 +43,5 @@ namespace lsps {
         std::optional<std::string> get_label() const { return label; }
         void set_label(std::optional<std::string> value) { this->label = value; }
     };
+}
 }

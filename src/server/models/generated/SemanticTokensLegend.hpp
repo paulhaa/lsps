@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The legend used by the server
      */
@@ -47,4 +48,5 @@ namespace lsps {
         std::vector<std::string> & get_mutable_token_types() { return token_types; }
         void set_token_types(const std::vector<std::string> & value) { this->token_types = value; }
     };
+}
 }

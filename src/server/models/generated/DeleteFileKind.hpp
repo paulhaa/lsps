@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * A delete
      */
@@ -24,4 +25,5 @@ namespace lsps {
      * A delete
      */
     enum class DeleteFileKind : int { DELETE };
+}
 }

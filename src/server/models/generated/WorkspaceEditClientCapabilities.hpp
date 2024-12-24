@@ -16,11 +16,14 @@
 #include "ChangeAnnotationSupport.hpp"
 
 namespace lsps {
+namespace models {
     enum class FailureHandlingKind : int;
     enum class ResourceOperationKind : int;
 }
+}
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to `WorkspaceEdit`s
      */
@@ -77,4 +80,5 @@ namespace lsps {
         std::optional<std::vector<ResourceOperationKind>> get_resource_operations() const { return resource_operations; }
         void set_resource_operations(std::optional<std::vector<ResourceOperationKind>> value) { this->resource_operations = value; }
     };
+}
 }

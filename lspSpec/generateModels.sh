@@ -12,7 +12,7 @@ mkdir ${GEN_PATH}
 quicktype --src-lang schema \
   ${SOURCE_PATH} \
   --lang cpp \
-  --namespace lsps \
+  --namespace lsps::models \
   --no-boost \
   --source-style multi-source \
   --include-location global-include \

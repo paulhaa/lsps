@@ -17,6 +17,7 @@
 #include "FoldingRangeKind.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to the `textDocument/foldingRange` request.
      */
@@ -73,4 +74,5 @@ namespace lsps {
         std::optional<int64_t> get_range_limit() const { return range_limit; }
         void set_range_limit(std::optional<int64_t> value) { this->range_limit = value; }
     };
+}
 }

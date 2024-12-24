@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Additional options
      *
@@ -49,4 +50,5 @@ namespace lsps {
         std::optional<bool> get_overwrite() const { return overwrite; }
         void set_overwrite(std::optional<bool> value) { this->overwrite = value; }
     };
+}
 }

@@ -16,6 +16,7 @@
 #include "SignatureInformationElement.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Signature help represents the signature of something callable. There can be multiple
      * signature but only one active and only one active parameter.
@@ -79,4 +80,5 @@ namespace lsps {
         std::vector<SignatureInformationElement> & get_mutable_signatures() { return signatures; }
         void set_signatures(const std::vector<SignatureInformationElement> & value) { this->signatures = value; }
     };
+}
 }

@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class MessageActionItemElement {
@@ -32,4 +33,5 @@ namespace lsps {
         std::string & get_mutable_title() { return title; }
         void set_title(const std::string & value) { this->title = value; }
     };
+}
 }

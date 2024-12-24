@@ -16,6 +16,7 @@
 #include "InlayHintLabelPart.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * The label of this hint. A human readable string or an array of InlayHintLabelPart label
      * parts.
@@ -26,4 +27,5 @@ namespace lsps {
     using nlohmann::json;
 
     using InlayHintLabel = std::variant<std::vector<InlayHintLabelPart>, std::string>;
+}
 }

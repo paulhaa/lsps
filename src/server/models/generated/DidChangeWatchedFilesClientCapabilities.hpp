@@ -14,6 +14,7 @@
 #include "helper.hpp"
 
 namespace lsps {
+namespace models {
     /**
      * Capabilities specific to the `workspace/didChangeWatchedFiles` notification.
      */
@@ -47,4 +48,5 @@ namespace lsps {
         std::optional<bool> get_relative_pattern_support() const { return relative_pattern_support; }
         void set_relative_pattern_support(std::optional<bool> value) { this->relative_pattern_support = value; }
     };
+}
 }

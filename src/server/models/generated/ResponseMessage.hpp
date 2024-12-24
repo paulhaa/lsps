@@ -18,6 +18,7 @@
 #include "LspAny.hpp"
 
 namespace lsps {
+namespace models {
     using nlohmann::json;
 
     class ResponseMessage {
@@ -55,4 +56,5 @@ namespace lsps {
         LspAny get_result() const { return result; }
         void set_result(LspAny value) { this->result = value; }
     };
+}
 }
