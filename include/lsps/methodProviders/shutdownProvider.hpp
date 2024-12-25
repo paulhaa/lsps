@@ -1,7 +1,5 @@
-#include "emptyParams.hpp"
-#include "emptyResult.hpp"
-#include "generated/LspAny.hpp"
-#include "generated/Params.hpp"
+#include "../models/emptyParams.hpp"
+#include "../models/emptyResult.hpp"
 
 namespace lsps {
 class ShutdownProvider : public MethodProvider<models::EmptyParams, models::EmptyResult> {

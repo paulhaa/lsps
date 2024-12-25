@@ -1,3 +1,5 @@
+#pragma once
+
 #include "errorCodes.hpp"
 #include "generated/ResponseError.hpp"
 

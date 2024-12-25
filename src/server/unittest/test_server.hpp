@@ -2,11 +2,14 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 #include <iostream>
+#include <nlohmann/json.hpp>
 
-#include "generated/Hover.hpp"
-#include "generated/HoverParams.hpp"
-#include "nlohmann/json.hpp"
-#include "router.hpp"
+#include "lsps/methodProviders/hoverProvider.hpp"
+#include "lsps/methodProviders/method.hpp"
+#include "lsps/models/generated/Hover.hpp"
+#include "lsps/models/generated/HoverParams.hpp"
+#include "lsps/models/generated/ResponseError.hpp"
+#include "lsps/router.hpp"
 
 class ServerTest : public CppUnit::TestFixture {
   public:
@@ -19,9 +22,8 @@ class ServerTest : public CppUnit::TestFixture {
     void testHandleRequest();
 
   private:
-    class TestProvider : public lsps::MethodProvider<lsps::models::HoverParams, lsps::models::Hover> {
+    class TestProvider : public lsps::HoverProvider {
       public:
-        TestProvider() : MethodProvider(lsps::HOVER) {}
         std::variant<lsps::models::Hover, lsps::models::ResponseError> handle(
             const std::optional<lsps::models::HoverParams>& params) override {
             lsps::models::Hover hover;

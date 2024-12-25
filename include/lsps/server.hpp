@@ -1,10 +1,7 @@
 #pragma once
 
-#include <iostream>
-#include <thread>
-
-#include "generated/ServerCapabilities.hpp"
-#include "generated/ServerInfo.hpp"
+#include "models/generated/ServerCapabilities.hpp"
+#include "models/generated/ServerInfo.hpp"
 #include "ioHandler/ioHandler.hpp"
 #include "ioHandler/stdIoHandler.hpp"
 #include "methodProvider.hpp"

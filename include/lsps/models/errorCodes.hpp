@@ -1,3 +1,5 @@
+#pragma once
+
 namespace lsps::models {
 enum ErrorCode {
     ParseError = -32700,

@@ -1,6 +1,6 @@
 #include "test_initializeProvider.hpp"
 
-#include "methodProviders/initializeProvider.hpp"
+#include "lsps/methodProviders/initializeProvider.hpp"
 
 void InitializeProviderTest::testHandleInitialize() {
     lsps::models::ServerInfo serverInfo;

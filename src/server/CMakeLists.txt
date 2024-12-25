@@ -1,20 +1,8 @@
 set(SOURCES
-        server.hpp
-        router.hpp
-        ioHandler/ioHandler.hpp
-        ioHandler/stdIoHandler.hpp
-        methodProviders/method.hpp
-        methodProviders/initializeProvider.hpp
-        methodProviders/initializedProvider.hpp
-        methodProviders/shutdownProvider.hpp
-        methodProviders/hoverProvider.hpp
-
         server.cpp
         router.cpp
         methodProviders/method.cpp
 )
-
-add_subdirectory(models)
 
 target_sources(lsps PRIVATE ${SOURCES})
 target_include_directories(lsps PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

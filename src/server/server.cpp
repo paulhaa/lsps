@@ -1,10 +1,10 @@
-#include "server.hpp"
+#include "lsps/server.hpp"
 
-#include "errorFactory.hpp"
-#include "methodProviders/initializeProvider.hpp"
-#include "methodProviders/initializedProvider.hpp"
-#include "methodProviders/shutdownProvider.hpp"
-#include "models/generated/Generators.hpp"
+#include "lsps/methodProviders/initializeProvider.hpp"
+#include "lsps/methodProviders/initializedProvider.hpp"
+#include "lsps/methodProviders/shutdownProvider.hpp"
+#include "lsps/models/errorFactory.hpp"
+#include "lsps/models/generated/Generators.hpp"
 
 namespace lsps {
 void Server::start() {
@@ -23,8 +23,10 @@ void Server::addCapability(const Method& method) {
             capabilities.set_hover_provider(true);
             break;
         case Method::INITIALIZE:
+        case Method::INITIALIZED:
         case Method::SHUTDOWN:
         case Method::EXIT:
+        case Method::UNSUPPORTED:
             break;
     }
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <nlohmann/json.hpp>
+#include "nlohmann/json.hpp"
 
 namespace lsps::models {
 using json = nlohmann::json;

@@ -1,12 +1,9 @@
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
 
-#include <models/generated/LspAny.hpp>
-#include <models/generated/Params.hpp>
-
-#include "generated/Hover.hpp"
-#include "generated/HoverParams.hpp"
-#include "methodProvider.hpp"
+#include "lsps/methodProviders/hoverProvider.hpp"
+#include "lsps/methodProvider.hpp"
+#include "lsps/models/generated/Generators.hpp"
 
 class RouterTest : public CppUnit::TestFixture {
   public:
@@ -16,9 +13,8 @@ class RouterTest : public CppUnit::TestFixture {
     void testInvoke();
 
   private:
-    class TestProvider : public lsps::MethodProvider<lsps::models::HoverParams, lsps::models::Hover> {
+    class TestProvider : public lsps::HoverProvider {
       public:
-        TestProvider() : MethodProvider(lsps::HOVER) {}
         std::variant<lsps::models::Hover, lsps::models::ResponseError> handle(
             const std::optional<lsps::models::HoverParams>& params) override {
             lsps::models::Hover hover;

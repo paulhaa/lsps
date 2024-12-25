@@ -6,10 +6,13 @@
 #include <string>
 #include <vector>
 
-#include "errorFactory.hpp"
-#include "ioHandler/ioHandler.hpp"
-#include "models/generated/Generators.hpp"
-#include "server.hpp"
+#include "lsps/models/errorFactory.hpp"
+#include "lsps/models/generated/NotificationMessage.hpp"
+#include "lsps/models/generated/RequestMessage.hpp"
+#include "lsps/models/generated/ResponseMessage.hpp"
+#include "lsps/models/generated/ServerInfo.hpp"
+#include "lsps/models/generated/Generators.hpp"
+#include "lsps/server.hpp"
 
 std::string ServerTest::join(const std::vector<std::string>& str, const char* delimiter) {
     if (str.empty()) {

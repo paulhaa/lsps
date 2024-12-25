@@ -6,7 +6,7 @@ include(FetchContent)
 
 FetchContent_Declare(
         json
-        GIT_REPOSITORY https://github.com/nlohmann/json.git
+        GIT_REPOSITORY ssh://git@github.com/nlohmann/json.git
         GIT_TAG v3.11.3
 )
 
@@ -19,8 +19,16 @@ if (NOT json_POPULATED)
 endif ()
 
 # Build the library.
-add_library(lsps STATIC)
-target_include_directories(lsps PUBLIC ${json_SOURCE_DIR}/single_include)
+add_library(${PROJECT_NAME} STATIC)
+
+target_include_directories(${PROJECT_NAME}
+        PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
+        ${json_SOURCE_DIR}/single_include
+        PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
 
 # Build the tests.
 find_path(CPPUNIT_INCLUDE_DIR NAMES cppunit/TestCase.h)
@@ -33,10 +41,17 @@ else ()
     message(FATAL_ERROR "Could not find CppUnit")
 endif ()
 
-add_executable(lsps_test src/unittest/test_lsps.cpp)
-target_link_libraries(lsps_test PRIVATE ${CPPUNIT_LIBRARIES})
-include_directories(${CPPUNIT_INCLUDE_DIR})
-target_include_directories(lsps_test PRIVATE ${json_SOURCE_DIR}/single_include)
+add_executable(${PROJECT_NAME}_test src/unittest/test_lsps.cpp)
+
+target_link_libraries(${PROJECT_NAME}_test PRIVATE ${CPPUNIT_LIBRARIES})
+target_include_directories(${PROJECT_NAME}_test
+        PRIVATE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
+        ${json_SOURCE_DIR}/single_include
+        ${CPPUNIT_INCLUDE_DIR}
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
 
 # Add source files.
 add_subdirectory(src)

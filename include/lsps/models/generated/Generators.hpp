@@ -6038,7 +6038,7 @@ namespace models {
     }
 
     inline void from_json(const json & j, ResponseMessage& x) {
-        x.set_error(get_stack_optional<ResponseError>(j, "error"));
+//        x.set_error(get_stack_optional<ResponseError>(j, "error"));
         x.set_id(get_stack_optional<std::variant<int64_t, std::string>>(j, "id"));
         x.set_jsonrpc(j.at("jsonrpc").get<std::string>());
         x.set_result(get_stack_optional<std::variant<std::vector<nlohmann::json>, bool, double, int64_t, std::map<std::string, nlohmann::json>, std::string>>(j, "result"));

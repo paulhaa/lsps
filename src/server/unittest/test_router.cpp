@@ -1,6 +1,6 @@
 #include "test_router.hpp"
 
-#include "router.hpp"
+#include "lsps/router.hpp"
 
 void RouterTest::testAddProvider() {
     lsps::Router router;

@@ -1,11 +1,6 @@
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
 
-#include <iostream>
-
-#include "nlohmann/json.hpp"
-#include "router.hpp"
-
 class InitializeProviderTest : public CppUnit::TestFixture {
   public:
     InitializeProviderTest() : CppUnit::TestFixture() {}

@@ -2,8 +2,9 @@
 
 # This script uses quicktype (https://github.com/glideapps/quicktype) to generate the lsp models.
 
-SOURCE_PATH="schema.json"
-GEN_PATH="../src/server/models/generated"
+PROJECT_ROOT=".."
+SOURCE_PATH="${PROJECT_ROOT}/lspSpec/schema.json"
+GEN_PATH="${PROJECT_ROOT}/include/lsps/models/generated"
 
 rm -rf ${GEN_PATH}
 

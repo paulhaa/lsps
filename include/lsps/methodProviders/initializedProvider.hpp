@@ -1,12 +1,8 @@
 #pragma once
 
-#include "emptyParams.hpp"
-#include "emptyResult.hpp"
-#include "generated/Generators.hpp"
-#include "generated/InitializeResult.hpp"
-#include "generated/LspAny.hpp"
-#include "generated/Params.hpp"
-#include "methodProvider.hpp"
+#include "../methodProvider.hpp"
+#include "../models/emptyParams.hpp"
+#include "../models/emptyResult.hpp"
 
 namespace lsps {
 class InitializedProvider : public MethodProvider<models::EmptyParams, models::EmptyResult> {

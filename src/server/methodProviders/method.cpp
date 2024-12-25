@@ -1,4 +1,4 @@
-#include "method.hpp"
+#include "lsps/methodProviders/method.hpp"
 
 #include <map>
 #include <string>

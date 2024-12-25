@@ -1,7 +1,10 @@
-#include "generated/Hover.hpp"
-#include "generated/HoverParams.hpp"
+#pragma once
+
 #include "method.hpp"
-#include "methodProvider.hpp"
+
+#include "../models/generated/HoverParams.hpp"
+#include "../models/generated/Hover.hpp"
+#include "../methodProvider.hpp"
 
 namespace lsps {
 class HoverProvider : public MethodProvider<models::HoverParams, models::Hover> {

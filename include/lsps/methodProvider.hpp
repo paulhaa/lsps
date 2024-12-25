@@ -2,10 +2,8 @@
 
 #include <string>
 
-#include "generated/LspAny.hpp"
-#include "generated/Params.hpp"
-#include "generated/ResponseError.hpp"
 #include "methodProviders/method.hpp"
+#include "models/generated/ResponseError.hpp"
 
 namespace lsps {
 template <class P, class R>

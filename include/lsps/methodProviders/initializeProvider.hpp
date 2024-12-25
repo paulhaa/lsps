@@ -1,10 +1,11 @@
 #pragma once
 
-#include "generated/Generators.hpp"
-#include "generated/InitializeResult.hpp"
-#include "generated/LspAny.hpp"
-#include "generated/Params.hpp"
-#include "methodProvider.hpp"
+#include "lsps/methodProvider.hpp"
+#include "lsps/models/generated/InitializeParams.hpp"
+#include "lsps/models/generated/ResponseError.hpp"
+#include "lsps/models/generated/InitializeResult.hpp"
+#include "lsps/models/generated/ServerInfo.hpp"
+#include "lsps/models/generated/ServerCapabilities.hpp"
 
 namespace lsps {
 class InitializeProvider : public MethodProvider<models::InitializeParams, models::InitializeResult> {
