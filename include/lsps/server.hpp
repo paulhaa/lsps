@@ -1,10 +1,11 @@
 #pragma once
 
-#include "models/generated/ServerCapabilities.hpp"
-#include "models/generated/ServerInfo.hpp"
 #include "ioHandler/ioHandler.hpp"
 #include "ioHandler/stdIoHandler.hpp"
+#include "logger.hpp"
 #include "methodProvider.hpp"
+#include "models/generated/ServerCapabilities.hpp"
+#include "models/generated/ServerInfo.hpp"
 #include "router.hpp"
 
 namespace lsps {
@@ -12,11 +13,13 @@ constexpr auto JSON_RPC_VERSION = "2.0";
 
 class Server {
   public:
-    explicit Server(const models::ServerInfo& serverInfo) : serverInfo(serverInfo) {
-        ioHandler = std::make_unique<StdIoHandler>();
-    }
-    Server(const models::ServerInfo& serverInfo, std::unique_ptr<IoHandler> ioHandler)
+    explicit Server(const models::ServerInfo& serverInfo,
+                    std::unique_ptr<IoHandler> ioHandler = std::make_unique<StdIoHandler>())
         : serverInfo(serverInfo), ioHandler(std::move(ioHandler)) {}
+    Server(const models::ServerInfo& serverInfo,
+           std::unique_ptr<Logger> logger,
+           std::unique_ptr<IoHandler> ioHandler = std::make_unique<StdIoHandler>())
+        : serverInfo(serverInfo), logger(std::move(logger)), ioHandler(std::move(ioHandler)) {}
 
     void start();
     template <class P, class R>
@@ -27,10 +30,17 @@ class Server {
 
   private:
     std::unique_ptr<IoHandler> ioHandler;
+    std::unique_ptr<Logger> logger;
     Router router;
 
     models::ServerInfo serverInfo;
     models::ServerCapabilities capabilities;
+
+#define INFO(text)           \
+    if (logger != nullptr) { \
+        logger->info(text);  \
+    }
+
 
     void initialize();
     void addCapability(const Method& method);

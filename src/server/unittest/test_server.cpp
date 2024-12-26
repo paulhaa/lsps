@@ -7,11 +7,11 @@
 #include <vector>
 
 #include "lsps/models/errorFactory.hpp"
+#include "lsps/models/generated/Generators.hpp"
 #include "lsps/models/generated/NotificationMessage.hpp"
 #include "lsps/models/generated/RequestMessage.hpp"
 #include "lsps/models/generated/ResponseMessage.hpp"
 #include "lsps/models/generated/ServerInfo.hpp"
-#include "lsps/models/generated/Generators.hpp"
 #include "lsps/server.hpp"
 
 std::string ServerTest::join(const std::vector<std::string>& str, const char* delimiter) {
@@ -107,7 +107,7 @@ void ServerTest::testStart() {
 
     auto response = queryServer(request);
     // Remove initialize response.
-    auto resp = response.substr(1109);
+    auto resp = response.substr(1175);
 
     auto message = "expected '" + std::string(expectedResponse) + "', got '" + resp + "'";
     CPPUNIT_ASSERT_MESSAGE(message, resp == expectedResponse);
@@ -150,7 +150,7 @@ void ServerTest::testShutdown() {
 
     auto response = queryServer(request);
     // Remove initialize response.
-    auto resp = response.substr(1109);
+    auto resp = response.substr(1175);
 
     auto message = "expected '" + std::string(expectedResponse) + "', got '" + resp + "'";
     CPPUNIT_ASSERT_MESSAGE(message, resp == expectedResponse);
@@ -165,7 +165,7 @@ void ServerTest::testAddProvider() {
     auto response = queryServer(request);
 
     auto message = "should have hover capability";
-    auto hoverCapability = R"("hoverProvider":true)";
+    auto hoverCapability = R"("hoverProvider":{"workDoneProgress":null})";
     CPPUNIT_ASSERT_MESSAGE(message, response.find(hoverCapability) != std::string::npos);
 
     message = "should not have call hierarchy capability";

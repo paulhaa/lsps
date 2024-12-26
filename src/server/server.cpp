@@ -19,9 +19,11 @@ void Server::start() {
 
 void Server::addCapability(const Method& method) {
     switch (method) {
-        case Method::HOVER:
-            capabilities.set_hover_provider(true);
+        case Method::HOVER: {
+            models::HoverOptions opts;
+            capabilities.set_hover_provider(opts);
             break;
+        }
         case Method::INITIALIZE:
         case Method::INITIALIZED:
         case Method::SHUTDOWN:
@@ -147,6 +149,7 @@ json Server::readPayload(int contentLength) {
     }
 
     const auto payload = std::string(data.begin(), data.end());
+    INFO("request: " + payload)
     if (!nlohmann::json::accept(payload)) {
         throw std::invalid_argument("Invalid json");
     }
@@ -172,6 +175,7 @@ void Server::dispatchResponse(const std::variant<int64_t, std::string>& id,
     to_json(json, response);
 
     auto content = json.dump();
+    INFO("response: " + content)
     const size_t contentLength = content.length();
     const auto responseMessage = "Content-Length: " + std::to_string(contentLength) + "\r\n\r\n" + content;
     ioHandler->writeOutput(responseMessage);
