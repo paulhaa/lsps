@@ -6,8 +6,8 @@ void InitializeProviderTest::testHandleInitialize() {
     lsps::models::ServerInfo serverInfo;
     serverInfo.set_name("testServer");
     serverInfo.set_version("0.0.1");
-    lsps::models::ServerCapabilities capabilities;
-    lsps::InitializeProvider provider(serverInfo, capabilities);
+    lsps::Server server(serverInfo);
+    lsps::InitializeProvider provider(&server);
 
     auto result = provider.handle(std::nullopt);
     auto res = std::get_if<lsps::models::InitializeResult>(&result);

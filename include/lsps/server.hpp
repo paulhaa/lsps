@@ -28,6 +28,9 @@ class Server {
         router.addProvider(provider);
     };
 
+    const models::ServerInfo& getServerInfo() const { return serverInfo; }
+    models::ServerCapabilities& getCapabilities() { return capabilities; }
+
   private:
     std::unique_ptr<IoHandler> ioHandler;
     std::unique_ptr<Logger> logger;
@@ -40,7 +43,6 @@ class Server {
     if (logger != nullptr) { \
         logger->info(text);  \
     }
-
 
     void initialize();
     void addCapability(const Method& method);

@@ -79,8 +79,7 @@ void Server::handleShutdown() {
 }
 
 void Server::initialize() {
-    router.addProvider<models::InitializeParams, models::InitializeResult>(
-        std::make_shared<InitializeProvider>(serverInfo, capabilities));
+    router.addProvider<models::InitializeParams, models::InitializeResult>(std::make_shared<InitializeProvider>(this));
     router.addProvider<models::EmptyParams, models::EmptyResult>(std::make_shared<InitializedProvider>());
     router.addProvider<models::EmptyParams, models::EmptyResult>(std::make_shared<ShutdownProvider>());
 }
