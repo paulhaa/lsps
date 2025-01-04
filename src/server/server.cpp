@@ -19,6 +19,11 @@ void Server::start() {
 
 void Server::addCapability(const Method& method) {
     switch (method) {
+        case Method::DEFINITION: {
+            models::DefinitionOptions opts;
+            capabilities.set_definition_provider(opts);
+            break;
+        }
         case Method::HOVER: {
             models::HoverOptions opts;
             capabilities.set_hover_provider(opts);

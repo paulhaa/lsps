@@ -5,7 +5,7 @@
 #include <string>
 
 namespace lsps {
-enum Method { INITIALIZE, INITIALIZED, HOVER, SHUTDOWN, EXIT, UNSUPPORTED };
+enum Method { INITIALIZE, INITIALIZED, DEFINITION, HOVER, SHUTDOWN, EXIT, UNSUPPORTED };
 
 class MethodEnum {
   public:

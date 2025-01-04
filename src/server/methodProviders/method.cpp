@@ -6,6 +6,7 @@
 namespace lsps {
 std::map<std::string, Method> MethodEnum::stringToMethod{{"initialize", INITIALIZE},
                                                          {"initialized", INITIALIZED},
+                                                         {"textDocument/definition", DEFINITION},
                                                          {"textDocument/hover", HOVER},
                                                          {"shutdown", SHUTDOWN},
                                                          {"exit", EXIT}};
